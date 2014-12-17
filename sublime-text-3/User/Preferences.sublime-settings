@@ -1,0 +1,82 @@
+{
+	"always_show_minimap_viewport": true,
+	"auto_complete_commit_on_tab": true,
+	"auto_find_in_selection": true,
+	"bold_folder_labels": false,
+	"caret_extra_width": 1,
+	"caret_style": "phase",
+	"color_scheme": "Packages/Monokai Extended/Monokai Extended.tmTheme",
+	"copy_with_empty_selection": false,
+	"default_line_ending": "unix",
+	"drag_text": false,
+	"draw_indent_guides": true,
+	"draw_minimap_border": false,
+	"draw_white_space": "selection",
+	"enable_tab_scrolling": false,
+	"ensure_newline_at_eof_on_save": true,
+	"fade_fold_buttons": false,
+	"folder_exclude_patterns":
+	[
+		".svn",
+		".git",
+		".hg",
+		"CVS",
+		"node_modules"
+	],
+	"font_face": "Liberation Mono",
+	"font_size": 9,
+	"highlight_line": true,
+	"highlight_modified_tabs": true,
+	"ignored_packages":
+	[
+		"Javatar",
+		"Color Highlighter",
+		"W3CValidators",
+		"SmartMarkdown",
+		"StringUtilities",
+		"JavaScript",
+		"ChangeList",
+		"Markdown",
+		"Zen Tabs",
+		"Vintage",
+		"Subclim",
+		"PlainTasks",
+		"DoxyDoc",
+		"JSHint Gutter",
+		"MarkdownEditing",
+		"SublimeCodeIntel",
+		"Glue",
+		"Sublime Bookmarks"
+	],
+	"indent_guide_options":
+	[
+		"draw_active"
+	],
+	"indent_to_bracket": false,
+	"line_padding_bottom": 0,
+	"line_padding_top": 0,
+	"overlay_scroll_bars": "system",
+	"paths":
+	{
+		"linux":
+		[
+			"/home/blinskey/.cabal/bin/shellcheck"
+		]
+	},
+	"preview_on_click": false,
+	"rulers":
+	[
+		80
+	],
+	"show_encoding": true,
+	"show_line_endings": true,
+	"show_tab_close_buttons": true,
+	"sidebar_default": true,
+	"tab_size": 4,
+	"tabs_small": true,
+	"theme": "Soda Dark 3.sublime-theme",
+	"translate_tabs_to_spaces": true,
+	"trim_trailing_white_space_on_save": true,
+	"word_wrap": true,
+	"wrap_width": 79
+}

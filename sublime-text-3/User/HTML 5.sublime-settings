@@ -1,0 +1,10 @@
+{
+    "extensions":
+    [
+        "tpl",
+        "html"
+    ],
+    "tab_size": 2,
+    "word_wrap": false,
+    "ensure_newline_at_eof_on_save": true,
+}

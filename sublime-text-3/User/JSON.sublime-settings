@@ -1,0 +1,10 @@
+{
+	"extensions":
+	[
+		"JSON-tmLanguage",
+		"sublime-commands",
+		"sublime-settings"
+	],
+	"tab_size": 4,
+	"word_wrap": true
+}

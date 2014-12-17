@@ -1,0 +1,10 @@
+{
+    "tab_size": 4,
+    "word_wrap": false,
+    "wrap_width": 100,
+    "rulers":
+    [
+        80,
+        100
+    ],
+}
