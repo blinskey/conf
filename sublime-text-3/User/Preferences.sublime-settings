@@ -29,24 +29,23 @@
 	"highlight_modified_tabs": true,
 	"ignored_packages":
 	[
-		"Javatar",
-		"Color Highlighter",
-		"W3CValidators",
-		"SmartMarkdown",
-		"StringUtilities",
-		"JavaScript",
-		"ChangeList",
-		"Markdown",
-		"Zen Tabs",
 		"Vintage",
-		"Subclim",
-		"PlainTasks",
-		"DoxyDoc",
+		"Javatar",
+		"Zen Tabs",
+		"ChangeList",
 		"JSHint Gutter",
-		"MarkdownEditing",
+		"PlainTasks",
 		"SublimeCodeIntel",
+		"Sublime Bookmarks",
+		"Markdown",
+		"MarkdownEditing",
+		"Color Highlighter",
+		"StringUtilities",
+		"DoxyDoc",
 		"Glue",
-		"Sublime Bookmarks"
+		"Subclim",
+		"JavaScript",
+		"SmartMarkdown"
 	],
 	"indent_guide_options":
 	[
