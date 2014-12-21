@@ -12,3 +12,10 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
+
+# Update all packages from official Arch repos:
+alias arch-update='sudo pacman -Syu'
+
+# Update all packages from AUR:
+alias aur-update='sudo aura -Ayuakx'
+
