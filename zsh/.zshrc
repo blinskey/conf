@@ -85,3 +85,6 @@ setopt nohashdirs
 envoy
 source <(envoy -p)
 
+# Remap Caps Lock to Ctrl.
+setxkbmap -option ctrl:nocaps
+
