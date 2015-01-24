@@ -1,6 +1,9 @@
 {
 	"in_process_packages":
 	[
+		"SideBarEnhancements",
+		"Tag",
+		"Vintageous"
 	],
 	"install_prereleases": false,
 	"installed_dependencies":
