@@ -75,15 +75,11 @@ fi
 setopt HIST_IGNORE_DUPS
 
 # Enable fish-style syntax highlighting using the zsh-syntax-highlighting
-# package from the Arch official repo.
+# package from https://github.com/zsh-users/zsh-syntax-highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Automatic $PATH rehash:
 setopt nohashdirs
-
-# Set up envoy.
-envoy
-source <(envoy -p)
 
 # Remap Caps Lock to Ctrl.
 setxkbmap -option ctrl:nocaps
