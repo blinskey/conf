@@ -3,6 +3,11 @@ alias ll=l
 
 alias vi=vim
 
+# Android Studio alias that runs in background
+function androidstudio() {
+    /opt/android-studio/bin/studio.sh "$@" &
+}
+
 # Pipe ls output into less with color output.
 alias lll='ls -Ahl --color=always | less -R'
 
@@ -17,10 +22,4 @@ if [ -x /usr/bin/dircolors ]; then
     alias fgrep='fgrep --color=auto'
     alias egrep='egrep --color=auto'
 fi
-
-# Update all packages from official Arch repos:
-alias arch-update='sudo pacman -Syu'
-
-# Update all packages from AUR:
-alias aur-update='sudo aura -Ayuakx'
 

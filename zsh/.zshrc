@@ -84,6 +84,3 @@ setopt nohashdirs
 # Remap Caps Lock to Ctrl.
 setxkbmap -option ctrl:nocaps
 
-# Add Android Studio to PATH.
-path+=('/opt/android-studio/bin/')
-export PATH
