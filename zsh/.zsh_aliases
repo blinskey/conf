@@ -8,6 +8,9 @@ function androidstudio() {
     /opt/android-studio/bin/studio.sh "$@" &
 }
 
+# ProGuard stack trace decoding script for debugging Android apps
+alias proguardretrace=~/Android/Sdk/tools/proguard/bin/retrace.sh
+
 # Pipe ls output into less with color output.
 alias lll='ls -Ahl --color=always | less -R'
 
