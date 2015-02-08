@@ -1,0 +1,22 @@
+# Dark styles for Whisker Menu, inspired by Numix. 
+# See https://gottcode.wordpress.com/2013/11/27/theming-whisker-menu/
+style "whiskermenu-window-dark" {
+    bg[NORMAL] = "#2d2d2d"
+    bg[ACTIVE] = "#729fcf"
+    bg[PRELIGHT] = "#729fcf"
+    fg[NORMAL] = "#dedede"
+    fg[ACTIVE] = "#f9f9f9"
+    fg[PRELIGHT] = "#f9f9f9"
+}
+
+style "whiskermenu-tree-dark" {
+    #base[NORMAL] = "#555555" # Alternative lighter color
+    base[NORMAL] = "#333333"
+    base[ACTIVE] = "#729fcf"
+    text[NORMAL] = "#dedede"
+    text[ACTIVE] = "#f9f9f9"
+}
+
+widget "whiskermenu-window*" style "whiskermenu-window-dark"
+widget "whiskermenu-window*TreeView*" style "whiskermenu-tree-dark"
+
