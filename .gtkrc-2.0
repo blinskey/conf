@@ -7,6 +7,7 @@ style "whiskermenu-window-dark" {
     fg[NORMAL] = "#dedede"
     fg[ACTIVE] = "#f9f9f9"
     fg[PRELIGHT] = "#f9f9f9"
+    base[NORMAL] = "#dedede"
 }
 
 style "whiskermenu-tree-dark" {
