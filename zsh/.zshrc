@@ -84,9 +84,3 @@ setopt nohashdirs
 # Remap Caps Lock to Ctrl.
 setxkbmap -option ctrl:nocaps
 
-# Add items to PATH.
-path+=('/opt/node/bin/')
-path+=('/opt/eclipse/')
-path+=('/opt/android-studio/bin/')
-export PATH
-
