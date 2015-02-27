@@ -2,10 +2,7 @@
 // Rules: http://eslint.org/docs/rules/
 {
     "ecmaFeatures": {},
-    "env": {
-        "browser": true,
-        "jquery": true
-    },
+    "env": {},
     "globals": {},
     "rules": {
         // Possible Errors
