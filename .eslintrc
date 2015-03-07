@@ -149,7 +149,7 @@
         "one-var": 0,
         "operator-assignment": [2, "always"],
         "padded-blocks": [2, "never"],
-        "quote-props": [2, "always"],
+        "quote-props": [1, "always"],
         "quotes": [2, "double", "avoid-escape"],
         "semi": [2, "always"],
         "sort-vars": 0,
