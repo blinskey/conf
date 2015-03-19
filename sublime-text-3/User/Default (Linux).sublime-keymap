@@ -1,6 +1,11 @@
 [
-    { "keys": ["ctrl+shift+up"], "command": "select_lines", "args": {"forward": false} },
-    { "keys": ["ctrl+shift+down"], "command": "select_lines", "args": {"forward": true} },
-    { "keys": ["ctrl+alt+up"], "command": "swap_line_up" },
-    { "keys": ["ctrl+alt+down"], "command": "swap_line_down" },
+    {
+        "keys": ["ctrl+["],
+        "command": "_enter_normal_mode",
+        "args": {"mode": "mode_insert"},
+        "context": [
+            {"key": "vi_insert_mode_aware"},
+            {"key": "vi_use_ctrl_keys"}
+        ]
+    }
 ]
