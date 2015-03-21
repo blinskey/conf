@@ -61,7 +61,8 @@
 		"BlameHighlighter",
 		"Search in Project",
 		"Selection Evaluator",
-		"SublimeLinter-annotations"
+		"SublimeLinter-annotations",
+		"CodeFormatter"
 	],
 	"indent_guide_options":
 	[

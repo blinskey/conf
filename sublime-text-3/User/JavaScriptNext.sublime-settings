@@ -3,6 +3,7 @@
 	[
 		"js",
 		".eslintrc",
-		"sublime-keymap"
+		"sublime-keymap",
+		"sublime-settings"
 	]
 }
