@@ -1,3 +1,6 @@
+" Pathogen (https://github.com/tpope/vim-pathogen)
+execute pathogen#infect()
+
 " Appearance
 syntax enable
 colorscheme elise 
