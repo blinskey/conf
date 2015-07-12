@@ -1,6 +1,7 @@
 {
 	"in_process_packages":
 	[
+		"TypeScript"
 	],
 	"install_prereleases": false,
 	"installed_packages":
@@ -69,6 +70,7 @@
 		"PlainTasks",
 		"PowerShell",
 		"ReadmePlease",
+		"Schemr",
 		"Search in Project",
 		"Select Quoted",
 		"Selection Evaluator",
