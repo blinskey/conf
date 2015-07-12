@@ -2,6 +2,9 @@
 path+=('/opt/node/bin/')
 path+=('/opt/eclipse/')
 path+=('/opt/android-studio/bin/')
+path+=('/opt/idea/bin')
+path+=('/opt/nodejs/bin')
+path+=('/opt/infer/infer/infer/bin')
 export PATH
 
 # Force the Steam window to close rather than minimize when the close button
