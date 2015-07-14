@@ -3,7 +3,7 @@ execute pathogen#infect()
 
 " Appearance
 syntax enable
-colorscheme monokain 
+colorscheme Tomorrow-Night 
 
 " Show line numbers
 " set number
