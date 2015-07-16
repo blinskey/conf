@@ -33,7 +33,3 @@ au BufRead,BufNewFile *.md set filetype=markdown
 set wrap
 set textwidth=80
 
-" Git commit settings. (Thanks to
-" http://robots.thoughtbot.com/5-useful-tips-for-a-better-commit-message)
-autocmd Filetype gitcommit setlocal spell textwidth=72
-
