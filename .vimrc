@@ -3,6 +3,7 @@ execute pathogen#infect()
 
 " Appearance
 syntax enable
+set t_Co=256
 colorscheme Tomorrow-Night 
 
 " Show line numbers
