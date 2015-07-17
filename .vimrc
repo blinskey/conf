@@ -27,7 +27,7 @@ call plug#end()
 
 syntax enable
 set t_Co=256
-colorscheme Tomorrow-Night 
+colorscheme Tomorrow-Night
 
 " Show line numbers
 " set number
@@ -49,6 +49,19 @@ set smartcase
 
 set wrap
 set textwidth=80
+
+"=== Whitespace ===============================================================
+
+" Strip trailing whitespace on save.
+" From http://stackoverflow.com/a/1618401/2530735
+fun! <SID>StripTrailingWhitespaces()
+    let l = line(".")
+    let c = col(".")
+    %s/\s\+$//e
+    call cursor(l, c)
+endfun
+
+autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 "=== Miscellaneous ============================================================
 
