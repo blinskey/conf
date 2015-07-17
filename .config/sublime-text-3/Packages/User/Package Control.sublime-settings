@@ -86,6 +86,7 @@
 		"SublimeLinter-javac",
 		"SublimeLinter-jscs",
 		"SublimeLinter-jshint",
+		"SublimeLinter-pep8",
 		"SublimeLinter-php",
 		"SublimeLinter-shellcheck",
 		"Surround",
