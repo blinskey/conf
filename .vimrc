@@ -1,44 +1,27 @@
-"=== Vundle ===================================================================
-"
-" See https://github.com/VundleVim/Vundle.vim or ":h vundle" for details.
+"=== vim-plug =================================================================
+" See https://github.com/junegunn/vim-plug
 
-" The following two settings are required.
-set nocompatible
-filetype off
+call plug#begin('~/.vim/bundle')
 
-" Set the runtime path to include Vundle and initialize.
-set rtp+=~/.vim/bundle/Vundle.vim
-call vundle#begin()
-" alternatively, pass a path where Vundle should install plugins
-"call vundle#begin('~/some/path/here')
+Plug 'tpope/vim-afterimage'
+Plug 'tpope/vim-capslock'
+Plug 'tpope/vim-characterize'
+Plug 'flazz/vim-colorschemes'
+Plug 'tpope/vim-commentary'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-eunuch'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-jdaddy'
+Plug 'tpope/vim-obsession'
+Plug 'tpope/vim-ragtag'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-unimpaired'
 
-Plugin 'gmarik/Vundle.vim' " Required
-
-Plugin 'tpope/vim-afterimage'
-Plugin 'tpope/vim-capslock'
-Plugin 'tpope/vim-characterize'
-Plugin 'flazz/vim-colorschemes'
-Plugin 'tpope/vim-commentary'
-Plugin 'tpope/vim-endwise'
-Plugin 'tpope/vim-eunuch'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-jdaddy'
-Plugin 'tpope/vim-obsession'
-Plugin 'tpope/vim-ragtag'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-sensible'
-Plugin 'tpope/vim-sleuth'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-unimpaired'
-
-" All of your plugins must be added before the following line.
-call vundle#end() " Required
-
-filetype plugin indent on " Required
-
-" To ignore plugin indent changes, instead use:
-"filetype plugin on
+call plug#end()
 
 "=== Appearance ===============================================================
 
