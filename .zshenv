@@ -11,3 +11,5 @@ export PATH
 # is clicked. See https://github.com/ValveSoftware/steam-for-linux/issues/1025
 export STEAM_FRAME_FORCE_CLOSE=1
 
+alias tmux='tmux -2'
+
