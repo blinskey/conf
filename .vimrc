@@ -21,6 +21,7 @@ Plug 'tpope/vim-speeddating'
 Plug 'tpope/vim-surround'
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-git'
+Plug 'crusoexia/vim-monokai'
 
 call plug#end()
 
@@ -28,7 +29,7 @@ call plug#end()
 
 syntax enable
 set t_Co=256
-colorscheme Tomorrow-Night
+colorscheme monokai
 
 " Show line numbers
 set number
