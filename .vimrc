@@ -30,7 +30,7 @@ set t_Co=256
 colorscheme Tomorrow-Night
 
 " Show line numbers
-" set number
+set number
 
 "=== Indentation and tabs =====================================================
 
