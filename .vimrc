@@ -76,3 +76,6 @@ filetype plugin on
 " Use Markdown syntax highlighting for .md files.
 au BufRead,BufNewFile *.md set filetype=markdown
 
+" Write with root privileges.
+cmap sudow w !sudo tee > /dev/null %
+
