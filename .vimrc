@@ -52,6 +52,14 @@ set smartcase
 set wrap
 set textwidth=80
 
+" Draw ruler at column 80.
+" From http://stackoverflow.com/a/3765575/2530735
+if exists('+colorcolumn')
+  set colorcolumn=80
+else
+    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 "=== Whitespace ===============================================================
 
 " Strip trailing whitespace on save.
