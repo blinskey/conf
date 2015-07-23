@@ -5,7 +5,6 @@
     "env": {},
     "globals": {},
     "rules": {
-        // Possible Errors
         "no-comma-dangle": 2,
         "no-cond-assign": 2,
         "no-console": 0,
@@ -38,8 +37,6 @@
             }
         }],
         "valid-typeof": 2,
-
-        // Best Practices
         "block-scoped-var": 2,
         "complexity": [1, 10],
         "consistent-return": 2,
@@ -88,16 +85,12 @@
             ],
             "location": "start"
         }],
-        "no-with": true,
+        "no-with": 2,
         "radix": 2,
         "vars-on-top": 2,
         "wrap-iife": [2, "inside"],
         "yoda": [1, "never"],
-
-        // Strict Mode
         "strict": [2, "function"],
-
-        // Variables
         "no-catch-shadow": 0,
         "no-delete-var": 2,
         "no-label-var": 2,
@@ -108,12 +101,7 @@
         "no-undefined": 0,
         "no-unused-vars": 2,
         "no-use-before-define": 2,
-
-        // Node.js
-        // (Omitted.)
-
-        // Stylistic Issues
-        "indent": 4,
+        "indent": 2,
         "brace-style": [2, "1tbs", {
             "allowSingleLine": false
         }],
@@ -163,11 +151,6 @@
         "space-unary-ops": 2,
         "spaced-line-comment": [2, "always"],
         "wrap-regex": 2,
-
-        // ECMAScript 6
-        // (Omitted.)
-
-        // Legacy
         "max-depth": [1, 2],
         "max-len": [2, 80],
         "max-params": [1, 4],
