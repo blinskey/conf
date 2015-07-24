@@ -84,3 +84,8 @@ setopt nohashdirs
 # Remap Caps Lock to Ctrl.
 setxkbmap -option ctrl:nocaps
 
+# Enable command-not-found.
+if [[ -s '/etc/zsh_command_not_found' ]]; then
+  source '/etc/zsh_command_not_found'
+fi
+
