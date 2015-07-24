@@ -16,7 +16,7 @@
         "no-empty-class": 2,
         "no-ex-assign": 2,
         "no-extra-boolean-cast": 2,
-        "no-extra-parens": 1,
+        "no-extra-parens": 0,
         "no-extra-semi": 2,
         "no-func-assign": 2,
         "no-inner-declarations": [2, "both"],
@@ -31,10 +31,10 @@
         "use-isnan": 2,
         "valid-jsdoc": [2, {
             "prefer": {
-                "return": "returns",
                 "fileoverview": "file",
                 "overview": "file"
-            }
+            },
+            "requireReturn": false
         }],
         "valid-typeof": 2,
         "block-scoped-var": 2,
@@ -100,7 +100,7 @@
         "no-undef-init": 1,
         "no-undefined": 0,
         "no-unused-vars": 2,
-        "no-use-before-define": 2,
+        "no-use-before-define": [2, "nofunc"],
         "indent": 2,
         "brace-style": [2, "1tbs", {
             "allowSingleLine": false
