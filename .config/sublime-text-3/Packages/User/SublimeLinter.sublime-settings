@@ -71,6 +71,30 @@
 				[
 				]
 			},
+			"pep257":
+			{
+				"@disable": false,
+				"args":
+				[
+				],
+				"excludes":
+				[
+				],
+				"ignore": ""
+			},
+			"pep8":
+			{
+				"@disable": false,
+				"args":
+				[
+				],
+				"excludes":
+				[
+				],
+				"ignore": "",
+				"max-line-length": null,
+				"select": ""
+			},
 			"php":
 			{
 				"@disable": false,
