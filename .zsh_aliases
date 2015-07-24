@@ -26,3 +26,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
+# Always start tmux in 256-color mode.
+alias tmux='tmux -2'
+
