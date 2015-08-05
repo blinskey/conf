@@ -24,6 +24,7 @@ Plug 'tpope/vim-git'
 Plug 'crusoexia/vim-monokai'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
+Plug 'kien/ctrlp.vim'
 
 call plug#end()
 
@@ -52,7 +53,7 @@ set smartcase
 "=== Line wrapping ============================================================
 
 set wrap
-set textwidth=80
+set textwidth=79
 
 " Draw ruler at column 80.
 " From http://stackoverflow.com/a/3765575/2530735
