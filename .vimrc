@@ -90,3 +90,8 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
 
+" Use the Powerline statusline (package "powerline" in Ubuntu).
+" See https://github.com/powerline/powerline and powerline.readthedocs.org
+python from powerline.vim import setup as powerline_setup
+python powerline_setup()
+python del powerline_setup
