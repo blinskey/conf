@@ -89,3 +89,6 @@ if [[ -s '/etc/zsh_command_not_found' ]]; then
   source '/etc/zsh_command_not_found'
 fi
 
+# Enable Powerline prompt (package "powerline" on Ubuntu).
+# See https://github.com/powerline/powerline and powerline.readthedocs.org
+. /usr/share/powerline/bindings/zsh/powerline.zsh
