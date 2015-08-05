@@ -92,3 +92,16 @@ fi
 # Enable Powerline prompt (package "powerline" on Ubuntu).
 # See https://github.com/powerline/powerline and powerline.readthedocs.org
 . /usr/share/powerline/bindings/zsh/powerline.zsh
+
+# Color man pages using less.
+# From https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
+man() {
+        env LESS_TERMCAP_mb=$'\E[01;31m' \
+        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
+        LESS_TERMCAP_me=$'\E[0m' \
+        LESS_TERMCAP_se=$'\E[0m' \
+        LESS_TERMCAP_so=$'\E[38;5;246m' \
+        LESS_TERMCAP_ue=$'\E[0m' \
+        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
+        man "$@"
+}
