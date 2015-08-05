@@ -1,5 +1,3 @@
-// Configuration guide: http://eslint.org/docs/configuring/
-// Rules: http://eslint.org/docs/rules/
 {
     "ecmaFeatures": {},
     "env": {},
