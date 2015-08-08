@@ -25,6 +25,7 @@ Plug 'crusoexia/vim-monokai'
 Plug 'scrooloose/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'kien/ctrlp.vim'
+Plug 'Raimondi/delimitMate'
 
 call plug#end()
 
