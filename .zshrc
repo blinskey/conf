@@ -1,14 +1,31 @@
-# Set editor.
-export EDITOR=/usr/bin/vim
-export VISUAL=/usr/bin/vim
+readonly ALIASES=~/.zsh_aliases
 
-# Set prompt theme.
-autoload -U promptinit && promptinit
-prompt redhat
+# Powerline path when installed via "apt-get install powerline" in Ubuntu
+readonly POWERLINE_APT=/usr/share/powerline/bindings/zsh/powerline.zsh
+
+# Powerline path when installed via pip
+readonly POWERLINE_PIP=/usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+
+# Path to zsh-syntax-highlighting plugin
+readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+
+# command-not-found zsh script
+readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
+
+# Set editor.
+if [[ -f /usr/bin/vim ]]; then
+    export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vim
+elif [[ -f /usr/bin/vi ]]; then
+    export EDITOR=/usr/bin/vi
+    export VISUAL=/usr/bin/vi
+else
+    echo ".zshrc: Failed to find vim or vi!" >&2
+fi
 
 # Load aliases.
-if [ -f ~/.zsh_aliases ]; then
-    . ~/.zsh_aliases
+if [ -f "$ALIASES" ]; then
+    source "$ALIASES"
 fi
 
 # Lines configured by zsh-newuser-install
@@ -76,7 +93,7 @@ setopt HIST_IGNORE_DUPS
 
 # Enable fish-style syntax highlighting using the zsh-syntax-highlighting
 # package from https://github.com/zsh-users/zsh-syntax-highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source "$SYNTAX_HIGHLIGHTING"
 
 # Automatic $PATH rehash:
 setopt nohashdirs
@@ -85,13 +102,23 @@ setopt nohashdirs
 setxkbmap -option ctrl:nocaps
 
 # Enable command-not-found.
-if [[ -s '/etc/zsh_command_not_found' ]]; then
-  source '/etc/zsh_command_not_found'
+if [[ -f "$COMMAND_NOT_FOUND" ]]; then
+  source "$COMMAND_NOT_FOUND"
 fi
 
-# Enable Powerline prompt (package "powerline" on Ubuntu).
+# Set prompt theme. If possible, enable Powerline prompt (package "powerline"
+# in recent Ubuntu releases, or "powerline-status" in pip). Otherwise, use
+# built-in prompt.
+#
 # See https://github.com/powerline/powerline and powerline.readthedocs.org
-. /usr/share/powerline/bindings/zsh/powerline.zsh
+if [[ -f "$POWERLINE_APT" ]]; then
+    source "$POWERLINE_APT"
+elif [[ -f "$POWERLINE_PIP" ]]; then
+    source "$POWERLINE_PIP"
+else
+    autoload -U promptinit && promptinit
+    prompt redhat
+fi
 
 # Color man pages using less.
 # From https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
@@ -105,3 +132,10 @@ man() {
         LESS_TERMCAP_us=$'\E[04;38;5;146m' \
         man "$@"
 }
+
+# Enable "help" command.
+autoload -U run-help
+autoload run-help-git
+autoload run-help-svn
+autoload run-help-svk
+alias help=run-help

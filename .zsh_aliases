@@ -1,17 +1,11 @@
+readonly ANDROID_STUDIO=/opt/android-studio/bin/studio.sh
+
+if [[ -f /usr/bin/vim ]]; then
+    alias vi=vim
+fi
+
 alias l='ls -Ahl'
 alias ll=l
-
-alias vi=vim
-
-# Android Studio alias that runs in background
-function androidstudio() {
-    /opt/android-studio/bin/studio.sh "$@" &
-}
-
-# ProGuard stack trace decoding script for debugging Android apps
-alias proguardretrace=~/Android/Sdk/tools/proguard/bin/retrace.sh
-
-# Pipe ls output into less with color output.
 alias lll='ls -Ahl --color=always | less -R'
 
 # Enable color support of ls and also add handy aliases
@@ -29,3 +23,12 @@ fi
 # Always start tmux in 256-color mode.
 alias tmux='tmux -2'
 
+# Android Studio alias that runs in background
+if [[ -f "$ANDROID_STUDIO" ]]; then
+    function androidstudio() {
+        "$ANDROID_STUDIO" "$@" &
+    }
+fi
+
+# ProGuard stack trace decoding script for debugging Android apps
+alias proguardretrace=~/Android/Sdk/tools/proguard/bin/retrace.sh
