@@ -109,5 +109,13 @@ fi
 # Add ShellCheck to PATH.
 export PATH=$HOME/.cabal/bin:$PATH
 
-export EDITOR=/usr/bin/vim
-
+# Set editor.
+if [[ -f /usr/bin/vim ]]; then
+    export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vim
+elif [[ -f /usr/bin/vi ]]; then
+    export EDITOR=/usr/bin/vim
+    export VISUAL=/usr/bin/vi
+else
+    echo ".bashrc: Failed to find vim or vi!" >&2
+fi
