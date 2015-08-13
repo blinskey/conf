@@ -1,39 +1,41 @@
 "=== vim-plug =================================================================
 " See https://github.com/junegunn/vim-plug
 
-call plug#begin('~/.vim/bundle')
+if !empty(glob('~/.vim/autoload/plug.vim'))
+    call plug#begin('~/.vim/bundle')
 
-Plug 'tpope/vim-afterimage'
-Plug 'tpope/vim-capslock'
-Plug 'tpope/vim-characterize'
-Plug 'flazz/vim-colorschemes'
-Plug 'tpope/vim-commentary'
-Plug 'tpope/vim-endwise'
-Plug 'tpope/vim-eunuch'
-Plug 'tpope/vim-fugitive'
-Plug 'tpope/vim-jdaddy'
-Plug 'tpope/vim-obsession'
-Plug 'tpope/vim-ragtag'
-Plug 'tpope/vim-repeat'
-Plug 'tpope/vim-sensible'
-"Plug 'tpope/vim-sleuth'
-Plug 'tpope/vim-speeddating'
-Plug 'tpope/vim-surround'
-Plug 'tpope/vim-unimpaired'
-Plug 'tpope/vim-git'
-Plug 'crusoexia/vim-monokai'
-Plug 'scrooloose/nerdtree'
-Plug 'Xuyuanp/nerdtree-git-plugin'
-Plug 'kien/ctrlp.vim'
-Plug 'Raimondi/delimitMate'
+    Plug 'tpope/vim-afterimage'
+    Plug 'tpope/vim-capslock'
+    Plug 'tpope/vim-characterize'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'tpope/vim-commentary'
+    Plug 'tpope/vim-endwise'
+    Plug 'tpope/vim-eunuch'
+    Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-jdaddy'
+    Plug 'tpope/vim-obsession'
+    Plug 'tpope/vim-ragtag'
+    Plug 'tpope/vim-repeat'
+    Plug 'tpope/vim-sensible'
+    "Plug 'tpope/vim-sleuth'
+    Plug 'tpope/vim-speeddating'
+    Plug 'tpope/vim-surround'
+    Plug 'tpope/vim-unimpaired'
+    Plug 'tpope/vim-git'
+    Plug 'crusoexia/vim-monokai'
+    Plug 'scrooloose/nerdtree'
+    Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'kien/ctrlp.vim'
+    Plug 'Raimondi/delimitMate'
 
-call plug#end()
+    call plug#end()
+endif
 
 "=== Appearance ===============================================================
 
 syntax enable
 set t_Co=256
-colorscheme monokai
+silent! colorscheme monokai
 
 " Show line numbers
 set number
@@ -93,6 +95,8 @@ cmap sudow w !sudo tee > /dev/null %
 
 " Use the Powerline statusline (package "powerline" in Ubuntu).
 " See https://github.com/powerline/powerline and powerline.readthedocs.org
-python from powerline.vim import setup as powerline_setup
-python powerline_setup()
-python del powerline_setup
+if !empty(glob('/usr/share/vim/addons/plugin/powerline.vim'))
+    python from powerline.vim import setup as powerline_setup
+    python powerline_setup()
+    python del powerline_setup
+endif
