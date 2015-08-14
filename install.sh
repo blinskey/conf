@@ -88,6 +88,6 @@ if [ -x "$(command -v xfce4-popup-whiskermenu)" ]; then
 fi
 
 if [ -x "$(command -v lynx)" ] && [ -d /etc/lynx-cur ]; then
-    ln -sr "$(realpath tc/lynx-cur/lynx.cfg)" \
+    ln -sr "$(realpath etc/lynx-cur/lynx.cfg)" \
            /etc/lynx-cur/lynx.cfg
 fi
