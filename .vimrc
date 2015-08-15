@@ -1,6 +1,13 @@
 "=== vim-plug =================================================================
 " See https://github.com/junegunn/vim-plug
 
+" Try to automatically install plug.vim if it's not already installed.
+if empty(glob('~/.vim/autoload/plug.vim'))
+    silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+        \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall
+endif
+
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
