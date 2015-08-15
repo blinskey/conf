@@ -1,10 +1,7 @@
 readonly ALIASES=~/.zsh_aliases
 
 # Powerline path when installed via "apt-get install powerline" in Ubuntu
-readonly POWERLINE_APT=/usr/share/powerline/bindings/zsh/powerline.zsh
-
-# Powerline path when installed via pip
-readonly POWERLINE_PIP=/usr/local/lib/python2.7/dist-packages/powerline/bindings/zsh/powerline.zsh
+readonly POWERLINE=/usr/share/powerline/bindings/zsh/powerline.zsh
 
 # Path to zsh-syntax-highlighting plugin
 readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
@@ -111,10 +108,8 @@ fi
 # built-in prompt.
 #
 # See https://github.com/powerline/powerline and powerline.readthedocs.org
-if [[ -f "$POWERLINE_APT" ]]; then
-    source "$POWERLINE_APT"
-elif [[ -f "$POWERLINE_PIP" ]]; then
-    source "$POWERLINE_PIP"
+if [[ -f "$POWERLINE" ]]; then
+    source "$POWERLINE"
 else
     autoload -U promptinit && promptinit
     prompt redhat
