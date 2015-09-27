@@ -62,7 +62,7 @@ set smartcase
 
 "=== Line wrapping ============================================================
 
-set wrap
+set nowrap
 set textwidth=79
 
 " Draw ruler at column 80.
