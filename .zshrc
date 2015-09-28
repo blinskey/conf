@@ -95,8 +95,8 @@ source "$SYNTAX_HIGHLIGHTING"
 # Automatic $PATH rehash:
 setopt nohashdirs
 
-# Remap Caps Lock to Ctrl.
-setxkbmap -option ctrl:nocaps
+# Remap Caps Lock to Ctrl in X11.
+setxkbmap -option ctrl:nocaps &>/dev/null
 
 # Enable command-not-found.
 if [[ -f "$COMMAND_NOT_FOUND" ]]; then
