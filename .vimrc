@@ -46,7 +46,7 @@ endif
 
 syntax enable
 set t_Co=256
-silent! colorscheme monokai
+silent! colorscheme molokai
 
 " Show line numbers
 set number
