@@ -123,3 +123,5 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
 
+let mapleader=","
+
