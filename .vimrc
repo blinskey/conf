@@ -47,6 +47,9 @@ silent! colorscheme monokai
 " Show line numbers
 set number
 
+" Highlight current line
+set cursorline
+
 "=== Indentation and tabs =====================================================
 
 set smartindent
