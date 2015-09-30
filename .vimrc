@@ -91,6 +91,20 @@ endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
+"=== Powerline ===============================================================
+
+" Use the Powerline statusline (package "powerline" in Ubuntu).
+" See https://github.com/powerline/powerline and powerline.readthedocs.org
+if !empty(glob('/usr/share/vim/addons/plugin/powerline.vim'))
+    python from powerline.vim import setup as powerline_setup
+    python powerline_setup()
+    python del powerline_setup
+
+    set laststatus=2 " Always display the statusline in all windows
+    set showtabline=2 " Always display the tabline, even if there is only one tab
+    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)"
+endif
+
 "=== Miscellaneous ============================================================
 
 " Disable vi compatibility
@@ -104,11 +118,3 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
-
-" Use the Powerline statusline (package "powerline" in Ubuntu).
-" See https://github.com/powerline/powerline and powerline.readthedocs.org
-if !empty(glob('/usr/share/vim/addons/plugin/powerline.vim'))
-    python from powerline.vim import setup as powerline_setup
-    python powerline_setup()
-    python del powerline_setup
-endif
