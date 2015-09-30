@@ -56,6 +56,8 @@ set shiftwidth=4
 set expandtab
 filetype indent on
 
+autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+
 "=== Search ===================================================================
 set ignorecase
 set smartcase
