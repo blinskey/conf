@@ -34,6 +34,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'kien/ctrlp.vim'
     Plug 'Raimondi/delimitMate'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'wesQ3/vim-windowswap'
+    "Plug 'vim-scripts/Conque-Shell'
+    "Plug 'Shougo/vimshell.vim'
 
     call plug#end()
 endif
@@ -118,3 +122,4 @@ au BufRead,BufNewFile *.md set filetype=markdown
 
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
+
