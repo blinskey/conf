@@ -48,37 +48,38 @@ endif
 
 syntax enable
 set t_Co=256
-silent! colorscheme molokai
+set background=dark
+silent! colorscheme hybrid
 
-" Show line numbers
-set number
+ " Show line numbers
+ set number
 
-" Highlight current line
-set cursorline
+ " Highlight current line
+ set cursorline
 
-"=== Indentation and tabs =====================================================
+ "=== Indentation and tabs =====================================================
 
-set smartindent
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-set expandtab
-filetype indent on
+ set smartindent
+ set tabstop=4
+ set softtabstop=4
+ set shiftwidth=4
+ set expandtab
+ filetype indent on
 
-autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+ autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-"=== Search ===================================================================
-set ignorecase
-set smartcase
+ "=== Search ===================================================================
+ set ignorecase
+ set smartcase
 
-"=== Line wrapping ============================================================
+ "=== Line wrapping ============================================================
 
-set nowrap
-set textwidth=79
+ set nowrap
+ set textwidth=79
 
-" Draw ruler at column 80.
-" From http://stackoverflow.com/a/3765575/2530735
-if exists('+colorcolumn')
+ " Draw ruler at column 80.
+ " From http://stackoverflow.com/a/3765575/2530735
+ if exists('+colorcolumn')
   set colorcolumn=80
 else
     au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
