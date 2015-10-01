@@ -38,6 +38,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'wesQ3/vim-windowswap'
     "Plug 'vim-scripts/Conque-Shell'
     "Plug 'Shougo/vimshell.vim'
+    Plug 'jeetsukumaran/vim-buffergator'
+    Plug 'tacahiroy/ctrlp-funky'
 
     call plug#end()
 endif
@@ -125,3 +127,37 @@ cmap sudow w !sudo tee > /dev/null %
 
 let mapleader=","
 
+"=== ctrlp-funky ==============================================================
+
+nnoremap <Leader>fu :CtrlPFunky<Cr>
+" narrow the list down with a word under cursor
+nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+
+
+"=== Autocomplete =============================================================
+
+" Based on https://robots.thoughtbot.com/vim-macros-and-you
+" See :h ins-completion
+
+imap <Tab> <C-P>
+
+" Populate suggestions from current file, other buffers, and current tags file.
+set complete=.,b,u,]
+
+" Replacement settings, similar to zsh defaults.
+set wildmode=longest,list:longest
+
+"=== Splits ===================================================================
+
+" Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
+" See :h splits
+
+" Simple window movement.
+nnoremap <C-J> <C-W><C-J>
+nnoremap <C-K> <C-W><C-K>
+nnoremap <C-L> <C-W><C-L>
+nnoremap <C-H> <C-W><C-H>
+
+" Open new windows to the right and bottom of current window.
+set splitbelow
+set splitright
