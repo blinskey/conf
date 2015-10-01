@@ -40,6 +40,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'Shougo/vimshell.vim'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'tacahiroy/ctrlp-funky'
+    Plug 'ervandew/supertab'
 
     call plug#end()
 endif
@@ -140,13 +141,17 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " Based on https://robots.thoughtbot.com/vim-macros-and-you
 " See :h ins-completion
 
-imap <Tab> <C-P>
+" Using Supertab plugin instead.
+"imap <Tab> <C-P>
 
-" Populate suggestions from current file, other buffers, and current tags file.
+" Populate suggestions from current file, other buffers, and tags file.
 set complete=.,b,u,]
 
 " Replacement settings, similar to zsh defaults.
 set wildmode=longest,list:longest
+
+" Add 'k' to :set complete list to enable dictionary completion.
+set dictionary+=/usr/share/dict/words
 
 "=== Splits ===================================================================
 
