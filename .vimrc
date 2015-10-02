@@ -38,6 +38,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ervandew/supertab'
     Plug 'tpope/vim-vinegar'
     Plug 'airblade/vim-gitgutter'
+    Plug 'scrooloose/syntastic'
     "Plug 'tpope/vim-sleuth'
     "Plug 'scrooloose/nerdtree'
     "Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -183,3 +184,16 @@ nnoremap <C-H> <C-W><C-H>
 " Open new windows to the right and bottom of current window.
 set splitbelow
 set splitright
+
+"=== Syntastic ===============================================================
+
+" Recommended newbie settings from Syntastic readme
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
