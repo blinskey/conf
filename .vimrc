@@ -24,23 +24,25 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
-    "Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-git'
     Plug 'crusoexia/vim-monokai'
-    Plug 'scrooloose/nerdtree'
-    Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'kien/ctrlp.vim'
+    Plug 'ctrlpvim/ctrlp.vim'
     Plug 'Raimondi/delimitMate'
     Plug 'jiangmiao/auto-pairs'
     Plug 'wesQ3/vim-windowswap'
-    "Plug 'vim-scripts/Conque-Shell'
-    "Plug 'Shougo/vimshell.vim'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'ervandew/supertab'
+    Plug 'tpope/vim-vinegar'
+    Plug 'airblade/vim-gitgutter'
+    "Plug 'tpope/vim-sleuth'
+    "Plug 'scrooloose/nerdtree'
+    "Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'vim-scripts/Conque-Shell'
+    "Plug 'Shougo/vimshell.vim'
 
     call plug#end()
 endif
@@ -127,7 +129,18 @@ au BufRead,BufNewFile *.md set filetype=markdown
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
 
+" Map <leader> to comma.
 let mapleader=","
+
+" Spellcheck
+autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
+
+"=== netrw ====================================================================
+
+map <leader>e :E<cr>
+
+" Use tree-style view.
+let g:netrw_liststyle=3
 
 "=== ctrlp-funky ==============================================================
 
