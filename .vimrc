@@ -1,4 +1,5 @@
 "=== vim-plug =================================================================
+
 " See https://github.com/junegunn/vim-plug
 
 " Try to automatically install plug.vim if it's not already installed.
@@ -93,10 +94,11 @@ silent! colorscheme hybrid
  autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
  "=== Search ===================================================================
+
  set ignorecase
  set smartcase
 
- "=== Line wrapping ============================================================
+ "=== Line wrapping ===========================================================
 
  set nowrap
  set textwidth=79
@@ -141,7 +143,7 @@ endif
 
 "=== netrw ====================================================================
 
-map <leader>e :E<cr>
+map <leader>e :Explore<cr>
 
 " Use tree-style view.
 let g:netrw_liststyle=3
@@ -149,6 +151,7 @@ let g:netrw_liststyle=3
 "=== ctrlp-funky ==============================================================
 
 nnoremap <Leader>fu :CtrlPFunky<Cr>
+
 " narrow the list down with a word under cursor
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
