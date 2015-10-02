@@ -47,6 +47,26 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#end()
 endif
 
+"=== Miscellaneous ============================================================
+
+" Disable vi compatibility
+set nocompatible
+
+" Enable plugins
+filetype plugin on
+
+" Use Markdown syntax highlighting for .md files.
+au BufRead,BufNewFile *.md set filetype=markdown
+
+" Write with root privileges.
+cmap sudow w !sudo tee > /dev/null %
+
+" Map <leader> to comma.
+let mapleader=","
+
+" Spellcheck
+autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
+
 "=== Appearance ===============================================================
 
 syntax enable
@@ -112,28 +132,11 @@ if !empty(glob('/usr/share/vim/addons/plugin/powerline.vim'))
 
     set laststatus=2 " Always display the statusline in all windows
     set showtabline=2 " Always display the tabline, even if there is only one tab
-    set noshowmode " Hide the default mode text (e.g. -- INSERT -- below the statusline)"
+
+    " Hide the default mode text (e.g. -- INSERT -- below the statusline)"
+    " Note that ":set nocompatible" will reset this to showmode.
+    set noshowmode
 endif
-
-"=== Miscellaneous ============================================================
-
-" Disable vi compatibility
-set nocompatible
-
-" Enable plugins
-filetype plugin on
-
-" Use Markdown syntax highlighting for .md files.
-au BufRead,BufNewFile *.md set filetype=markdown
-
-" Write with root privileges.
-cmap sudow w !sudo tee > /dev/null %
-
-" Map <leader> to comma.
-let mapleader=","
-
-" Spellcheck
-autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
 "=== netrw ====================================================================
 
