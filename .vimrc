@@ -1,3 +1,7 @@
+" Remove all autocommands for the current group. Prevents commands from being
+" duplicated when .vimrc is sourced multiple times.
+:autocmd!
+
 "=== vim-plug =================================================================
 
 " See https://github.com/junegunn/vim-plug
@@ -12,39 +16,36 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
+    Plug 'Raimondi/delimitMate'
+    Plug 'airblade/vim-gitgutter'
+    Plug 'crusoexia/vim-monokai'
+    Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'ervandew/supertab'
+    Plug 'flazz/vim-colorschemes'
+    Plug 'jeetsukumaran/vim-buffergator'
+    Plug 'jiangmiao/auto-pairs'
+    Plug 'scrooloose/syntastic'
+    Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-afterimage'
     Plug 'tpope/vim-capslock'
     Plug 'tpope/vim-characterize'
-    Plug 'flazz/vim-colorschemes'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
+    Plug 'tpope/vim-git'
     Plug 'tpope/vim-jdaddy'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
+    Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-git'
-    Plug 'crusoexia/vim-monokai'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'Raimondi/delimitMate'
-    Plug 'jiangmiao/auto-pairs'
-    Plug 'wesQ3/vim-windowswap'
-    Plug 'jeetsukumaran/vim-buffergator'
-    Plug 'tacahiroy/ctrlp-funky'
-    Plug 'ervandew/supertab'
     Plug 'tpope/vim-vinegar'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'scrooloose/syntastic'
-    "Plug 'tpope/vim-sleuth'
-    "Plug 'scrooloose/nerdtree'
-    "Plug 'Xuyuanp/nerdtree-git-plugin'
-    "Plug 'vim-scripts/Conque-Shell'
-    "Plug 'Shougo/vimshell.vim'
+    Plug 'wesQ3/vim-windowswap'
+    Plug 'Yggdroot/indentLine'
 
     call plug#end()
 endif
@@ -93,22 +94,27 @@ silent! colorscheme hybrid
 
  autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
- "=== Search ===================================================================
+"=== Search ===================================================================
 
- set ignorecase
- set smartcase
+set ignorecase
+set smartcase
+set hlsearch
+set incsearch
 
- "=== Line wrapping ===========================================================
+" Clear search highlighing by hitting Enter.
+nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
- set nowrap
- set textwidth=79
+"=== Line wrapping ============================================================
 
- " Draw ruler at column 80.
- " From http://stackoverflow.com/a/3765575/2530735
- if exists('+colorcolumn')
-  set colorcolumn=80
+set nowrap
+set textwidth=79
+
+" Draw ruler at column 80.
+" From http://stackoverflow.com/a/3765575/2530735
+if exists('+colorcolumn')
+      set colorcolumn=80
 else
-    au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+      au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 "=== Whitespace ===============================================================
@@ -124,7 +130,7 @@ endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-"=== Powerline ===============================================================
+"=== Powerline ================================================================
 
 " Use the Powerline statusline (package "powerline" in Ubuntu).
 " See https://github.com/powerline/powerline and powerline.readthedocs.org
@@ -188,7 +194,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-"=== Syntastic ===============================================================
+"=== Syntastic ================================================================
 
 " Recommended newbie settings from Syntastic readme
 
@@ -200,3 +206,12 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+"=== ctrlp ====================================================================
+
+" Set base directory to cwd or nearest ancestor with version control file.
+let g:ctrlp_working_path_mode = 'rw'
+
+"=== IndentLine================================================================
+
+let g:indentLine_color_term = 239
