@@ -6,4 +6,4 @@
 .zsh_aliases
 .zshenv
 .zshrc
-
+.zsh_prompt.sh

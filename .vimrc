@@ -17,7 +17,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'Raimondi/delimitMate'
+    Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
+    Plug 'bling/vim-airline'
     Plug 'crusoexia/vim-monokai'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ervandew/supertab'
@@ -45,7 +47,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
-    Plug 'Yggdroot/indentLine'
+    Plug 'edkolev/promptline.vim'
+    Plug 'edkolev/tmuxline.vim'
+
+    " Use this instead of gitgutter when working with SVN.
+    "Plug 'mhinz/vim-signifyg'
 
     call plug#end()
 endif
@@ -130,23 +136,6 @@ endfun
 
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-"=== Powerline ================================================================
-
-" Use the Powerline statusline (package "powerline" in Ubuntu).
-" See https://github.com/powerline/powerline and powerline.readthedocs.org
-if !empty(glob('/usr/share/vim/addons/plugin/powerline.vim'))
-    python from powerline.vim import setup as powerline_setup
-    python powerline_setup()
-    python del powerline_setup
-
-    set laststatus=2 " Always display the statusline in all windows
-    set showtabline=2 " Always display the tabline, even if there is only one tab
-
-    " Hide the default mode text (e.g. -- INSERT -- below the statusline)"
-    " Note that ":set nocompatible" will reset this to showmode.
-    set noshowmode
-endif
-
 "=== netrw ====================================================================
 
 map <leader>e :Explore<cr>
@@ -215,3 +204,9 @@ let g:ctrlp_working_path_mode = 'rw'
 "=== IndentLine================================================================
 
 let g:indentLine_color_term = 239
+
+"=== airline ==================================================================
+
+let g:airline_theme='tomorrow'
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_powerline_fonts = 1

@@ -1,8 +1,5 @@
 readonly ALIASES=~/.zsh_aliases
 
-# Powerline path when installed via "apt-get install powerline" in Ubuntu
-readonly POWERLINE=/usr/share/powerline/bindings/zsh/powerline.zsh
-
 # Path to zsh-syntax-highlighting plugin
 readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
@@ -103,18 +100,6 @@ if [[ -f "$COMMAND_NOT_FOUND" ]]; then
   source "$COMMAND_NOT_FOUND"
 fi
 
-# Set prompt theme. If possible, enable Powerline prompt (package "powerline"
-# in recent Ubuntu releases, or "powerline-status" in pip). Otherwise, use
-# built-in prompt.
-#
-# See https://github.com/powerline/powerline and powerline.readthedocs.org
-if [[ -f "$POWERLINE" ]]; then
-    source "$POWERLINE"
-else
-    autoload -U promptinit && promptinit
-    prompt redhat
-fi
-
 # Color man pages using less.
 # From https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
 man() {
@@ -134,3 +119,6 @@ autoload run-help-git
 autoload run-help-svn
 autoload run-help-svk
 alias help=run-help
+
+# Set prompt theme.
+source ~/.zsh_prompt.sh
