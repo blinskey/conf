@@ -39,7 +39,7 @@ require_sudo() {
 }
 
 check_os() {
-    if ! grep -i 'ID_LIKE=debian' /etc/os-release; then
+    if ! grep -qi 'ID_LIKE=debian' /etc/os-release; then
 	printf "This script is only compatible with Debian-like systems.\n" >&2
 	exit 1
     fi
