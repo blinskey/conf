@@ -41,7 +41,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
-    Plug 'tpope/vim-sleuth'
+    "Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
@@ -86,22 +86,25 @@ set t_Co=256
 set background=dark
 silent! colorscheme hybrid
 
- " Show line numbers
- set number
+" Show line numbers
+set number
 
- " Highlight current line
- set cursorline
+" Highlight current line
+set cursorline
 
- "=== Indentation and tabs =====================================================
+set nolist
+set listchars=tab:>-,trail:~,extends:>,precedes:<
 
- set smartindent
- set tabstop=4
- set softtabstop=4
- set shiftwidth=4
- set expandtab
- filetype indent on
+"=== Indentation and tabs =====================================================
 
- autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+set smartindent
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+set expandtab
+filetype indent on
+
+autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "=== Search ===================================================================
 
