@@ -1,6 +1,6 @@
 [Configuration]
 BackgroundDarkness=0.950000
-FontName=Liberation Mono 11
+FontName=Liberation Mono for Powerline 11
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
@@ -18,8 +18,7 @@ MiscTabCloseMiddleClick=TRUE
 MiscTabPosition=GTK_POS_TOP
 MiscHighlightUrls=TRUE
 MiscScrollAlternateScreen=TRUE
-ColorCursor=#f8f8f2
-ColorForeground=#f8f8f2
-ColorBackground=#222222
-ColorPalette=#272822;#f92672;#a6e22e;#f4bf75;#66d9ef;#ae81ff;#a1efe4;#f8f8f2;#75715e;#f92672;#a6e22e;#f4bf75;#66d9ef;#ae81ff;#a1efe4;#f9f8f5
-
+ColorCursor=#c5c8c6
+ColorForeground=#c5c8c6
+ColorBackground=#1d1f21
+ColorPalette=#1d1f21;#cc6666;#b5bd68;#f0c674;#81a2be;#b294bb;#8abeb7;#c5c8c6;#969896;#cc6666;#b5bd68;#f0c674;#81a2be;#b294bb;#8abeb7;#ffffff

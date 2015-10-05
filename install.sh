@@ -55,6 +55,8 @@ install_dotfiles() {
     while read file; do
 	ln -sf "${DIR}/${file}" ~
     done <"$DOTFILES"
+
+    install_xfce4_terminalrc
 }
 
 configure() {
@@ -97,6 +99,10 @@ clone_from_github() {
     mkdir -p "$target"
     local repo_url=https://github.com/${repo_id}.git
     git clone "$repo_url" "$target"
+}
+
+install_xfce4_terminalrc() {
+    ln -sf "${DIR}/terminalrc" "${HOME}/.config/xfce4/terminal/terminalrc"
 }
 
 main
