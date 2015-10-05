@@ -16,7 +16,6 @@ set -o pipefail
 readonly DIR="$(dirname "$(readlink -f "$0")")"
 readonly PACKAGES="${DIR}/packages"
 readonly DOTFILES="${DIR}/dotfiles"
-readonly GITHUB_REPOS="${DIR}/github-repos"
 readonly CODE_DIR="${HOME}/code"
 
 main() {
@@ -24,7 +23,6 @@ main() {
     check_os
     install_packages
     install_dotfiles
-    clone_github_repos
     configure
 
     printf "Done.\n"
@@ -59,30 +57,46 @@ install_dotfiles() {
     done <"$DOTFILES"
 }
 
-clone_github_repos() {
-    printf "Cloning repos from GitHub...\n"
-    mkdir -p "$CODE_DIR"
-    pushd "$CODE_DIR" &>/dev/null
-    while read repo; do
-	local name="$(echo "${repo}" | cut -d'/' -f2)"
-	local path="${CODE_DIR}/${name}"
-	rm -rf "${path:?}"
-	git clone "https://github.com/${repo}.git" "$path"
-    done <"$GITHUB_REPOS"
-    popd &>/dev/null
-}
-
 configure() {
     printf "Setting shell to zsh...\n"
     chsh -s "$(which zsh)" "$(logname)"
 
     printf "Installing zsh-syntax-highlighting plugin...\n"
     install_zsh_syntax_highlighting
+
+    printf "Installing Powerline fonts...\n"
+    install_powerline_fonts
 }
 
 install_zsh_syntax_highlighting() {
+    local repo="zsh-users/zsh-syntax-highlighting"
+    local target="${CODE_DIR}/zsh-syntax-highlighting"
+    clone_from_github "$repo" "$target"
+
     mkdir -p "/usr/share/zsh/plugins"
-    ln -s "${HOME}/code/zsh-syntax-highlighting" "/usr/share/zsh/plugins"
+    ln -s "$target" "/usr/share/zsh/plugins"
+}
+
+install_powerline_fonts() {
+    local repo="powerline/fonts"
+    local target="${CODE_DIR}/powerline_fonts"
+    clone_from_github "$repo" "$target"
+
+    "${target}/install.sh"
+}
+
+# Clones the specified repository to the given target directory. If a directory
+# already exists at this path, it will be removed.
+#
+# $1: repository ID in the form "<user>/<repo>", e.g. "blinskey/config-files"
+# $2: target directory name
+clone_from_github() {
+    local repo_id=$1
+    local target=$2
+
+    mkdir -p "$target"
+    local repo_url=https://github.com/${repo_id}.git
+    git clone "$repo_url" "$target"
 }
 
 main
