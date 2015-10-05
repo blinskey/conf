@@ -47,8 +47,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
-    Plug 'edkolev/promptline.vim'
-    Plug 'edkolev/tmuxline.vim'
+
+    " These plugins generate prompt and tmux configuration files based on
+    " the current Airline theme. I've manually edited the generated files.
+    "Plug 'edkolev/promptline.vim'
+    "Plug 'edkolev/tmuxline.vim'
 
     " Use this instead of gitgutter when working with SVN.
     "Plug 'mhinz/vim-signifyg'
