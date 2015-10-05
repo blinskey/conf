@@ -4,6 +4,6 @@
 .tmux.conf
 .vimrc
 .zsh_aliases
+.zsh_prompt.sh
 .zshenv
 .zshrc
-.zsh_prompt.sh
