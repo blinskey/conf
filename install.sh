@@ -102,7 +102,9 @@ clone_from_github() {
 }
 
 install_xfce4_terminalrc() {
-    ln -sf "${DIR}/terminalrc" "${HOME}/.config/xfce4/terminal/terminalrc"
+    local target="${HOME}/.config/xfce4/terminal/terminalrc"
+    rm -rf "$target"
+    ln -sf "${DIR}/terminalrc" "$target"
 }
 
 main
