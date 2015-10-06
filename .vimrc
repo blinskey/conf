@@ -22,6 +22,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'bling/vim-airline'
     Plug 'crusoexia/vim-monokai'
     Plug 'ctrlpvim/ctrlp.vim'
+    Plug 'edkolev/promptline.vim'
+    Plug 'edkolev/tmuxline.vim'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'jeetsukumaran/vim-buffergator'
@@ -41,17 +43,13 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
-    "Plug 'tpope/vim-sleuth'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
 
-    " These plugins generate prompt and tmux configuration files based on
-    " the current Airline theme. I've manually edited the generated files.
-    "Plug 'edkolev/promptline.vim'
-    "Plug 'edkolev/tmuxline.vim'
+    "Plug 'tpope/vim-sleuth'
 
     " Use this instead of gitgutter when working with SVN.
     "Plug 'mhinz/vim-signifyg'
@@ -84,7 +82,7 @@ autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 syntax enable
 set t_Co=256
 set background=dark
-silent! colorscheme hybrid
+silent! colorscheme jellybeans
 
 " Show line numbers
 set number
@@ -213,6 +211,10 @@ let g:indentLine_color_term = 239
 
 "=== airline ==================================================================
 
-let g:airline_theme='tomorrow'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+"=== promptline ===============================================================
+
+let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
+let g:promptline_preset = 'clear'
