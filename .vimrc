@@ -20,7 +20,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
-    Plug 'crusoexia/vim-monokai'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'edkolev/promptline.vim'
     Plug 'edkolev/tmuxline.vim'
@@ -93,6 +92,15 @@ set cursorline
 set nolist
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
+" Draw ruler at column 80.
+" From http://stackoverflow.com/a/3765575/2530735
+if exists('+colorcolumn')
+      set colorcolumn=80
+    highlight ColorColumn ctermbg=240
+else
+      au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+endif
+
 "=== Indentation and tabs =====================================================
 
 set smartindent
@@ -118,14 +126,6 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 
 set nowrap
 set textwidth=79
-
-" Draw ruler at column 80.
-" From http://stackoverflow.com/a/3765575/2530735
-if exists('+colorcolumn')
-      set colorcolumn=80
-else
-      au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
 
 "=== Whitespace ===============================================================
 
