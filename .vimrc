@@ -229,7 +229,15 @@ let g:airline_powerline_fonts = 1
 let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
 let g:promptline_preset = 'clear'
 
-"=== tmuxline ================================================================
+"=== tmuxline =================================================================
 let g:airline#extensions#tmuxline#enabled = 1
 let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline"
 let g:tmuxline_preset = 'powerline'
+
+"=== ctags ====================================================================
+
+" Generate tags on write.
+"
+" For a Git hook-based alternative, see
+" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
+:autocmd BufWritePost * call system("ctags -R")
