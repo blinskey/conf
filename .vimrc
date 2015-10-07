@@ -16,11 +16,12 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'bling/vim-bufferline'
     "Plug 'Raimondi/delimitMate'
+    "Plug 'xolox/vim-easytags'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
+    Plug 'bling/vim-bufferline'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'edkolev/promptline.vim'
     Plug 'edkolev/tmuxline.vim'
@@ -28,6 +29,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'flazz/vim-colorschemes'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'majutsushi/tagbar'
     Plug 'scrooloose/syntastic'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-afterimage'
