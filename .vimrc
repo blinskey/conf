@@ -80,9 +80,13 @@ autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 "=== Appearance ===============================================================
 
 syntax enable
+
 set t_Co=256
+
+" NOTE: Order matters here!
+silent! colorscheme molokai
+let g:rehash256 = 1
 set background=dark
-silent! colorscheme jellybeans
 
 " Show line numbers
 set number
@@ -96,8 +100,8 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 " Draw ruler at column 80.
 " From http://stackoverflow.com/a/3765575/2530735
 if exists('+colorcolumn')
-      set colorcolumn=80
-    highlight ColorColumn ctermbg=240
+    set colorcolumn=80
+    "highlight ColorColumn ctermbg=240
 else
       au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
@@ -219,3 +223,8 @@ let g:airline_powerline_fonts = 1
 
 let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
 let g:promptline_preset = 'clear'
+
+"=== tmuxline ================================================================
+let g:airline#extensions#tmuxline#enabled = 1
+let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline"
+let g:tmuxline_preset = 'powerline'
