@@ -17,7 +17,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'bling/vim-bufferline'
-    Plug 'Raimondi/delimitMate'
+    "Plug 'Raimondi/delimitMate'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
