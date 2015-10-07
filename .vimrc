@@ -177,6 +177,11 @@ set wildmode=longest,list:longest
 " Add 'k' to :set complete list to enable dictionary completion.
 set dictionary+=/usr/share/dict/words
 
+"=== SuperTab =================================================================
+
+let g:SuperTabNoCompleteBefore = ['\s', '\t']
+let g:SuperTabNoCompleteAfter = ['^', ',', '\s', '\t']
+
 "=== Splits ===================================================================
 
 " Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
