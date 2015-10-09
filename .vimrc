@@ -17,7 +17,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     "Plug 'Raimondi/delimitMate'
-    "Plug 'xolox/vim-easytags'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
@@ -50,6 +49,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
+    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 
     "Plug 'tpope/vim-sleuth'
 
@@ -223,8 +223,22 @@ let g:indentLine_color_term = 239
 
 "=== airline ==================================================================
 
-let g:airline#extensions#tabline#enabled = 1
 let g:airline_powerline_fonts = 1
+
+"=== tabline ==================================================================
+
+let g:airline#extensions#tabline#enabled = 1
+
+" Show tab number in tabline.
+let g:airline#extensions#tabline#show_tab_nr = 1
+let g:airline#extensions#tabline#tab_nr_type = 1
+
+let g:airline#extensions#tabline#show_close_button = 0
+
+let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+
+"=== tagbar ===================================================================
+let g:airline#extensions#tagbar#enabled = 1
 
 "=== promptline ===============================================================
 
@@ -242,4 +256,4 @@ let g:tmuxline_preset = 'powerline'
 "
 " For a Git hook-based alternative, see
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-:autocmd BufWritePost * call system("ctags -R")
+":autocmd BufWritePost * call system("ctags -R")
