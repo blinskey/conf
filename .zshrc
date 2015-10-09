@@ -8,8 +8,13 @@ readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
 
 # Set editor.
 if [[ -f /usr/bin/vim ]]; then
+    # Path to Vim installed via apt.
     export EDITOR=/usr/bin/vim
     export VISUAL=/usr/bin/vim
+elif [[ -f /usr/local/bin/vim  ]]; then
+    # Path to Vim compiled from source.
+    export EDITOR=/usr/local/bin/vim
+    export VISUAL=/usr/local/bin/vim
 elif [[ -f /usr/bin/vi ]]; then
     export EDITOR=/usr/bin/vi
     export VISUAL=/usr/bin/vi
