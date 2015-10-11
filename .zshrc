@@ -6,6 +6,12 @@ readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-
 # command-not-found zsh script
 readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
 
+# Powerline directory. This is the directory used when installing via the
+# Ubuntu "powerline" package. When installing via pip, symlink the install
+# directory (/usr/lib/python2.7/dist-packages/powerline) to this location.
+readonly POWERLINE_DIR="/usr/share/powerline"
+readonly POWERLINE_SCRIPT="${POWERLINE_DIR}/bindings/zsh/powerline.zsh"
+
 # Set editor.
 if [[ -f /usr/bin/vim ]]; then
     # Path to Vim installed via apt.
@@ -125,5 +131,7 @@ autoload run-help-svn
 autoload run-help-svk
 alias help=run-help
 
-# Set prompt theme.
-source ~/.zsh_prompt.sh
+if [[ -f $POWERLINE_SCRIPT ]]; then
+    powerline-daemon -q
+    . "$POWERLINE_SCRIPT"
+fi

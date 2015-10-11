@@ -16,14 +16,11 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    "Plug 'Raimondi/delimitMate'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
     Plug 'bling/vim-bufferline'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'edkolev/promptline.vim'
-    Plug 'edkolev/tmuxline.vim'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'jeetsukumaran/vim-buffergator'
@@ -49,12 +46,17 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-unimpaired'
     Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
-    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 
+    "Plug 'Raimondi/delimitMate'
+    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
     "Plug 'tpope/vim-sleuth'
 
     " Use this instead of gitgutter when working with SVN.
     "Plug 'mhinz/vim-signifyg'
+
+    " Currently using Powerline for tmux and zsh prompt.
+    "Plug 'edkolev/promptline.vim'
+    "Plug 'edkolev/tmuxline.vim'
 
     call plug#end()
 endif
@@ -246,14 +248,15 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 let g:airline#extensions#tagbar#enabled = 1
 
 "=== promptline ===============================================================
-
-let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
-let g:promptline_preset = 'clear'
+"
+"let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
+"let g:promptline_preset = 'clear'
 
 "=== tmuxline =================================================================
-let g:airline#extensions#tmuxline#enabled = 1
-let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline"
-let g:tmuxline_preset = 'powerline'
+"
+"let g:airline#extensions#tmuxline#enabled = 1
+"let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline"
+"let g:tmuxline_preset = 'powerline'
 
 "=== ctags ====================================================================
 
