@@ -79,6 +79,10 @@ let mapleader=","
 " Spellcheck
 autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
+set laststatus=2
+set showtabline=2
+set noshowmode
+
 "=== Appearance ===============================================================
 
 syntax enable
