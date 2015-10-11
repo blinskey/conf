@@ -223,6 +223,7 @@ let g:indentLine_color_term = 239
 
 "=== airline ==================================================================
 
+let g:airline_theme = 'powerlineish'
 let g:airline_powerline_fonts = 1
 
 "=== tabline ==================================================================
