@@ -296,8 +296,9 @@ let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
 
-" Toggle tagbar with Ctrl+t.
-nmap <C-t> :TagbarToggle<CR>
+" Jump to tagbar with Ctrl+t, opening it if it is currently closed and keeping
+" it open after selecting a function.
+nmap <C-t> :TagbarOpen fj<CR>
 
 "=== promptline ===============================================================
 "
