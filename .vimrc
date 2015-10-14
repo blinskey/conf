@@ -16,16 +16,17 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
+    Plug 'Shougo/unite.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
-    Plug 'bling/vim-bufferline'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'jiangmiao/auto-pairs'
     Plug 'majutsushi/tagbar'
+    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-afterimage'
@@ -44,20 +45,17 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
-    Plug 'tpope/vim-vinegar'
     Plug 'wesQ3/vim-windowswap'
 
     "Plug 'Raimondi/delimitMate'
-    "Plug 'gcmt/taboo.vim'
-    "Plug 'tpope/vim-sleuth'
-    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
-
-    " Use this instead of gitgutter when working with SVN.
-    "Plug 'mhinz/vim-signifyg'
-
-    " Currently using Powerline for tmux and zsh prompt.
+    "Plug 'bling/vim-bufferline'
     "Plug 'edkolev/promptline.vim'
     "Plug 'edkolev/tmuxline.vim'
+    "Plug 'gcmt/taboo.vim'
+    "Plug 'mhinz/vim-signifyg'
+    "Plug 'tpope/vim-sleuth'
+    "Plug 'tpope/vim-vinegar'
+    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 
     call plug#end()
 endif
@@ -70,8 +68,8 @@ set nocompatible
 " Enable plugins
 filetype plugin on
 
-" Use Markdown syntax highlighting for .md files.
-au BufRead,BufNewFile *.md set filetype=markdown
+" Use Markdown syntax for .md and to-do list files.
+au BufRead,BufNewFile *.md,TODO set filetype=markdown
 
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
@@ -158,8 +156,9 @@ set smartcase
 " Show search matches as the pattern is being typed.
 set incsearch
 
-" Highlight search matches.
-set hlsearch
+" Don't highlight search matches.
+" TODO: Toggle this with a key?
+set nohlsearch
 
 " Clear search highlighing by hitting Enter.
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
@@ -187,10 +186,14 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 "=== netrw ====================================================================
 
 " Open netrw.
-map <leader>e :Explore<cr>
+"map <leader>e :Explore<cr>
 
 " Use tree-style view.
-let g:netrw_liststyle=3
+"let g:netrw_liststyle=3
+
+"=== NERDTree =================================================================
+
+nmap <leader>e :NERDTreeToggle<Cr>
 
 "=== ctrlp-funky ==============================================================
 
@@ -251,6 +254,10 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
+
+" End recommended settings
+
+let g:syntastic_javascript_checkers = ["eslint"]
 
 "=== ctrlp ====================================================================
 
@@ -318,3 +325,11 @@ nmap <C-t> :TagbarOpen fj<CR>
 " For a Git hook-based alternative, see
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 ":autocmd BufWritePost * call system("ctags -R")
+
+"=== Folding ==================================================================
+
+" Fold based on indentation.
+set foldmethod=indent
+
+" Start with all folds open.
+set foldlevelstart=99
