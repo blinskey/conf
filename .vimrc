@@ -46,6 +46,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'wesQ3/vim-windowswap'
+    Plug 'digitaltoad/vim-jade'
+    Plug 'groenewege/vim-less'
 
     "Plug 'Raimondi/delimitMate'
     "Plug 'bling/vim-bufferline'
