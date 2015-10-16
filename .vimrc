@@ -23,7 +23,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
-    Plug 'jeetsukumaran/vim-buffergator'
+    "Plug 'jeetsukumaran/vim-buffergator'
     Plug 'jiangmiao/auto-pairs'
     Plug 'majutsushi/tagbar'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -108,6 +108,9 @@ set number
 
 " Highlight current line
 set cursorline
+
+" Limit redraws to offset slowdown from cursorline.
+set lazyredraw
 
 " Don't show whitespace.
 set nolist
@@ -296,16 +299,19 @@ let g:airline#extensions#tabline#tab_nr_type = 1
 let g:airline#extensions#tabline#show_close_button = 0
 
 " Set the tab name format algorithm.
-let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
+let g:airline#extensions#tabline#formatter = 'default'
 
+" For unique filenames, print only the filename, not the full path.
+let g:airline#extensions#tabline#fnamemod = ':t'
 "=== tagbar ===================================================================
 
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
 
-" Jump to tagbar with Ctrl+t, opening it if it is currently closed and keeping
-" it open after selecting a function.
-nmap <C-t> :TagbarOpen fj<CR>
+" Jump to tagbar with <leader>+t, opening it if it is currently closed and
+" keeping it open after selecting a function.
+nmap <leader>t :TagbarOpen fj<CR>
 
 "=== promptline ===============================================================
 "
