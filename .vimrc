@@ -50,6 +50,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
+    Plug 'vim-scripts/BufOnly.vim'
     Plug 'wesQ3/vim-windowswap'
 
     "Plug 'Raimondi/delimitMate'
@@ -83,8 +84,11 @@ cmap sudow w !sudo tee > /dev/null %
 " Map <leader> to comma.
 let mapleader=","
 
-" Spellcheck
+" Enable spellchecking in prose files.
 autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
+
+" Disable spellchecking in help documentation.
+autocmd FileType help setlocal nospell
 
 " Always show status line on last window.
 set laststatus=2
