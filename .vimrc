@@ -343,5 +343,8 @@ nmap <leader>t :TagbarOpen fj<CR>
 " Fold based on indentation.
 set foldmethod=indent
 
+" Don't make an exception for any character when folding.
+set foldignore=
+
 " Start with all folds open.
 set foldlevelstart=99
