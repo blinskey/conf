@@ -1,6 +1,6 @@
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
-:autocmd!
+autocmd!
 
 "=== vim-plug =================================================================
 
@@ -21,14 +21,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'digitaltoad/vim-jade'
+    Plug 'digitaltoad/vim-jade', {'for': 'jade'}
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
     Plug 'jiangmiao/auto-pairs'
     Plug 'majutsushi/tagbar'
-    Plug 'othree/html5-syntax.vim'
-    Plug 'othree/html5.vim'
+    Plug 'othree/html5-syntax.vim', {'for': 'html'}
+    Plug 'othree/html5.vim', {'for': 'html'}
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -42,7 +42,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-git'
-    Plug 'tpope/vim-jdaddy'
+    Plug 'tpope/vim-jdaddy', {'for': 'json'}
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
@@ -75,7 +75,7 @@ set nocompatible
 filetype plugin on
 
 " Use Markdown syntax for .md and to-do list files.
-au BufRead,BufNewFile *.md,TODO set filetype=markdown
+autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
 
 " Write with root privileges.
 cmap sudow w !sudo tee > /dev/null %
@@ -130,7 +130,7 @@ if exists('+colorcolumn')
     set colorcolumn=80
     "highlight ColorColumn ctermbg=240
 else
-      au BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+      autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 "=== Indentation and tabs =====================================================
@@ -217,9 +217,6 @@ nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 " Based on https://robots.thoughtbot.com/vim-macros-and-you
 " See :h ins-completion
 
-" Using Supertab plugin instead.
-"imap <Tab> <C-P>
-
 " Populate suggestions from current file, other buffers, and tags file.
 set complete=.,b,u,]
 
@@ -232,8 +229,8 @@ set dictionary+=/usr/share/dict/words
 "=== SuperTab =================================================================
 
 " Disable autocomplete before and after certain characters.
-let g:SuperTabNoCompleteBefore = ['\s', '\t']
-let g:SuperTabNoCompleteAfter = ['^', ',', '\s', '\t']
+let g:SuperTabNoCompleteBefore = [' ', '\t']
+let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';']
 
 "=== Splits ===================================================================
 
@@ -345,3 +342,17 @@ set foldmethod=indent
 
 " Start with all folds open.
 set foldlevelstart=99
+
+"=== Unite ====================================================================
+
+call unite#filters#matcher_default#use(['matcher_fuzzy'])
+
+" Recursive search through pwd.
+"
+" Note: This may be slow for large projects. We could speed things up with
+" the unite-source-file_rec/async source, but that requires vim-proc, which
+" requires a native extension, which is a bit too heavy.
+nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
+
+" Search buffers.
+nnoremap <leader>b :<C-u>Unite buffer<CR>
