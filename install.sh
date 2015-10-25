@@ -21,7 +21,6 @@ readonly DOTFILES="${DIR}/dotfiles"
 readonly CODE_DIR="${HOME}/code"
 
 main() {
-    require_sudo
     check_os
     install_packages
     install_dotfiles
@@ -29,13 +28,6 @@ main() {
 
     printf "Done.\n"
     exit 0
-}
-
-require_sudo() {
-    if [[ $(id -u) != 0 ]]; then
-	printf "This script must be run as root.\n" >&2
-	exit 1
-    fi
 }
 
 check_os() {
@@ -49,7 +41,7 @@ install_packages() {
     printf "Installing packages via apt...\n"
     # We want the list of packages to be split into words.
     # shellcheck disable=SC2046
-    apt-get install -y $(paste -sd' ' "$PACKAGES")
+    sudo apt-get install -y $(paste -sd' ' "$PACKAGES")
 }
 
 install_dotfiles() {
@@ -77,8 +69,8 @@ install_zsh_syntax_highlighting() {
     local target="${CODE_DIR}/zsh-syntax-highlighting"
     clone_from_github "$repo" "$target"
 
-    mkdir -p "/usr/share/zsh/plugins"
-    ln -s "$target" "/usr/share/zsh/plugins"
+    sudo mkdir -p "/usr/share/zsh/plugins"
+    sudo ln -s "$target" "/usr/share/zsh/plugins"
 }
 
 install_powerline_fonts() {
