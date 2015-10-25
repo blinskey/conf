@@ -1,9 +1,0 @@
-{
-    "extensions":
-	[
-		"markdown",
-		"md"
-	],
-    "spell_check": false,
-    "highlight_line": false,
-}

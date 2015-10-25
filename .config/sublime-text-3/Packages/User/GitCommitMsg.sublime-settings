@@ -1,4 +1,0 @@
-{
-    // 50-column ruler is for first line of commit message.
-    "rulers": [50, 80]
-}

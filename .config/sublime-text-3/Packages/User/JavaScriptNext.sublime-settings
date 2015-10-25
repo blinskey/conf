@@ -1,8 +1,0 @@
-{
-	"extensions":
-	[
-		"js",
-		".eslintrc",
-		"sublime-keymap"
-	]
-}

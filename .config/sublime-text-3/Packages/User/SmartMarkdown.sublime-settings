@@ -1,4 +1,0 @@
-{
-    "tex_path": ["/usr/bin/pdflatex"],
-    "pandoc_args_html": ["--self-contained", "--css=/home/blinskey/code/markdown.css"],
-}
