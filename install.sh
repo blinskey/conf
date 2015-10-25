@@ -8,6 +8,8 @@
 # - Check specific OS name and version and adjust actions accordingly.
 # - Support other types of systems.
 # - Support older verrsions of Ubuntu: install Powerline from pip and symlink.
+# - Support multiple package lists (e.g., desktop and server, with desktop
+#   dependent on server, similar to Ansible playbooks).
 
 set -e
 set -u
@@ -102,9 +104,11 @@ clone_from_github() {
 }
 
 install_xfce4_terminalrc() {
-    local target="${HOME}/.config/xfce4/terminal/terminalrc"
-    rm -rf "$target"
-    ln -sf "${DIR}/terminalrc" "$target"
+    local target_dir="${HOME}/.config/xfce4/terminal"
+    local target_file="${target_dir}/terminalrc"
+    rm -rf "$target_file"
+    mkdir -p "$target_dir"
+    ln -sf "${DIR}/terminalrc" "$target_file"
 }
 
 main
