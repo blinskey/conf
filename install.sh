@@ -10,6 +10,7 @@
 # - Support older verrsions of Ubuntu: install Powerline from pip and symlink.
 # - Support multiple package lists (e.g., desktop and server, with desktop
 #   dependent on server, similar to Ansible playbooks).
+# - Make script idempotent.
 
 set -e
 set -u
@@ -32,8 +33,8 @@ main() {
 
 check_os() {
     if ! grep -qi 'ID_LIKE=debian' /etc/os-release; then
-	printf "This script is only compatible with Debian-like systems.\n" >&2
-	exit 1
+        printf "This script is only compatible with Debian-like systems.\n" >&2
+        exit 1
     fi
 }
 
