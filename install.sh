@@ -48,7 +48,7 @@ install_packages() {
 install_dotfiles() {
     printf "Linking dotfiles...\n"
     while read file; do
-	ln -sf "${DIR}/${file}" ~
+        ln -sf "${DIR}/${file}" ~
     done <"$DOTFILES"
 
     install_xfce4_terminalrc
