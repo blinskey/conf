@@ -119,4 +119,4 @@ non_root() {
     sudo -u "$LOGIN_NAME" "$@"
 }
 
-main
+main "$@"
