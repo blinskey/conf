@@ -17,6 +17,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'Shougo/unite.vim'
+    Plug 'StanAngeloff/php.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
@@ -98,6 +99,9 @@ set showtabline=2
 
 " Don't show mode in last line. Mode is displayed by Airline.
 set noshowmode
+
+" Time out on key codes after 50 ms.
+set ttimeoutlen=50
 
 "=== Appearance ===============================================================
 
@@ -364,3 +368,17 @@ nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
 
 " Search buffers.
 nnoremap <leader>b :<C-u>Unite buffer<CR>
+
+"=== PHP ======================================================================
+
+" Improve doc comment syntax. From the php.vim readme.
+
+function! PhpSyntaxOverride()
+    hi! def link phpDocTags  phpDefine
+    hi! def link phpDocParam phpType
+endfunction
+
+augroup phpSyntaxOverride
+    autocmd!
+    autocmd FileType php call PhpSyntaxOverride()
+augroup END
