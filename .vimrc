@@ -100,6 +100,10 @@ set noshowmode
 " Time out on key codes after 50 ms.
 set ttimeoutlen=50
 
+" Since we remap <C-L> for window navigation below, set a new mapping
+" to redraw the screen.
+nnoremap <silent> <leader>l :redraw!<CR>
+
 "=== Appearance ===============================================================
 
 " Enable syntax highlighting.
