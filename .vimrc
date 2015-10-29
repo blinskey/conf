@@ -79,9 +79,6 @@ filetype plugin on
 " Use Markdown syntax for .md and to-do list files.
 autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
 
-" Write with root privileges.
-cmap sudow w !sudo tee > /dev/null %
-
 " Map <leader> to comma.
 let mapleader=","
 
