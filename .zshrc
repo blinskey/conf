@@ -46,8 +46,8 @@ compinit
 # Enable Vim mode.
 bindkey -v
 
-# Reduce delay when switching from insert mode to normal mode to 0.1 seconds.
-export KEYTIMEOUT=10
+# Reduce delay when switching from insert mode to normal mode to 10 ms.
+export KEYTIMEOUT=1
 
 # Set Vim CLI commands.
 bindkey '^P' up-history
