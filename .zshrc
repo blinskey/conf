@@ -3,7 +3,7 @@ readonly ALIASES=~/.zsh_aliases
 # Path to zsh-syntax-highlighting plugin
 readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# command-not-found zsh script
+# Ubuntu command-not-found zsh script
 readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
 
 # Powerline directory. This is the directory used when installing via the
@@ -33,20 +33,33 @@ if [ -f "$ALIASES" ]; then
     source "$ALIASES"
 fi
 
-# Lines configured by zsh-newuser-install
 HISTFILE=~/.histfile
 HISTSIZE=1000
 SAVEHIST=1000
 setopt appendhistory autocd extendedglob nomatch notify
 unsetopt beep
-bindkey -v
-# End of lines configured by zsh-newuser-install
-# The following lines were added by compinstall
 zstyle :compinstall filename '/home/blinskey/.zshrc'
 
 autoload -Uz compinit
 compinit
-# End of lines added by compinstall
+
+# Enable Vim mode.
+bindkey -v
+
+# Reduce delay when switching from insert mode to normal mode to 0.1 seconds.
+export KEYTIMEOUT=10
+
+# Set Vim CLI commands.
+bindkey '^P' up-history
+bindkey '^N' down-history
+
+# Enable backspace and ^H after switching from normal mode to insert mode.
+bindkey '^?' backward-delete-char
+bindkey '^H' backward-delete-char
+
+# Enable history search.
+bindkey '^R' history-incremental-search-backward
+bindkey '^F' history-incremental-search-forward
 
 # Key settings copied from Arch Linux wiki:
 
