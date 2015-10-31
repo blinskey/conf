@@ -118,6 +118,10 @@ silent! colorscheme molokai
 let g:rehash256 = 1
 set background=dark
 
+" Modify brace-match highlighting to make it easier to keep track of the
+" cursor.
+highlight MatchParen cterm=bold ctermbg=none ctermfg=208
+
 " Show line numbers
 set number
 
