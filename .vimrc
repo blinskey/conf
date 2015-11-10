@@ -104,6 +104,9 @@ set ttimeoutlen=50
 " to redraw the screen.
 nnoremap <silent> <leader>l :redraw!<CR>
 
+" Enable mouse in normal mode.
+set mouse=n
+
 "=== Appearance ===============================================================
 
 " Enable syntax highlighting.
