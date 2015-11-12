@@ -1,6 +1,6 @@
 readonly ANDROID_STUDIO=/opt/android-studio/bin/studio.sh
 
-if [[ -f /usr/bin/vim ]]; then
+if [[ -f /usr/bin/vim || -f /usr/local/bin/vim ]]; then
     alias vi=vim
 fi
 
