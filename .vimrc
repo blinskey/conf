@@ -107,6 +107,9 @@ nnoremap <silent> <leader>l :redraw!<CR>
 " Enable mouse in normal mode.
 set mouse=n
 
+" Crude macro to surround unquoted word with quotes.
+let @q = 'viwoi"xea"'
+
 "=== Appearance ===============================================================
 
 " Enable syntax highlighting.
