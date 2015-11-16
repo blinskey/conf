@@ -1,9 +1,15 @@
-readonly ANDROID_STUDIO=/opt/android-studio/bin/studio.sh
-
-if [[ -f /usr/bin/vim || -f /usr/local/bin/vim ]]; then
+# Alias vi to vim.
+if command -v vim 2>/dev/null; then
     alias vi=vim
 fi
 
+# Alias git to hub, a wrapper around the git command.
+# See https://github.com/github/hub
+if command -v git 2>/dev/null; then
+    alias git=hub
+fi
+
+# ls aliases
 alias l='ls -Ahl'
 alias ll=l
 alias lll='ls -Ahl --color=always | less -R'
@@ -22,13 +28,6 @@ fi
 
 # Always start tmux in 256-color mode.
 alias tmux='tmux -2'
-
-# Android Studio alias that runs in background
-if [[ -f "$ANDROID_STUDIO" ]]; then
-    function androidstudio() {
-        "$ANDROID_STUDIO" "$@" &
-    }
-fi
 
 # ProGuard stack trace decoding script for debugging Android apps
 alias proguardretrace=~/Android/Sdk/tools/proguard/bin/retrace.sh
