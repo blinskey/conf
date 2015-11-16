@@ -22,14 +22,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'airblade/vim-gitgutter'
     Plug 'bling/vim-airline'
     Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'digitaltoad/vim-jade', {'for': 'jade'}
+    Plug 'digitaltoad/vim-jade'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
     Plug 'jiangmiao/auto-pairs'
     Plug 'majutsushi/tagbar'
-    Plug 'othree/html5-syntax.vim', {'for': 'html'}
-    Plug 'othree/html5.vim', {'for': 'html'}
+    Plug 'othree/html5-syntax.vim'
+    Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -43,7 +43,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
     Plug 'tpope/vim-git'
-    Plug 'tpope/vim-jdaddy', {'for': 'json'}
+    Plug 'tpope/vim-jdaddy'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
