@@ -184,12 +184,14 @@ set smartcase
 " Show search matches as the pattern is being typed.
 set incsearch
 
-" Don't highlight search matches.
-" TODO: Toggle this with a key?
+" By default, don't highlight search matches.
 set nohlsearch
 
 " Clear search highlighing by hitting Enter.
 nnoremap <silent> <CR> :nohlsearch<CR><CR>
+
+" Toggle search highlighting mode with F4.
+nnoremap <F4> :set hlsearch! hlsearch?<CR>
 
 "=== Line wrapping ============================================================
 
@@ -282,8 +284,12 @@ let g:syntastic_check_on_wq = 0
 
 " End recommended settings
 
+" Define custom linters for various filetypes.
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_java_checkers = []
+
+" Toggle mode with F9.
+nnoremap <F9> :SyntasticToggleMode<CR>
 
 "=== ctrlp ====================================================================
 
