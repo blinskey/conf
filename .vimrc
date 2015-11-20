@@ -16,6 +16,8 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
+    Plug 'christoomey/vim-tmux-navigator'
+    Plug 'benmills/vimux'
     Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Yggdroot/indentLine'
@@ -104,11 +106,30 @@ set ttimeoutlen=50
 " to redraw the screen.
 nnoremap <silent> <leader>l :redraw!<CR>
 
-" Enable mouse in normal mode.
-set mouse=n
-
 " Crude macro to surround unquoted word with quotes.
 let @q = 'viwoi"xea"'
+
+"=== Mouse ====================================================================
+
+" By default, disable the mouse. Define a command and keymapping to toggle
+" the mouse in normal mode.
+
+let s:mouse_mode = 0
+
+function! ToggleMouseMode()
+    if s:mouse_mode
+        set mouse=
+        let s:mouse_mode = 0
+        redraw | echom "Mouse disabled"
+    else
+        set mouse=n
+        let s:mouse_mode = 1
+        redraw | echom "Mouse enabled"
+    endif
+endfunction
+
+command! MouseToggle :call ToggleMouseMode()
+nnoremap <leader>m :MouseToggle<CR>
 
 "=== Appearance ===============================================================
 
