@@ -1,11 +1,11 @@
 # Alias vi to vim.
-if command -v vim 2>/dev/null; then
+if command -v vim &>/dev/null; then
     alias vi=vim
 fi
 
 # Alias git to hub, a wrapper around the git command.
 # See https://github.com/github/hub
-if command -v git 2>/dev/null; then
+if command -v git &>/dev/null; then
     alias git=hub
 fi
 
