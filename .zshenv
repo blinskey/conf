@@ -8,7 +8,4 @@ path+=('/opt/infer/bin')
 path+=('/opt/hub/bin')
 export PATH
 
-# Force the Steam window to close rather than minimize when the close button
-# is clicked. See https://github.com/ValveSoftware/steam-for-linux/issues/1025
-export STEAM_FRAME_FORCE_CLOSE=1
-
+export GOPATH='/home/blinskey/code/gocode'
