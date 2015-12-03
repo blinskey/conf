@@ -16,13 +16,14 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'benmills/vimux'
+    Plug 'AndrewRadev/undoquit.vim'
     Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
+    Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
+    Plug 'christoomey/vim-tmux-navigator'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'digitaltoad/vim-jade'
     Plug 'ervandew/supertab'
@@ -54,6 +55,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'vim-scripts/BufOnly.vim'
+    Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
 
     "Plug 'Raimondi/delimitMate'
@@ -359,6 +361,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
 
+" Toggle tagbar with F8.
+nnoremap <silent> <F8> :TagbarToggle<CR>
+
 " Jump to tagbar with <leader>+t, opening it if it is currently closed and
 " keeping it open after selecting a function.
 nmap <leader>t :TagbarOpen fj<CR>
@@ -420,3 +425,9 @@ augroup phpSyntaxOverride
     autocmd!
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
+
+"=== vim-man ==================================================================
+
+" Open man page for word under cursor in horizontal or vertical split.
+map <leader>k <Plug>(Man)
+map <leader>v <Plug>(Vman)
