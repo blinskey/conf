@@ -16,15 +16,16 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'christoomey/vim-tmux-navigator'
-    Plug 'benmills/vimux'
+    Plug 'AndrewRadev/undoquit.vim'
     Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
+    Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'digitaltoad/vim-jade'
+    Plug 'elzr/vim-json'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
@@ -54,18 +55,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
     Plug 'vim-scripts/BufOnly.vim'
+    Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
-
-    "Plug 'Raimondi/delimitMate'
-    "Plug 'bling/vim-bufferline'
-    "Plug 'edkolev/promptline.vim'
-    "Plug 'edkolev/tmuxline.vim'
-    "Plug 'gcmt/taboo.vim'
-    "Plug 'jeetsukumaran/vim-buffergator'
-    "Plug 'mhinz/vim-signifyg'
-    "Plug 'tpope/vim-sleuth'
-    "Plug 'tpope/vim-vinegar'
-    "Plug 'xolox/vim-misc' | Plug 'xolox/vim-easytags'
 
     call plug#end()
 endif
@@ -308,6 +299,7 @@ let g:syntastic_check_on_wq = 0
 " Define custom linters for various filetypes.
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_java_checkers = []
+let g:syntastic_json_checkers = ["jsonlint"]
 
 " Toggle mode with F9.
 nnoremap <F9> :SyntasticToggleMode<CR>
@@ -363,17 +355,6 @@ let g:airline#extensions#tagbar#enabled = 1
 " keeping it open after selecting a function.
 nmap <leader>t :TagbarOpen fj<CR>
 
-"=== promptline ===============================================================
-"
-"let airline#extensions#promptline#snapshot_file = '~/.zsh_prompt.sh'
-"let g:promptline_preset = 'clear'
-
-"=== tmuxline =================================================================
-"
-"let g:airline#extensions#tmuxline#enabled = 1
-"let airline#extensions#tmuxline#snapshot_file = "~/.tmuxline"
-"let g:tmuxline_preset = 'powerline'
-
 "=== ctags ====================================================================
 
 " Generate tags on write.
@@ -420,3 +401,14 @@ augroup phpSyntaxOverride
     autocmd!
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
+
+"=== JSON =====================================================================
+
+" Don't conceal quotes.
+let g:vim_json_syntax_conceal = 0
+
+"=== vim-man ==================================================================
+
+" Open man page for word under cursor in horizontal or vertical split.
+map <leader>k <Plug>(Man)
+map <leader>v <Plug>(Vman)
