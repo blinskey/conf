@@ -101,6 +101,10 @@ nnoremap <silent> <leader>l :redraw!<CR>
 " Crude macro to surround unquoted word with quotes.
 let @q = 'viwoi"xea"'
 
+" Make sure the encoding is set to UTF-8.
+set encoding=utf-8
+set termencoding=utf-8
+
 "=== Mouse ====================================================================
 
 " By default, disable the mouse. Define a command and keymapping to toggle
