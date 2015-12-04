@@ -99,7 +99,7 @@ set ttimeoutlen=50
 nnoremap <silent> <leader>l :redraw!<CR>
 
 " Crude macro to surround unquoted word with quotes.
-let @q = 'viwoi"xea"'
+let @q='viwoi"xea"'
 
 " Make sure the encoding is set to UTF-8.
 set encoding=utf-8
