@@ -111,7 +111,9 @@ setopt HIST_IGNORE_DUPS
 
 # Enable fish-style syntax highlighting using the zsh-syntax-highlighting
 # package from https://github.com/zsh-users/zsh-syntax-highlighting
-source "$SYNTAX_HIGHLIGHTING"
+if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
+    source "$SYNTAX_HIGHLIGHTING"
+fi
 
 # Automatic $PATH rehash:
 setopt nohashdirs
@@ -144,7 +146,11 @@ autoload run-help-svn
 autoload run-help-svk
 alias help=run-help
 
+# Set prompt.
 if [[ -f $POWERLINE_SCRIPT ]]; then
     powerline-daemon -q
     . "$POWERLINE_SCRIPT"
+else
+    autoload -U promptinit && promptinit
+    prompt redhat
 fi

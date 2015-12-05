@@ -5,7 +5,7 @@ fi
 
 # Alias git to hub, a wrapper around the git command.
 # See https://github.com/github/hub
-if command -v git &>/dev/null; then
+if command -v git &>/dev/null && command -v hub &>/dev/null; then
     alias git=hub
 fi
 
