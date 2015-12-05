@@ -23,7 +23,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
-    Plug 'christoomey/vim-tmux-navigator'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'digitaltoad/vim-jade'
     Plug 'elzr/vim-json'
