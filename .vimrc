@@ -19,11 +19,13 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'AndrewRadev/undoquit.vim'
     Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
+    Plug 'Valloric/MatchTagAlways'
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
     Plug 'bling/vim-airline'
     Plug 'christoomey/vim-tmux-navigator'
+    Plug 'ciaranm/detectindent'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'digitaltoad/vim-jade'
     Plug 'elzr/vim-json'
@@ -185,6 +187,18 @@ set softtabstop=4
 
 " Indent by four columns.
 set shiftwidth=4
+
+" Use expandtab if detectindent cannot automatically set value.
+let g:detectindent_preferred_expandtab = 1
+
+" Use a four-space indent if detectindent cannot automatically set values.
+let g:detectindent_preferred_indent = 4
+
+" Use preferred values defined above if file mixes tabs and spaces.
+let g:detectindent_preferred_when_mixed = 1
+
+" Limit number of lines analyzed by detectindent.
+let g:detectindent_max_lines_to_analyse = 1024
 
 " Load indent file for specific filetypes.
 filetype indent on
@@ -420,3 +434,13 @@ let g:vim_json_syntax_conceal = 0
 " Open man page for word under cursor in horizontal or vertical split.
 map <leader>k <Plug>(Man)
 map <leader>v <Plug>(Vman)
+
+"=== Help =====================================================================
+
+" Open help in a vertical split if there is enough room.
+function! s:position_help()
+    if winwidth(0) >= 160
+        wincmd L
+    endif
+endfunction
+autocmd FileType help call s:position_help()
