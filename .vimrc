@@ -40,6 +40,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'pangloss/vim-javascript'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
+    Plug 'sjl/gundo.vim'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-afterimage'
     Plug 'tpope/vim-capslock'
@@ -172,7 +173,6 @@ else
 endif
 
 "=== Indentation and tabs =====================================================
-
 " Autoindent when starting a new line.
 set smartindent
 
@@ -370,6 +370,9 @@ let g:airline#extensions#tabline#fnamemod = ':t'
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
 
+" List tags in the order in which they appear in the source file.
+let g:tagbar_sort = 0
+
 " Toggle tagbar with F8.
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
@@ -444,3 +447,8 @@ function! s:position_help()
     endif
 endfunction
 autocmd FileType help call s:position_help()
+
+"=== gundo ====================================================================
+
+" Toggle undo tree with F3.
+nnoremap <F3> :GundoToggle<CR>
