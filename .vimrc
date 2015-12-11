@@ -267,7 +267,7 @@ set dictionary+=/usr/share/dict/words
 
 " Disable autocomplete before and after certain characters.
 let g:SuperTabNoCompleteBefore = [' ', '\t']
-let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';']
+let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
 
 "=== Splits ===================================================================
 
