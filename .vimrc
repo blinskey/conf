@@ -113,6 +113,11 @@ set termencoding=utf-8
 "}}}
 "=== Mouse ================================================================={{{
 
+" ttymouse must be set to xterm2, not xterm, to enable resizing of windows
+" using the mouse. This assumes that we're using a relatively recent terminal
+" emulator.
+set ttymouse=xterm2
+
 " By default, disable the mouse. Define a command and keymapping to toggle
 " the mouse in normal mode.
 
