@@ -19,6 +19,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'AndrewRadev/undoquit.vim'
+    Plug 'DrSpatula/vim-buddy'
+    Plug 'Haron-Prime/Antares'
+    Plug 'Haron-Prime/evening_vim'
     Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Valloric/MatchTagAlways'
@@ -34,15 +37,19 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'joshdick/onedark.vim'
     Plug 'majutsushi/tagbar'
+    Plug 'mkarmona/colorsbox'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
+    Plug 'plasticboy/vim-markdown'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim'
     Plug 'tacahiroy/ctrlp-funky'
+    Plug 'the31k/vim-colors-tayra'
     Plug 'tpope/vim-afterimage'
     Plug 'tpope/vim-capslock'
     Plug 'tpope/vim-characterize'
@@ -61,7 +68,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-unimpaired'
     Plug 'vim-scripts/BufOnly.vim'
     Plug 'vim-utils/vim-man'
+    Plug 'wellsjo/wellsokai.vim'
     Plug 'wesQ3/vim-windowswap'
+    Plug 'xero/sourcerer.vim'
+    Plug 'zsoltf/vim-maui'
+
+    " Python folding
+    "Plug 'tmhedberg/SimpylFold'
+    "Plug 'vim-scripts/jpythonfold.vim'
 
     call plug#end()
 endif
@@ -110,6 +124,9 @@ let @q='viwoi"xea"'
 set encoding=utf-8
 set termencoding=utf-8
 
+" When substituting, substitute for all matches in each line by default.
+set gdefault
+
 "}}}
 "=== Mouse ================================================================={{{
 
@@ -147,11 +164,7 @@ syntax enable
 " Use 256-color terminal.
 set t_Co=256
 
-" Set and configure Molokai color scheme.
-" NOTE: Order matters here!
-silent! colorscheme molokai
-let g:rehash256 = 1
-set background=dark
+silent! colorscheme jellybeans
 
 " Modify brace-match highlighting to make it easier to keep track of the
 " cursor.
@@ -181,10 +194,29 @@ else
       autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
+" Enable syntax highlighting in Markdown fenced code blocks.
+let g:markdown_fenced_languages = [
+    \'c',
+    \'css',
+    \'haskell',
+    \'html',
+    \'java',
+    \'javascript',
+    \'json',
+    \'mysql',
+    \'python',
+    \'sh',
+    \'sql',
+    \'xml',
+    \'zsh'
+\]
+
 "}}}
 "=== Indentation and tabs =================================================={{{
-" Autoindent when starting a new line.
-set smartindent
+
+set cindent
+set cinkeys-=0#
+set indentkeys-=0#
 
 " Insert spaces rather than tabs.
 set expandtab
@@ -339,6 +371,9 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_java_checkers = []
 let g:syntastic_json_checkers = ["jsonlint"]
+let g:syntastic_python_checkers = ["flake8"]
+
+let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 
 " Toggle mode with F9.
 nnoremap <F9> :SyntasticToggleMode<CR>
@@ -362,7 +397,7 @@ let g:indentLine_fileTypeExclude = ['text']
 "=== airline ==============================================================={{{
 
 " Use the Powerline-clone Airline theme.
-let g:airline_theme = 'powerlineish'
+let g:airline_theme = 'distinguished'
 
 " Use Powerline fonts. These must be installed and enabled in the terminal.
 " See https://github.com/powerline/fonts
