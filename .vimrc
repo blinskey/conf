@@ -72,6 +72,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'wesQ3/vim-windowswap'
     Plug 'xero/sourcerer.vim'
     Plug 'zsoltf/vim-maui'
+    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'godlygeek/tabular'
 
     " Python folding
     "Plug 'tmhedberg/SimpylFold'
@@ -97,6 +99,9 @@ let mapleader=","
 
 " Enable spellchecking in prose files.
 autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
+
+" Set path to word list for spellchecking.
+set spellfile=/home/blinskey/code/config-files/vim-spellfile.utf-8.add
 
 " Disable spellchecking in help documentation.
 autocmd FileType help setlocal nospell
@@ -189,27 +194,28 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 " From http://stackoverflow.com/a/3765575/2530735
 if exists('+colorcolumn')
     set colorcolumn=80
-    "highlight ColorColumn ctermbg=240
+    highlight ColorColumn ctermbg=240
 else
       autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
 
 " Enable syntax highlighting in Markdown fenced code blocks.
-let g:markdown_fenced_languages = [
-    \'c',
-    \'css',
-    \'haskell',
-    \'html',
-    \'java',
-    \'javascript',
-    \'json',
-    \'mysql',
-    \'python',
-    \'sh',
-    \'sql',
-    \'xml',
-    \'zsh'
-\]
+" (For default Markdown plugin.)
+"let g:markdown_fenced_languages = [
+"    \'c',
+"    \'css',
+"    \'haskell',
+"    \'html',
+"    \'java',
+"    \'javascript',
+"    \'json',
+"    \'mysql',
+"    \'python',
+"    \'sh',
+"    \'sql',
+"    \'xml',
+"    \'zsh'
+"\]
 
 "}}}
 "=== Indentation and tabs =================================================={{{
