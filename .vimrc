@@ -28,18 +28,19 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'benmills/vimux'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'ciaranm/detectindent'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'digitaltoad/vim-jade'
     Plug 'elzr/vim-json'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
+    Plug 'godlygeek/tabular'
     Plug 'groenewege/vim-less'
     Plug 'jiangmiao/auto-pairs'
+    Plug 'jmcantrell/vim-virtualenv'
     Plug 'joshdick/onedark.vim'
     Plug 'majutsushi/tagbar'
+    Plug 'mhinz/vim-startify'
     Plug 'mkarmona/colorsbox'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/html5.vim'
@@ -67,16 +68,18 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
+    Plug 'vim-airline/vim-airline'
+    Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/BufOnly.vim'
     Plug 'vim-utils/vim-man'
     Plug 'wellsjo/wellsokai.vim'
     Plug 'wesQ3/vim-windowswap'
+    Plug 'wikimatze/vim-banshee'
     Plug 'xero/sourcerer.vim'
     Plug 'zsoltf/vim-maui'
-    Plug 'jmcantrell/vim-virtualenv'
-    Plug 'godlygeek/tabular'
-    Plug 'mhinz/vim-startify'
 
+    "Plug 'professorsloth/cmus-remote-vim'
+    "
     " Python folding
     "Plug 'tmhedberg/SimpylFold'
     "Plug 'vim-scripts/jpythonfold.vim'
@@ -104,7 +107,10 @@ let mapleader=","
 autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
 " Set path to word list for spellchecking.
-set spellfile=/home/blinskey/code/config-files/vim-spellfile.utf-8.add
+let s:spellfile_path = '/home/blinskey/code/config-files/vim-spellfile.utf-8.add'
+if !empty(glob(s:spellfile_path))
+    let &spellfile=s:spellfile_path
+endif
 
 " Disable spellchecking in help documentation.
 autocmd FileType help setlocal nospell
