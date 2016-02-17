@@ -46,7 +46,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
-    Plug 'plasticboy/vim-markdown'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
     Plug 'sjl/gundo.vim'
@@ -74,12 +73,19 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-utils/vim-man'
     Plug 'wellsjo/wellsokai.vim'
     Plug 'wesQ3/vim-windowswap'
-    Plug 'wikimatze/vim-banshee'
     Plug 'xero/sourcerer.vim'
     Plug 'zsoltf/vim-maui'
+    Plug 'davidhalter/jedi-vim'
+    Plug 'kh3phr3n/python-syntax'
 
+    " Alternate Markdown syntax. Problems with indentation when
+    " wrapping lines in lists.
+    "Plug 'plasticboy/vim-markdown'
+
+    " Music player control
+    "Plug 'wikimatze/vim-banshee' " Throws error if Banshee not installed
     "Plug 'professorsloth/cmus-remote-vim'
-    "
+
     " Python folding
     "Plug 'tmhedberg/SimpylFold'
     "Plug 'vim-scripts/jpythonfold.vim'
@@ -582,5 +588,12 @@ let g:startify_session_delete_buffers = 0"
 let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_enable_special = 1
+
+"}}}
+
+"=== python.vim ============================================================{{{
+
+" Enable all syntax-highlighting features.
+let python_highlight_all = 1
 
 "}}}
