@@ -141,6 +141,9 @@ set termencoding=utf-8
 " When substituting, substitute for all matches in each line by default.
 set gdefault
 
+" Never conceal text.
+set conceallevel=0
+
 "}}}
 
 "=== Mouse ================================================================={{{
