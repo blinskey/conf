@@ -22,7 +22,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'DrSpatula/vim-buddy'
     Plug 'Haron-Prime/Antares'
     Plug 'Haron-Prime/evening_vim'
-    Plug 'Shougo/unite.vim'
+    "Plug 'Shougo/unite.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Valloric/MatchTagAlways'
     Plug 'Yggdroot/indentLine'
@@ -437,7 +437,7 @@ let g:indentLine_fileTypeExclude = ['text']
 "=== airline ==============================================================={{{
 
 "let g:airline_theme = 'distinguished'
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'base16'
 
 let g:airline_powerline_fonts = 0
 
@@ -529,17 +529,17 @@ set foldlevelstart=99
 
 "=== Unite ================================================================={{{
 
-call unite#filters#matcher_default#use(['matcher_fuzzy'])
+"call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
 " Recursive search through pwd.
 "
 " Note: This may be slow for large projects. We could speed things up with
 " the unite-source-file_rec/async source, but that requires vim-proc, which
 " requires a native extension, which is a bit too heavy.
-nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
+"nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
 
 " Search buffers.
-nnoremap <leader>b :<C-u>Unite buffer<CR>
+"nnoremap <leader>b :<C-u>Unite buffer<CR>
 
 "}}}
 
@@ -615,4 +615,16 @@ let g:startify_enable_special = 1
 " Enable all syntax-highlighting features.
 let python_highlight_all = 1
 
+"}}}
+
+"=== Jedi ============================================================{{{
+
+" Don't automatically pop up completion box when a period is entered.
+" Use the completion key to open the completion box.
+let g:jedi#popup_on_dot = 0
+
+" Wait 1.5 seconds before showing call signature.
+let g:jedi#show_call_signatures_delay = 1500
+
+nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
 "}}}
