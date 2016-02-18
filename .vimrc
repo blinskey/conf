@@ -436,12 +436,31 @@ let g:indentLine_fileTypeExclude = ['text']
 
 "=== airline ==============================================================={{{
 
-" Use the Powerline-clone Airline theme.
-let g:airline_theme = 'distinguished'
+"let g:airline_theme = 'distinguished'
+let g:airline_theme = 'jellybeans'
 
-" Use Powerline fonts. These must be installed and enabled in the terminal.
-" See https://github.com/powerline/fonts
-let g:airline_powerline_fonts = 1
+let g:airline_powerline_fonts = 0
+
+if !exists('g:airline_symbols')
+    let g:airline_symbols = {}
+
+    "let g:airline_left_sep = '»'
+    "let g:airline_left_sep = '▶'
+    "let g:airline_right_sep = '«'
+    "let g:airline_right_sep = '◀'
+    let g:airline_left_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_symbols.crypt = '🔒'
+    let g:airline_symbols.linenr = '␊'
+    let g:airline_symbols.linenr = '␤'
+    let g:airline_symbols.linenr = '¶'
+    let g:airline_symbols.branch = '⎇'
+    let g:airline_symbols.paste = 'ρ'
+    let g:airline_symbols.paste = 'Þ'
+    let g:airline_symbols.paste = '∥'
+    let g:airline_symbols.notexists = '∄'
+    let g:airline_symbols.whitespace = 'Ξ'
+endif
 
 "}}}
 

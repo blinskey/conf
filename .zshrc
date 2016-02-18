@@ -6,13 +6,6 @@ readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-
 # Ubuntu command-not-found zsh script
 readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
 
-# Powerline directory. This is the directory used when installing via the
-# Ubuntu "powerline" package. When installing via pip, symlink the install
-# directory (e.g., /usr/lib/python2.7/dist-packages/powerline or
-# /usr/lib/python3.5/site-packages/powerline) to this location.
-readonly POWERLINE_DIR="/usr/share/powerline"
-readonly POWERLINE_SCRIPT="${POWERLINE_DIR}/bindings/zsh/powerline.zsh"
-
 # Set editor.
 if [[ -f /usr/bin/vim ]]; then
     # Path to Vim installed via apt.
@@ -147,11 +140,13 @@ autoload run-help-svn
 autoload run-help-svk
 alias help=run-help
 
-# Set prompt.
-if [[ -f $POWERLINE_SCRIPT ]]; then
-    powerline-daemon -q
-    . "$POWERLINE_SCRIPT"
-else
-    autoload -U promptinit && promptinit
-    prompt redhat
-fi
+# To load built-in prompts and use the "redhat" prompt, uncomment
+# the following lines.
+#autoload -U promptinit && promptinit
+#prompt redhat
+
+# Set custom prompt.
+autoload -U colors && colors
+PROMPT="[%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%3~%{$reset_color%}]%(#.#.$) "
+PS2="> "
+RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg[red]%}%?)%{$reset_color%}]
