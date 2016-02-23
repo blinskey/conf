@@ -1,6 +1,6 @@
 [Configuration]
 BackgroundDarkness=0.950000
-FontName=Liberation Mono for Powerline 12
+FontName=Liberation Mono 12
 MiscAlwaysShowTabs=FALSE
 MiscBell=FALSE
 MiscBordersDefault=TRUE
