@@ -272,8 +272,8 @@ let g:detectindent_max_lines_to_analyse = 1024
 " Load indent file for specific filetypes.
 filetype indent on
 
-" Use two-space tabs in Markdown files.
-autocmd Filetype markdown setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+" Use two-space tabs in Markdown and HTML files.
+autocmd Filetype markdown,html,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "}}}
 
