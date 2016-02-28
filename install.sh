@@ -70,9 +70,6 @@ configure() {
 
     printf "Installing zsh-syntax-highlighting plugin...\n"
     install_zsh_syntax_highlighting
-
-    printf "Installing Powerline fonts...\n"
-    install_powerline_fonts
 }
 
 install_zsh_syntax_highlighting() {
@@ -82,15 +79,6 @@ install_zsh_syntax_highlighting() {
 
     mkdir -p "/usr/share/zsh/plugins"
     ln -s "$target" "/usr/share/zsh/plugins"
-}
-
-install_powerline_fonts() {
-    local repo="powerline/fonts"
-    local target="${CODE_DIR}/powerline_fonts"
-    clone_from_github "$repo" "$target"
-
-    # TODO: As root?
-    "${target}/install.sh"
 }
 
 # Clones the specified repository to the given target directory. If a directory
