@@ -422,6 +422,12 @@ nnoremap <F9> :SyntasticToggleMode<CR>
 " Set base directory to cwd or nearest ancestor with version control file.
 let g:ctrlp_working_path_mode = 'rw'
 
+" Preserve cache across sessions.
+let g:ctrlp_clear_cache_on_exit = 0
+
+" Include dotfiles.
+let g:ctrlp_show_hidden = 1
+
 "}}}
 
 "=== IndentLine ============================================================{{{
