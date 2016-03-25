@@ -150,3 +150,9 @@ autoload -U colors && colors
 PROMPT="[%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%3~%{$reset_color%}]%(#.#.$) "
 PS2="> "
 RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg[red]%}%?)%{$reset_color%}]
+
+# virtualenvwrapper set-up
+# See https://virtualenvwrapper.readthedocs.org/en/latest/install.html
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/code
+source /usr/local/bin/virtualenvwrapper.sh
