@@ -76,7 +76,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'xero/sourcerer.vim'
     Plug 'zsoltf/vim-maui'
     Plug 'davidhalter/jedi-vim'
-    Plug 'kh3phr3n/python-syntax'
+    "Plug 'kh3phr3n/python-syntax'
 
     " Alternate Markdown syntax. Problems with indentation when
     " wrapping lines in lists.
@@ -105,6 +105,9 @@ filetype plugin on
 
 " Use Markdown syntax for .md and to-do list files.
 autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
+
+" Use conf syntax for .gitignore files.
+autocmd BufRead,BufNewFile .gitignore set filetype=conf
 
 " Map <leader> to comma.
 let mapleader=","
@@ -443,7 +446,7 @@ let g:indentLine_fileTypeExclude = ['text']
 "=== airline ==============================================================={{{
 
 "let g:airline_theme = 'distinguished'
-let g:airline_theme = 'base16'
+let g:airline_theme = 'jellybeans'
 
 let g:airline_powerline_fonts = 0
 
@@ -623,7 +626,7 @@ let python_highlight_all = 1
 
 "}}}
 
-"=== Jedi ============================================================{{{
+"=== Jedi =================================================================={{{
 
 " Don't automatically pop up completion box when a period is entered.
 " Use the completion key to open the completion box.
@@ -633,4 +636,11 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures_delay = 1500
 
 nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
+"}}}
+
+"=== Auto-Pairs ============================================================{{{
+
+" Disable problematic behavior when inserting closing delimiter within existing
+" delimiter pair.
+let g:AutoPairsMultilineClose = 0
 "}}}
