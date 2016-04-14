@@ -4,5 +4,5 @@ git
 htop
 lynx
 tmux
-vim
+vim-nox
 zsh
