@@ -77,6 +77,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'zsoltf/vim-maui'
     Plug 'davidhalter/jedi-vim'
     "Plug 'kh3phr3n/python-syntax'
+    Plug 'vim-scripts/a.vim'
 
     " Alternate Markdown syntax. Problems with indentation when
     " wrapping lines in lists.
@@ -446,7 +447,7 @@ let g:indentLine_fileTypeExclude = ['text']
 "=== airline ==============================================================={{{
 
 "let g:airline_theme = 'distinguished'
-let g:airline_theme = 'jellybeans'
+let g:airline_theme = 'base16'
 
 let g:airline_powerline_fonts = 0
 
