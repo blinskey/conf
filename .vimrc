@@ -18,6 +18,7 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
+    Plug 'Raimondi/delimitMate'
     Plug 'AndrewRadev/undoquit.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'Valloric/MatchTagAlways'
@@ -31,14 +32,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
-    Plug 'jiangmiao/auto-pairs'
+    "Plug 'jiangmiao/auto-pairs'
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
-    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+    "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-capslock'
@@ -329,16 +330,16 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 "=== netrw ================================================================={{{
 
 " Open netrw.
-"map <leader>e :Explore<cr>
+map <leader>e :Explore<cr>
 
 " Use tree-style view.
-"let g:netrw_liststyle=3
+let g:netrw_liststyle=3
 
 "}}}
 
 "=== NERDTree =============================================================={{{
 
-nmap <leader>e :NERDTreeToggle<Cr>
+"nmap <leader>e :NERDTreeToggle<Cr>
 
 "}}}
 
@@ -513,6 +514,23 @@ nnoremap <silent> <F8> :TagbarToggle<CR>
 " keeping it open after selecting a function.
 nmap <leader>t :TagbarOpen fj<CR>
 
+" Toggle the tagbar with <leader>+t.
+"nmap <leader>t :TagbarToggle<CR>
+
+" On a 190-column screen, this leaves room for two 80-column windows, plus some
+" padding.
+let g:tagbar_width = 25
+
+" Open tagbar when opening Vim with a supported filetype.
+autocmd VimEnter * nested :call tagbar#autoopen(1)
+
+" Open tagbar when opening a supported file in a running instance of Vim.
+autocmd FileType * nested :call tagbar#autoopen(0)
+
+" Open tagbar when opening a tab containing a loaded buffer with a supported
+" filetype.
+autocmd BufEnter * nested :call tagbar#autoopen(0)
+
 "}}}
 
 "=== ctags ================================================================={{{
@@ -645,4 +663,19 @@ nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
 " Disable problematic behavior when inserting closing delimiter within existing
 " delimiter pair.
 let g:AutoPairsMultilineClose = 0
+"}}}
+
+"=== Auto-Pairs ============================================================{{{
+
+let delimitMate_autoclose = 1
+let delimitMate_expand_cr = 1
+let delimitMate_insert_eol_marker = 2
+
+"}}}
+
+"=== A.vim ================================================================={{{
+
+" Toggle between header and source files with <leader>+a.
+nnoremap <silent> <leader>a :A<CR>
+
 "}}}
