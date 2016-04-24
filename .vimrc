@@ -201,8 +201,10 @@ silent! colorscheme jellybeans
 " cursor.
 highlight MatchParen cterm=bold ctermbg=none ctermfg=208
 
-" Show line numbers
-set number
+" Hide line numbers. This buys us several crucial columns that we need in order
+" to comfortably include two 80-column windows and a small tagbar window on a
+" small screen.
+set nonumber
 
 " Highlight current line
 set cursorline
