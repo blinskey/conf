@@ -1,0 +1,37 @@
+# Read in secrets.
+source "gpg2 -dq $HOME/.mutt/.mutt-secrets.gpg |"
+
+# Basic IMAP setup
+set imap_user = "$my_username"
+set imap_pass = "$my_password"
+set folder = "$my_imap_folder"
+set spoolfile = "$my_spoolfile"
+set imap_check_subscribed
+set ssl_force_tls = "$my_ssl_force_tls"
+set ssl_starttls = "$my_ssl_starttls"
+
+# SMTP setup
+set record = "$my_record"
+set realname = "$my_realname"
+set from = "$my_from"
+set use_from=yes
+set smtp_url = "$my_smtp_url"
+
+# Store message headers and messages locally.
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
+
+# Allow Mutt to open new IMAP connections automatically.
+unset imap_passive
+
+# IMAP keep-alive polling time in seconds
+set imap_keepalive=300
+
+# New-mail check time in seconds
+set mail_check=120
+
+# Always send emails in UTF-8, or ASCII if that is sufficient.
+set send_charset="us-ascii:utf-8"
+
+# Colorscheme from https://github.com/octol/vombatidae-mutt
+source ~/.mutt/vombatidae.mutt
