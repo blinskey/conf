@@ -33,5 +33,11 @@ set mail_check=120
 # Always send emails in UTF-8, or ASCII if that is sufficient.
 set send_charset="us-ascii:utf-8"
 
+# Show context lines when going to next page.
+set pager_context = 3
+
+# Stop at end of message.
+set pager_stop = yes
+
 # Colorscheme from https://github.com/octol/vombatidae-mutt
 source ~/.mutt/vombatidae.mutt
