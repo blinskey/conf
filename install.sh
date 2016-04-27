@@ -62,6 +62,7 @@ install_dotfiles() {
     done <"$DOTFILES"
 
     install_xfce4_terminalrc
+    install muttrc
 }
 
 configure() {
@@ -101,6 +102,14 @@ install_xfce4_terminalrc() {
     non_root rm -rf "$target_file"
     non_root mkdir -p "$target_dir"
     non_root ln -sf "${DIR}/terminalrc" "$target_file"
+}
+
+install_muttrc() {
+    local target_dir="${HOME}/.mutt"
+    local target_file="${target_dir}/muttrc"
+    non_root rm -rf "$target_file"
+    non_root mkdir -p "$target_dir"
+    non_root ln -sf "${DIR}/muttrc" "$target_file"
 }
 
 non_root() {
