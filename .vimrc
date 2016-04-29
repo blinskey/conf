@@ -1,4 +1,4 @@
-" vim: set foldmethod=marker foldlevel=0:
+" vim: set foldmethod=marker
 
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
@@ -201,7 +201,7 @@ silent! colorscheme jellybeans
 " cursor.
 highlight MatchParen cterm=bold ctermbg=none ctermfg=208
 
-" Hide line numbers on small screens.. This buys us several crucial columns
+" Hide line numbers on small screens. This buys us several crucial columns
 " that we need in order to comfortably include two 80-column windows and a
 " small tagbar window.
 let s:cols = &columns
@@ -528,15 +528,18 @@ nmap <leader>t :TagbarOpen fj<CR>
 " padding.
 let g:tagbar_width = 25
 
-" Open tagbar when opening Vim with a supported filetype.
-autocmd VimEnter * nested :call tagbar#autoopen(1)
+" Only auto-open tagbar in reasonably wide terminals.
+if s:cols > (80 + g:tagbar_width)
+    " Open tagbar when opening Vim with a supported filetype.
+    autocmd VimEnter * nested :call tagbar#autoopen(1)
 
-" Open tagbar when opening a supported file in a running instance of Vim.
-autocmd FileType * nested :call tagbar#autoopen(0)
+    " Open tagbar when opening a supported file in a running instance of Vim.
+    autocmd FileType * nested :call tagbar#autoopen(0)
 
-" Open tagbar when opening a tab containing a loaded buffer with a supported
-" filetype.
-autocmd BufEnter * nested :call tagbar#autoopen(0)
+    " Open tagbar when opening a tab containing a loaded buffer with a supported
+    " filetype.
+    autocmd BufEnter * nested :call tagbar#autoopen(0)
+endif
 
 "}}}
 
