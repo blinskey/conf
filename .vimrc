@@ -36,7 +36,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
-    Plug 'othree/html5.vim'
+    "Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -83,7 +83,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     " Alternate Markdown syntax. Problems with indentation when
     " wrapping lines in lists.
-    "Plug 'plasticboy/vim-markdown'
+    Plug 'plasticboy/vim-markdown'
 
     " Music player control
     "Plug 'wikimatze/vim-banshee' " Throws error if Banshee not installed
