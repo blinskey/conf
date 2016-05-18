@@ -86,7 +86,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     " Alternate Markdown syntax. Problems with indentation when
     " wrapping lines in lists.
-    Plug 'plasticboy/vim-markdown'
+    "Plug 'plasticboy/vim-markdown'
 
     " Music player control
     "Plug 'wikimatze/vim-banshee' " Throws error if Banshee not installed
