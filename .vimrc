@@ -36,7 +36,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
-    Plug 'othree/html5.vim'
+    "Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
