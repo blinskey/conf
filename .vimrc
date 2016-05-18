@@ -63,6 +63,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/a.vim'
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
+    Plug 'rust-lang/rust.vim'
+    Plug 'justinmk/vim-sneak'
+    Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
 
     "Plug 'DrSpatula/vim-buddy'
     "Plug 'Haron-Prime/Antares'
@@ -83,7 +86,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     " Alternate Markdown syntax. Problems with indentation when
     " wrapping lines in lists.
-    "Plug 'plasticboy/vim-markdown'
+    Plug 'plasticboy/vim-markdown'
 
     " Music player control
     "Plug 'wikimatze/vim-banshee' " Throws error if Banshee not installed
@@ -95,6 +98,17 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     call plug#end()
 endif
+
+"}}}
+
+"=== Keymap ================================================================{{{
+
+" Enable Western Armenian keymapping.
+set keymap=western-armenian-alt_utf-8
+
+" Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
+set iminsert=0
+set imsearch=0
 
 "}}}
 
@@ -111,6 +125,9 @@ autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
 
 " Use conf syntax for .gitignore files.
 autocmd BufRead,BufNewFile .gitignore set filetype=conf
+
+" Use Rust syntax for .rs files.
+autocmd BufRead,BufNewFile .rs set filetype=rust
 
 " Map <leader> to comma.
 let mapleader=","
@@ -286,7 +303,7 @@ let g:detectindent_max_lines_to_analyse = 1024
 filetype indent on
 
 " Use two-space tabs in Markdown and HTML files.
-autocmd Filetype markdown,html,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 "}}}
 
@@ -687,5 +704,21 @@ let delimitMate_insert_eol_marker = 2
 
 " Toggle between header and source files with <leader>+a.
 nnoremap <silent> <leader>a :A<CR>
+
+"}}}
+
+"=== vim-textobj-quote ====================================================={{{
+
+" Enable curly quotes in text files.
+augroup textobj_quote
+    autocmd!
+    autocmd FileType markdown call textobj#quote#init()
+    autocmd FileType textile call textobj#quote#init()
+    autocmd FileType text call textobj#quote#init({'educate': 0})
+augroup END
+
+" Quote replacement shortcuts.
+map <silent> <leader>qc <Plug>ReplaceWithCurly
+map <silent> <leader>qs <Plug>ReplaceWithStraight
 
 "}}}
