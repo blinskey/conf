@@ -104,7 +104,7 @@ endif
 "=== Keymap ================================================================{{{
 
 " Enable Western Armenian keymapping.
-set keymap=western-armenian-alt_utf-8
+set keymap=western-armenian_utf-8
 
 " Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
 set iminsert=0
