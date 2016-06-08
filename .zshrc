@@ -141,11 +141,14 @@ alias help=run-help
 #autoload -U promptinit && promptinit
 #prompt redhat
 
-# Set custom prompt.
+# Set custom prompt. The left prompt is similar to the built-in "redhat" prompt
+# and uses a bit of color to make the prompt stand out and improve readability.
+# The right prompt displays the exit code returned by the previous command,
+# colored green if zero or red otherwise.
 autoload -U colors && colors
-PROMPT="[%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%3~%{$reset_color%}]%(#.#.$) "
+PROMPT="[%{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[blue]%}%3~%{$reset_color%}]%(#.#.$) "
 PS2="> "
-RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg[red]%}%?)%{$reset_color%}]
+RPROMPT=[%(0?.%{$fg_bold[green]%}0.%{$fg_bold[red]%}%?)%{$reset_color%}]
 
 # Enable syntax highlighting if plugin exists.
 if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
