@@ -148,7 +148,7 @@ alias help=run-help
 autoload -U colors && colors
 PROMPT="[%{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[blue]%}%3~%{$reset_color%}]%(#.#.$) "
 PS2="> "
-RPROMPT=[%(0?.%{$fg_bold[green]%}0.%{$fg_bold[red]%}%?)%{$reset_color%}]
+RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg_bold[red]%}%?)%{$reset_color%}]
 
 # Enable syntax highlighting if plugin exists.
 if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
