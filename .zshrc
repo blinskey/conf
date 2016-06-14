@@ -1,7 +1,9 @@
 readonly ALIASES=~/.zsh_aliases
 
-# Path to zsh-syntax-highlighting plugin
-readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+# Path to zsh-syntax-highlighting plugin. This is the path where the plugin
+# is installed by the Debian zsh-syntax-highlighting package. Source available
+# from https://github.com/zsh-users/zsh-syntax-highlighting
+readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Ubuntu command-not-found zsh script
 readonly COMMAND_NOT_FOUND=/etc/zsh_command_not_found
@@ -103,12 +105,6 @@ fi
 # Ignore duplicate lines in history.
 setopt HIST_IGNORE_DUPS
 
-# Enable fish-style syntax highlighting using the zsh-syntax-highlighting
-# package from https://github.com/zsh-users/zsh-syntax-highlighting
-if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
-    source "$SYNTAX_HIGHLIGHTING"
-fi
-
 # Automatic $PATH rehash:
 setopt nohashdirs
 
@@ -145,8 +141,16 @@ alias help=run-help
 #autoload -U promptinit && promptinit
 #prompt redhat
 
-# Set custom prompt.
+# Set custom prompt. The left prompt is similar to the built-in "redhat" prompt
+# and uses a bit of color to make the prompt stand out and improve readability.
+# The right prompt displays the exit code returned by the previous command,
+# colored green if zero or red otherwise.
 autoload -U colors && colors
-PROMPT="[%{$fg[blue]%}%n%{$reset_color%}@%{$fg[blue]%}%m%{$reset_color%}:%{$fg_bold[yellow]%}%3~%{$reset_color%}]%(#.#.$) "
+PROMPT="[%{$fg_bold[blue]%}%n%{$reset_color%}@%{$fg_bold[blue]%}%m%{$reset_color%}:%{$fg_bold[blue]%}%3~%{$reset_color%}]%(#.#.$) "
 PS2="> "
-RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg[red]%}%?)%{$reset_color%}]
+RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg_bold[red]%}%?)%{$reset_color%}]
+
+# Enable syntax highlighting if plugin exists.
+if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
+    source "$SYNTAX_HIGHLIGHTING"
+fi

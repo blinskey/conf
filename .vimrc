@@ -1,10 +1,8 @@
-" vim: set foldmethod=marker
-
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
 autocmd!
 
-"=== vim-plug =============================================================={{{
+"=== vim-plug =================================================================
 
 " See https://github.com/junegunn/vim-plug
 
@@ -18,8 +16,8 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'Raimondi/delimitMate'
     Plug 'AndrewRadev/undoquit.vim'
+    Plug 'Raimondi/delimitMate'
     Plug 'StanAngeloff/php.vim'
     Plug 'Valloric/MatchTagAlways'
     Plug 'Yggdroot/indentLine'
@@ -32,14 +30,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
-    "Plug 'jiangmiao/auto-pairs'
     Plug 'jmcantrell/vim-virtualenv'
+    Plug 'justinmk/vim-sneak'
+    Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
-    "Plug 'othree/html5.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
-    "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'rust-lang/rust.vim'
     Plug 'scrooloose/syntastic'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tpope/vim-capslock'
@@ -63,10 +61,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/a.vim'
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
-    Plug 'rust-lang/rust.vim'
-    Plug 'justinmk/vim-sneak'
-    Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
 
+    "Plug 'jiangmiao/auto-pairs'
+    "Plug 'othree/html5.vim'
+    "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'DrSpatula/vim-buddy'
     "Plug 'Haron-Prime/Antares'
     "Plug 'Haron-Prime/evening_vim'
@@ -99,22 +97,18 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#end()
 endif
 
-"}}}
-
-"=== Keymap ================================================================{{{
+"=== Keymap ===================================================================
 
 " Enable Western Armenian keymapping.
 if !empty(glob('/usr/share/vim/vim74/keymap/western-armenian-alt_utf-8.vim'))
-    set keymap=western-armenian-alt_utf-8
+    set keymap=western-armenian_utf-8
 endif
 
 " Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
 set iminsert=0
 set imsearch=0
 
-"}}}
-
-"=== Miscellaneous ========================================================={{{
+"=== Miscellaneous ============================================================
 
 " Disable vi compatibility
 set nocompatible
@@ -175,9 +169,7 @@ set gdefault
 " Never conceal text.
 set conceallevel=0
 
-"}}}
-
-"=== Mouse ================================================================={{{
+"=== Mouse ====================================================================
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
 " using the mouse. This assumes that we're using a relatively recent terminal
@@ -204,9 +196,7 @@ endfunction
 command! MouseToggle :call ToggleMouseMode()
 nnoremap <leader>m :MouseToggle<CR>
 
-"}}}
-
-"=== Appearance ============================================================{{{
+"=== Appearance ===============================================================
 
 " Enable syntax highlighting.
 syntax enable
@@ -269,9 +259,7 @@ endif
 "    \'zsh'
 "\]
 
-"}}}
-
-"=== Indentation and tabs =================================================={{{
+"=== Indentation and tabs =====================================================
 
 set cindent
 set cinkeys-=0#
@@ -307,9 +295,7 @@ filetype indent on
 " Use two-space tabs in Markdown and HTML files.
 autocmd Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-"}}}
-
-"=== Search ================================================================{{{
+"=== Search ===================================================================
 
 " Ignore case when the search pattern contains only lowercase letters.
 set ignorecase
@@ -327,9 +313,7 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " Toggle search highlighting mode with F4.
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 
-"}}}
-
-"=== Line wrapping ========================================================={{{
+"=== Line wrapping ============================================================
 
 " Don't soft-wrap lines.
 set nowrap
@@ -337,9 +321,7 @@ set nowrap
 " Hard-wrap lines after 79 characters.
 set textwidth=79
 
-"}}}
-
-"=== Whitespace ============================================================{{{
+"=== Whitespace ===============================================================
 
 " Strip trailing whitespace on save.
 " From http://stackoverflow.com/a/1618401/2530735
@@ -351,9 +333,7 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-"}}}
-
-"=== netrw ================================================================={{{
+"=== netrw ====================================================================
 
 " Open netrw.
 map <leader>e :Explore<cr>
@@ -361,15 +341,11 @@ map <leader>e :Explore<cr>
 " Use tree-style view.
 let g:netrw_liststyle=3
 
-"}}}
-
-"=== NERDTree =============================================================={{{
+"=== NERDTree =================================================================
 
 "nmap <leader>e :NERDTreeToggle<Cr>
 
-"}}}
-
-"=== ctrlp-funky ==========================================================={{{
+"=== ctrlp-funky ==============================================================
 
 " Open the CtrlPFunky function search window.
 nnoremap <Leader>fu :CtrlPFunky<Cr>
@@ -377,9 +353,7 @@ nnoremap <Leader>fu :CtrlPFunky<Cr>
 " Open CtrlPFunky with search field prepopulated with word under cursor.
 nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-"}}}
-
-"=== Autocomplete =========================================================={{{
+"=== Autocomplete =============================================================
 
 " Based on https://robots.thoughtbot.com/vim-macros-and-you
 " See :h ins-completion
@@ -393,17 +367,13 @@ set wildmode=longest,list:longest
 " Add 'k' to :set complete list to enable dictionary completion.
 set dictionary+=/usr/share/dict/words
 
-"}}}
-
-"=== SuperTab =============================================================={{{
+"=== SuperTab =================================================================
 
 " Disable autocomplete before and after certain characters.
 let g:SuperTabNoCompleteBefore = [' ', '\t']
 let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
 
-"}}}
-
-"=== Splits ================================================================{{{
+"=== Splits ===================================================================
 
 " Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " See :h splits
@@ -419,9 +389,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-"}}}
-
-"=== Syntastic ============================================================={{{
+"=== Syntastic ================================================================
 
 " Recommended newbie settings from Syntastic readme
 
@@ -447,9 +415,7 @@ let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 " Toggle mode with F9.
 nnoremap <F9> :SyntasticToggleMode<CR>
 
-"}}}
-
-"=== ctrlp ================================================================={{{
+"=== ctrlp ====================================================================
 
 " Set base directory to cwd or nearest ancestor with version control file.
 let g:ctrlp_working_path_mode = 'rw'
@@ -460,9 +426,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-"}}}
-
-"=== IndentLine ============================================================{{{
+"=== IndentLine ===============================================================
 
 " Line color
 let g:indentLine_color_term = 239
@@ -470,9 +434,7 @@ let g:indentLine_color_term = 239
 " List of file types for which indentation line should not be shown
 let g:indentLine_fileTypeExclude = ['text']
 
-"}}}
-
-"=== airline ==============================================================={{{
+"=== airline ==================================================================
 
 "let g:airline_theme = 'distinguished'
 let g:airline_theme = 'base16'
@@ -500,9 +462,7 @@ if !exists('g:airline_symbols')
     let g:airline_symbols.whitespace = 'Ξ'
 endif
 
-"}}}
-
-"=== tabline ==============================================================={{{
+"=== tabline ==================================================================
 
 " Use Airline's tabline integration.
 let g:airline#extensions#tabline#enabled = 1
@@ -523,9 +483,7 @@ let g:airline#extensions#tabline#formatter = 'default'
 " For unique filenames, print only the filename, not the full path.
 let g:airline#extensions#tabline#fnamemod = ':t'
 
-"}}}
-
-"=== tagbar ================================================================{{{
+"=== tagbar ===================================================================
 
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
@@ -560,9 +518,7 @@ if s:cols > (80 + g:tagbar_width)
     autocmd BufEnter * nested :call tagbar#autoopen(0)
 endif
 
-"}}}
-
-"=== ctags ================================================================={{{
+"=== ctags ====================================================================
 
 " Generate tags on write.
 "
@@ -570,9 +526,7 @@ endif
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 ":autocmd BufWritePost * call system("ctags -R")
 
-"}}}
-
-"=== Folding ==============================================================={{{
+"=== Folding ==================================================================
 
 " Fold based on indentation.
 set foldmethod=indent
@@ -583,9 +537,7 @@ set foldignore=
 " Start with all folds open.
 set foldlevelstart=99
 
-"}}}
-
-"=== Unite ================================================================={{{
+"=== Unite ====================================================================
 
 "call unite#filters#matcher_default#use(['matcher_fuzzy'])
 
@@ -599,9 +551,7 @@ set foldlevelstart=99
 " Search buffers.
 "nnoremap <leader>b :<C-u>Unite buffer<CR>
 
-"}}}
-
-"=== PHP ==================================================================={{{
+"=== PHP ======================================================================
 
 " Improve doc comment syntax. From the php.vim readme.
 
@@ -615,24 +565,18 @@ augroup phpSyntaxOverride
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
 
-"}}}
-
-"=== JSON =================================================================={{{
+"=== JSON =====================================================================
 
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
 
-"}}}
-
-"=== vim-man ==============================================================={{{
+"=== vim-man ==================================================================
 
 " Open man page for word under cursor in horizontal or vertical split.
 map <leader>k <Plug>(Man)
 map <leader>v <Plug>(Vman)
 
-"}}}
-
-"=== Help =================================================================={{{
+"=== Help =====================================================================
 
 " Open help in a vertical split if there is enough room.
 function! s:position_help()
@@ -642,16 +586,12 @@ function! s:position_help()
 endfunction
 autocmd FileType help call s:position_help()
 
-"}}}
-
-"=== gundo ================================================================={{{
+"=== gundo ====================================================================
 
 " Toggle undo tree with F3.
 nnoremap <F3> :GundoToggle<CR>
 
-"}}}
-
-"=== Startify =============================================================={{{
+"=== Startify =================================================================
 
 " Enable cursorline in Startify menu. (See ":help startify-faq-01".)
 autocmd User Startified setlocal cursorline
@@ -666,16 +606,12 @@ let g:startify_change_to_dir = 1
 let g:startify_change_to_vcs_root = 1
 let g:startify_enable_special = 1
 
-"}}}
-
-"=== python.vim ============================================================{{{
+"=== python.vim ===============================================================
 
 " Enable all syntax-highlighting features.
 let python_highlight_all = 1
 
-"}}}
-
-"=== Jedi =================================================================={{{
+"=== Jedi =====================================================================
 
 " Don't automatically pop up completion box when a period is entered.
 " Use the completion key to open the completion box.
@@ -685,31 +621,25 @@ let g:jedi#popup_on_dot = 0
 let g:jedi#show_call_signatures_delay = 1500
 
 nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
-"}}}
 
-"=== Auto-Pairs ============================================================{{{
+"=== Auto-Pairs ===============================================================
 
 " Disable problematic behavior when inserting closing delimiter within existing
 " delimiter pair.
 let g:AutoPairsMultilineClose = 0
-"}}}
 
-"=== Auto-Pairs ============================================================{{{
+"=== Auto-Pairs ===============================================================
 
 let delimitMate_autoclose = 1
 let delimitMate_expand_cr = 1
 let delimitMate_insert_eol_marker = 2
 
-"}}}
-
-"=== A.vim ================================================================={{{
+"=== A.vim ====================================================================
 
 " Toggle between header and source files with <leader>+a.
 nnoremap <silent> <leader>a :A<CR>
 
-"}}}
-
-"=== vim-textobj-quote ====================================================={{{
+"=== vim-textobj-quote ========================================================
 
 " Enable curly quotes in text files.
 augroup textobj_quote
@@ -722,5 +652,3 @@ augroup END
 " Quote replacement shortcuts.
 map <silent> <leader>qc <Plug>ReplaceWithCurly
 map <silent> <leader>qs <Plug>ReplaceWithStraight
-
-"}}}
