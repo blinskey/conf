@@ -100,7 +100,9 @@ endif
 "=== Keymap ===================================================================
 
 " Enable Western Armenian keymapping.
-set keymap=western-armenian_utf-8
+if !empty(glob('/usr/share/vim/vim74/keymap/western-armenian-alt_utf-8.vim'))
+    set keymap=western-armenian_utf-8
+endif
 
 " Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
 set iminsert=0
