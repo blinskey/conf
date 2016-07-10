@@ -10,9 +10,9 @@ if command -v git &>/dev/null && command -v hub &>/dev/null; then
 fi
 
 # ls aliases
-alias l='ls -Ahl'
+alias l='ls -Ahlb'
 alias ll=l
-alias lll='ls -Ahl --color=always | less -R'
+alias lll='ls -Ahlb --color=always | less -R'
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
