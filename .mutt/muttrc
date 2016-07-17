@@ -1,0 +1,266 @@
+# This file assumes a setup with the following software:
+#
+# - Mutt with the sidebar and trash patches applied and SMTP functionality
+#   enabled (mutt and mutt-patched packages on Debian)
+# - isync/mbsync for IMAP (isync package on Debian)
+# - Notmuch and the notmuch-mutt Debian package, or equivalent, for indexing
+# - Lynx for rendering HTML email
+# - urlscan for browsing URLs in email
+
+###############################################################################
+# Secrets
+###############################################################################
+
+# Read in secrets from an encrypted file.
+source "gpg2 -dq $HOME/.mutt/.mutt-secrets.gpg |"
+
+# Disable enter-command to ensure that password cannot be read.
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+###############################################################################
+# SMTP
+###############################################################################
+
+# These settings pertain to Mutt's built-in SMTP functionality, which I am
+# currently using.
+
+set smtp_url = "smtp://$my_username@$my_smtp_server:587"
+set smtp_pass = "$my_password"
+
+# Server connection security settings
+set ssl_force_tls = yes
+set ssl_starttls = no
+
+###############################################################################
+# IMAP
+###############################################################################
+
+# These settings pertain to Mutt's built-in IMAP functionality. I'm currently
+# using mbsync instead.
+
+#set imap_user = "$my_username"
+#set imap_pass = "$my_password"
+#set folder = "$my_folder"
+#set spoolfile = "$my_spoolfile"
+#set record = "$my_record"
+#set imap_check_subscribed
+#set imap_keepalive=300
+#set mail_check=120
+#unset imap_passive
+#set imap_idle
+
+###############################################################################
+# Miscellaneous mail-related configuration
+###############################################################################
+
+set mbox_type = Maildir
+set folder = ~/.mail/fastmail
+set spoolfile = "+Inbox"
+
+# This list of directories controls the folders displayed in the sidebar.
+mailboxes +Inbox \
+          +Inbox/.Archive \
+          +Inbox/.Drafts \
+          +Inbox/.Learn\ spam \
+          +Inbox/.Sent \
+          +Inbox/.Spam \
+          +Inbox/.To\ do \
+          +Inbox/.Trash
+
+# Defines the directory to which to move messages marked for deletion. This is
+# the ONLY setting required, either here or in mbsync, to configure trash and
+# purging behavior, assuming the remote server periodically auto-purges mail in
+# the trash directory. This setting requires the mutt-trash patch.
+set trash = ~/.mail/fastmail/Inbox/.Trash
+
+# Don't move read messages.
+unset move
+
+# Don't mark unread but seen messages as old when exiting mailbox.
+set mark_old = no
+
+# Always send emails in UTF-8, or ASCII if that is sufficient.
+set send_charset="us-ascii:utf-8"
+
+# Basic ID settings
+set realname = "$my_realname"
+set from = "$my_from"
+set use_from=yes
+
+###############################################################################
+# Drafts
+###############################################################################
+
+bind compose p postpone-message
+bind index p recall-message
+set postpone = yes
+set postponed = +Inbox/.Drafts
+
+###############################################################################
+# Miscellaneous paths
+###############################################################################
+
+set header_cache = ~/.cache/mutt/headers
+set message_cachedir = ~/.cache/mutt/messages
+set certificate_file = ~/.mutt/certificates
+set tmpdir = ~/.mutt/tmp
+set mailcap_path = ~/.mailcap
+set signature = ~/.mutt/signature.txt
+
+###############################################################################
+# Aliases
+###############################################################################
+
+set my_alias_file = ~/.mutt/aliases
+set alias_file = $my_alias_file
+source $my_alias_file
+
+###############################################################################
+# Interface, &c.
+###############################################################################
+
+# Show context lines when going to next page.
+set pager_context = 3
+
+# Stop at end of message.
+set pager_stop = yes
+
+# Don't prompt for keypress after successful external commands.
+unset wait_key
+
+# Number of seconds to block while waiting for user input before aborting.
+set timeout = 5
+
+# How often to check for new mail, in seconds.
+set mail_check = 5
+
+# Delete messages when closing or synchronizing mailbox.
+set delete = yes
+
+# Don't prompt for confirmation when appending messages to existing mailbox.
+unset confirmappend
+
+# Prompt before exiting.
+set quit = ask-no
+
+# Ring the terminal bell (hopefully visual!) on error and new mail.
+set beep = yes
+set beep_new = yes
+
+# Remove headers and decode message when running <pipe-message> command.
+set pipe_decode = yes
+
+# When searching, decode headers, bodies, and attachments.
+set thorough_search = yes
+
+# Define headers to display.
+ignore *
+unignore from: to: cc: subject: date:
+
+# Define header display order.
+unhdr_order *
+hdr_order from: to: cc: subject: date:
+
+# Inbox display formatting
+set date_format = "%I:%M %p %D"
+set index_format = "[%Z]    %-50.50s    %-40.40F    %D"
+
+set pager_index_lines = 10
+set pager_context = 3
+set pager_stop
+set menu_scroll
+set tilde
+unset markers
+set quote_regexp = "^( {0,4}[>|:#%]| {0,4}[a-z0-9]+[>|]+)+"
+alternative_order text/plain text/enriched text/html
+
+set sort = reverse-threads
+set sort_aux = last-date-received
+set strict_threads = yes
+unset collapse_unread
+set uncollapse_jump
+
+set status_chars = " *%A"
+set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to delete)?%?t? (%t tagged)? ]---%>-%p (%p postponed)---"
+
+# Automatically view HTML email using program defined in ~/.mailcap.
+auto_view text/html text/enriched text/x-vcard
+
+# Open URLs using urlscan.
+macro index,pager \cb "<pipe-message> urlscan<Enter>" "Browse URLs"
+macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "Browse URLs"
+
+###############################################################################
+# Key bindings and macros
+###############################################################################
+
+# Sync mail -- <tab>
+# This macro first syncs the mailbox, moving messages marked for
+# deletion to the trash directory defined elsewhere in this file, then syncs
+# everything with the remote IMAP server and indexes new mail with notmuch.
+macro index <tab> "<sync-mailbox><shell-escape>mbsync -a<enter>\
+                   <shell-escape>notmuch new<enter>" \
+                  "IMAP sync"
+
+# Archive message -- A
+macro index,pager A "<save-message>=Inbox/.Archive<enter>" "Archive"
+
+bind index gg first-entry
+bind index G last-entry
+bind index R group-reply
+bind index <space> collapse-thread
+
+bind index,pager K sidebar-prev
+bind index,pager J sidebar-next
+bind index,pager O sidebar-open
+
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G  bottom
+bind pager R  group-reply
+
+bind attach <return> view-mailcap
+
+###############################################################################
+# Sidebar
+###############################################################################
+
+set sidebar_delim = "|"
+set sidebar_visible = yes
+set sidebar_sort = no
+set sidebar_width = 20
+set sidebar_newmail_only = no
+
+###############################################################################
+# Colorscheme
+###############################################################################
+
+source ~/src/vombatidae-mutt/vombatidae.mutt
+
+###############################################################################
+# Notmuch
+###############################################################################
+
+# The following three macros are copied straight out of the notmuch-mutt man
+# page.
+
+macro index <F8> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<shell-escape>notmuch-mutt -r --prompt search<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: search mail"
+
+macro index <F9> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt -r thread<enter>\
+<change-folder-readonly>`echo ${XDG_CACHE_HOME:-$HOME/.cache}/notmuch/mutt/results`<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: reconstruct thread"
+
+macro index <F6> \
+"<enter-command>set my_old_pipe_decode=\$pipe_decode my_old_wait_key=\$wait_key nopipe_decode nowait_key<enter>\
+<pipe-message>notmuch-mutt tag -- -inbox<enter>\
+<enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
+"notmuch: remove message from inbox"
