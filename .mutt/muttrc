@@ -67,6 +67,9 @@ mailboxes +Inbox \
           +Inbox/.To\ do \
           +Inbox/.Trash
 
+# Defines the directory to which to save sent messages.
+set record = ~/.mail/fatmail/Inbox/.Sent
+
 # Defines the directory to which to move messages marked for deletion. This is
 # the ONLY setting required, either here or in mbsync, to configure trash and
 # purging behavior, assuming the remote server periodically auto-purges mail in
