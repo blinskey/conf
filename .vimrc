@@ -100,8 +100,8 @@ endif
 "=== Keymap ===================================================================
 
 " Enable Western Armenian keymapping.
-if !empty(glob('/usr/share/vim/vim74/keymap/western-armenian-alt_utf-8.vim'))
-    set keymap=western-armenian_utf-8
+if !empty(glob('/usr/share/vim/vim74/keymap/armenian-western_utf-8.vim'))
+    set keymap=armenian-western_utf-8
 endif
 
 " Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
@@ -210,15 +210,20 @@ silent! colorscheme jellybeans
 " cursor.
 highlight MatchParen cterm=bold ctermbg=none ctermfg=208
 
+" Get the number of columns in the terminal.
+let s:cols = &columns
+
 " Hide line numbers on small screens. This buys us several crucial columns
 " that we need in order to comfortably include two 80-column windows and a
 " small tagbar window.
-let s:cols = &columns
-if s:cols <= 190
-    set nonumber
-else
-    set number
-endif
+"if s:cols <= 190
+"    set nonumber
+"else
+"    set number
+"endif
+
+" Show line numbers.
+set number
 
 " Highlight current line
 set cursorline
