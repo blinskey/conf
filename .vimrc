@@ -125,6 +125,9 @@ autocmd BufRead,BufNewFile .gitignore set filetype=conf
 " Use Rust syntax for .rs files.
 autocmd BufRead,BufNewFile .rs set filetype=rust
 
+" Use D syntax for D interface files.
+autocmd BufRead,BufNewFile .di set filetype=d
+
 " Map <leader> to comma.
 let mapleader=","
 
