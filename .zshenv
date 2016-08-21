@@ -1,4 +1,6 @@
-export PATH=~/bin:$PATH
+export GOPATH=$HOME/go
+
+export PATH=$PATH:~/bin:$GOPATH/bin
 
 # Directories in which to search for Lynx config files (excluding .lynxrc,
 # which must always be in the home directory)
