@@ -27,9 +27,19 @@ bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' no
 set smtp_url = "smtp://$my_username@$my_smtp_server:587"
 set smtp_pass = "$my_password"
 
-# Server connection security settings
+###############################################################################
+# Server connection and security
+###############################################################################
+
 set ssl_force_tls = yes
 set ssl_starttls = no
+set ssl_use_sslv3=no
+set ssl_use_tlsv1=no
+set ssl_use_tlsv1_1=no
+set ssl_use_tlsv1_2=yes
+set ssl_verify_dates=yes
+set ssl_verify_host=yes
+set certificate_file=~/.mutt/certificates
 
 ###############################################################################
 # IMAP
@@ -68,7 +78,7 @@ mailboxes +Inbox \
           +Inbox/.Trash
 
 # Defines the directory to which to save sent messages.
-set record = ~/.mail/fatmail/Inbox/.Sent
+set record = ~/.mail/fastmail/Inbox/.Sent
 
 # Defines the directory to which to move messages marked for deletion. This is
 # the ONLY setting required, either here or in mbsync, to configure trash and
@@ -117,6 +127,17 @@ set signature = ~/.mutt/signature.txt
 set my_alias_file = ~/.mutt/aliases
 set alias_file = $my_alias_file
 source $my_alias_file
+
+###############################################################################
+# PGP
+###############################################################################
+
+set crypt_opportunistic_encrypt
+set crypt_replyencrypt
+set crypt_replysign
+set crypt_replysignencrypted
+set crypt_verify_sig
+set pgp_show_unusable = no
 
 ###############################################################################
 # Interface, &c.
@@ -190,8 +211,8 @@ set status_format = "---[ Folder: %f ]---[%r%m messages%?n? (%n new)?%?d? (%d to
 auto_view text/html text/enriched text/x-vcard
 
 # Open URLs using urlscan.
-macro index,pager \cb "<pipe-message> urlscan<Enter>" "Browse URLs"
-macro attach,compose \cb "<pipe-entry> urlscan<Enter>" "Browse URLs"
+macro index,pager B "<pipe-message> urlscan<Enter>" "Browse URLs"
+macro attach,compose B "<pipe-entry> urlscan<Enter>" "Browse URLs"
 
 ###############################################################################
 # Key bindings and macros
