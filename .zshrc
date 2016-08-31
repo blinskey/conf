@@ -154,3 +154,7 @@ RPROMPT=[%(0?.%{$fg[green]%}0.%{$fg_bold[red]%}%?)%{$reset_color%}]
 if [[ -f "$SYNTAX_HIGHLIGHTING" ]]; then
     source "$SYNTAX_HIGHLIGHTING"
 fi
+
+# GPG configuration
+export GPG_TTY=$(tty)
+export GPGKEY=838AA558
