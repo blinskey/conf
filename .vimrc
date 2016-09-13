@@ -62,6 +62,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
 
+    " Disabled:
+    "
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'othree/html5.vim'
     "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
@@ -100,9 +102,7 @@ endif
 "=== Keymap ===================================================================
 
 " Enable Western Armenian keymapping.
-if !empty(glob('/usr/share/vim/vim74/keymap/armenian-western_utf-8.vim'))
-    set keymap=armenian-western_utf-8
-endif
+set keymap=armenian-western_utf-8
 
 " Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
 set iminsert=0
@@ -632,10 +632,10 @@ nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
 " delimiter pair.
 let g:AutoPairsMultilineClose = 0
 
-"=== Auto-Pairs ===============================================================
+"=== DelimitMate ==============================================================
 
 let delimitMate_autoclose = 1
-let delimitMate_expand_cr = 1
+let delimitMate_expand_cr = 2
 let delimitMate_insert_eol_marker = 2
 
 "=== A.vim ====================================================================
