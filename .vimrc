@@ -83,9 +83,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'wellsjo/wellsokai.vim'
     "Plug 'xero/sourcerer.vim'
     "Plug 'zsoltf/vim-maui'
-
-    " Alternate Markdown syntax. Problems with indentation when
-    " wrapping lines in lists.
     "Plug 'plasticboy/vim-markdown'
 
     " Music player control
@@ -510,17 +507,17 @@ nmap <leader>t :TagbarOpen fj<CR>
 let g:tagbar_width = 25
 
 " Only auto-open tagbar in reasonably wide terminals.
-if s:cols > (80 + g:tagbar_width)
-    " Open tagbar when opening Vim with a supported filetype.
-    autocmd VimEnter * nested :call tagbar#autoopen(1)
-
-    " Open tagbar when opening a supported file in a running instance of Vim.
-    autocmd FileType * nested :call tagbar#autoopen(0)
-
-    " Open tagbar when opening a tab containing a loaded buffer with a supported
-    " filetype.
-    autocmd BufEnter * nested :call tagbar#autoopen(0)
-endif
+"if s:cols > (80 + g:tagbar_width)
+"    " Open tagbar when opening Vim with a supported filetype.
+"    autocmd VimEnter * nested :call tagbar#autoopen(1)
+"
+"    " Open tagbar when opening a supported file in a running instance of Vim.
+"    autocmd FileType * nested :call tagbar#autoopen(0)
+"
+"    " Open tagbar when opening a tab containing a loaded buffer with a supported
+"    " filetype.
+"    autocmd BufEnter * nested :call tagbar#autoopen(0)
+"endif
 
 "=== ctags ====================================================================
 
