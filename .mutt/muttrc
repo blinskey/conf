@@ -288,3 +288,13 @@ macro index <F6> \
 <pipe-message>notmuch-mutt tag -- -inbox<enter>\
 <enter-command>set pipe_decode=\$my_old_pipe_decode wait_key=\$my_old_wait_key<enter>" \
 "notmuch: remove message from inbox"
+
+###############################################################################
+# Hooks
+###############################################################################
+
+# Delete duplicates.
+folder-hook . push "<delete-pattern>~=<enter>"
+
+# Put sent email in current mailbox to keep threads organized.
+folder-hook . 'set record="^"'
