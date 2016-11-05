@@ -158,3 +158,8 @@ fi
 # GPG configuration
 export GPG_TTY=$(tty)
 export GPGKEY=838AA558
+
+# virtualenvwrapper (installed through pip)
+export WORKON_HOME=$HOME/.virtualenvs
+export PROJECT_HOME=$HOME/src
+source $HOME/.local/bin/virtualenvwrapper.sh
