@@ -63,7 +63,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'jeetsukumaran/vim-buffergator.git'
+    Plug 'jeetsukumaran/vim-buffergator'
 
     " Disabled:
     "
