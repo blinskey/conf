@@ -61,12 +61,13 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/a.vim'
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
+    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
+    Plug 'jeetsukumaran/vim-buffergator.git'
 
     " Disabled:
     "
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'othree/html5.vim'
-    "Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     "Plug 'DrSpatula/vim-buddy'
     "Plug 'Haron-Prime/Antares'
     "Plug 'Haron-Prime/evening_vim'
@@ -168,6 +169,9 @@ set gdefault
 
 " Never conceal text.
 set conceallevel=0
+
+" Don't auto-wrap code.
+set formatoptions-=t
 
 "=== Mouse ====================================================================
 
@@ -336,15 +340,22 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 "=== netrw ====================================================================
 
-" Open netrw.
-map <leader>e :Explore<cr>
+" Currently using NERD Tree instead of netrw.
 
-" Use tree-style view.
-let g:netrw_liststyle=3
+"" Open netrw.
+"map <leader>e :Explore<cr>
+"
+"" Use tree-style view.
+"let g:netrw_liststyle=3
 
-"=== NERDTree =================================================================
+"=== NERD Tree ================================================================
 
-"nmap <leader>e :NERDTreeToggle<Cr>
+" Opens and closes the panel.
+map <silent> <leader>e :NERDTreeToggle<CR>
+
+" Opens the panel if it is not already open and moves the cursor to the current
+" file.
+map <silent> <leader>E :NERDTreeFind<CR>
 
 "=== ctrlp-funky ==============================================================
 
@@ -618,10 +629,14 @@ let python_highlight_all = 1
 " Use the completion key to open the completion box.
 let g:jedi#popup_on_dot = 0
 
-" Wait 1.5 seconds before showing call signature.
-let g:jedi#show_call_signatures_delay = 1500
+" Wait 1 second before showing call signature.
+let g:jedi#show_call_signatures_delay = 1000
 
+" Rename with <leader>r
 nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
+
+" Don't auto-complete 'import' after 'from ...'.
+let g:jedi#smart_auto_mappings = 0
 
 "=== Auto-Pairs ===============================================================
 
@@ -653,3 +668,8 @@ augroup END
 " Quote replacement shortcuts.
 map <silent> <leader>qc <Plug>ReplaceWithCurly
 map <silent> <leader>qs <Plug>ReplaceWithStraight
+
+"=== Python ===================================================================
+
+" Use Python syntax for type hinting stub files.
+autocmd BufRead,BufNewFile *.pyi set filetype=python
