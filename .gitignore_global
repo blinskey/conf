@@ -5,5 +5,9 @@ tags
 *.swp
 *.swo
 
+# Vim session file
+Session.vim
+
 # Python bytecode
 *.pyc
+__pycache__
