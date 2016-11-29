@@ -31,6 +31,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'flazz/vim-colorschemes'
     Plug 'groenewege/vim-less'
     Plug 'jmcantrell/vim-virtualenv'
+    Plug 'jmcantrell/vim-virtualenv'
     Plug 'justinmk/vim-sneak'
     Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
     Plug 'majutsushi/tagbar'
@@ -348,6 +349,9 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 "" Use tree-style view.
 "let g:netrw_liststyle=3
 
+" Ignore files that we don't want to open.
+let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
+
 "=== NERD Tree ================================================================
 
 " Opens and closes the panel.
@@ -390,8 +394,7 @@ let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '
 " Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " See :h splits
 
-" Simple window movement. Note that <C-K> conflicts with current tmux prefix
-" binding, so it must be pressed twice.
+" Simple window movement with HJKL.
 nnoremap <C-J> <C-W><C-J>
 nnoremap <C-K> <C-W><C-K>
 nnoremap <C-L> <C-W><C-L>
@@ -504,31 +507,32 @@ let g:airline#extensions#tagbar#enabled = 1
 let g:tagbar_sort = 0
 
 " Toggle tagbar with F8.
-nnoremap <silent> <F8> :TagbarToggle<CR>
+" NOTE: This conflicts with the auto-open behavior enabled below.
+"nnoremap <silent> <F8> :TagbarToggle<CR>
 
 " Jump to tagbar with <leader>+t, opening it if it is currently closed and
 " keeping it open after selecting a function.
-nmap <leader>t :TagbarOpen fj<CR>
+nmap <silent> <leader>t :TagbarOpen fj<CR>
 
 " Toggle the tagbar with <leader>+t.
-"nmap <leader>t :TagbarToggle<CR>
+"nmap <silent> <leader>t :TagbarToggle<CR>
 
 " On a 190-column screen, this leaves room for two 80-column windows, plus some
 " padding.
-let g:tagbar_width = 25
+let g:tagbar_width = 30
 
 " Only auto-open tagbar in reasonably wide terminals.
-"if s:cols > (80 + g:tagbar_width)
-"    " Open tagbar when opening Vim with a supported filetype.
-"    autocmd VimEnter * nested :call tagbar#autoopen(1)
-"
-"    " Open tagbar when opening a supported file in a running instance of Vim.
-"    autocmd FileType * nested :call tagbar#autoopen(0)
-"
-"    " Open tagbar when opening a tab containing a loaded buffer with a supported
-"    " filetype.
-"    autocmd BufEnter * nested :call tagbar#autoopen(0)
-"endif
+if s:cols > (80 + g:tagbar_width)
+    " Open tagbar when opening Vim with a supported filetype.
+    autocmd VimEnter * nested :call tagbar#autoopen(1)
+
+    " Open tagbar when opening a supported file in a running instance of Vim.
+    autocmd FileType * nested :call tagbar#autoopen(0)
+
+    " Open tagbar when opening a tab containing a loaded buffer with a supported
+    " filetype.
+    autocmd BufEnter * nested :call tagbar#autoopen(0)
+endif
 
 "=== ctags ====================================================================
 
@@ -627,7 +631,7 @@ let python_highlight_all = 1
 
 " Don't automatically pop up completion box when a period is entered.
 " Use the completion key to open the completion box.
-let g:jedi#popup_on_dot = 0
+"let g:jedi#popup_on_dot = 0
 
 " Wait 1 second before showing call signature.
 let g:jedi#show_call_signatures_delay = 1000

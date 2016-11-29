@@ -1,0 +1,9 @@
+# Tagfiles
+tags
+
+# Vim swapfiles
+*.swp
+*.swo
+
+# Python bytecode
+*.pyc

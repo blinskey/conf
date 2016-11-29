@@ -250,11 +250,24 @@ bind attach <return> view-mailcap
 # Sidebar
 ###############################################################################
 
-set sidebar_delim = "|"
+# Some of the sidebar options changed with the "mutt" package in Ubuntu 16.10,
+# which includes a version of the sidebar patch and obsoletes the old
+# "mutt-patched" supplemental package. Equivalent "mutt-patched" options are
+# listed below the new versions and commented out.
+
 set sidebar_visible = yes
-set sidebar_sort = no
 set sidebar_width = 20
-set sidebar_newmail_only = no
+
+set sidebar_divider_char = "|"
+#set sidebar_delim = "|"
+
+set sidebar_delim_chars = "/."
+
+set sidebar_sort_method = "unsorted"
+#set sidebar_sort = no
+
+set sidebar_new_mail_only = no
+#set sidebar_newmail_only = no
 
 ###############################################################################
 # Colorscheme
