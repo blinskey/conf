@@ -1,5 +1,3 @@
-readonly ALIASES=~/.zsh_aliases
-
 # Path to zsh-syntax-highlighting plugin. This is the path where the plugin
 # is installed by the Debian zsh-syntax-highlighting package. Source available
 # from https://github.com/zsh-users/zsh-syntax-highlighting
@@ -22,11 +20,6 @@ elif [[ -f /usr/bin/vi ]]; then
     export VISUAL=/usr/bin/vi
 else
     echo ".zshrc: Failed to find vim or vi!" >&2
-fi
-
-# Load aliases.
-if [ -f "$ALIASES" ]; then
-    source "$ALIASES"
 fi
 
 HISTFILE=~/.histfile
@@ -163,3 +156,34 @@ export GPGKEY=838AA558
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
 source $HOME/.local/bin/virtualenvwrapper.sh
+
+### Aliases ###################################################################
+
+# Alias vi to vim.
+if command -v vim &>/dev/null; then
+    alias vi=vim
+fi
+
+# ls aliases
+alias l='ls -Ahlb'
+alias ll=l
+alias lll='ls -Ahlb --color=always | less -R'
+
+# Enable color support of ls and also add handy aliases
+if [ -x /usr/bin/dircolors ]; then
+    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
+    alias ls='ls --color=auto'
+    #alias dir='dir --color=auto'
+    #alias vdir='vdir --color=auto'
+
+    alias grep='grep --color=auto'
+    alias fgrep='fgrep --color=auto'
+    alias egrep='egrep --color=auto'
+fi
+
+# Always start tmux in 256-color mode.
+alias tmux='tmux -2'
+
+# Always run lynx with the "textfields need activation" option (also
+# configurable in lynx.cfg).
+alias lynx='lynx -tna'
