@@ -159,11 +159,6 @@ source $HOME/.local/bin/virtualenvwrapper.sh
 
 ### Aliases ###################################################################
 
-# Alias vi to vim.
-if command -v vim &>/dev/null; then
-    alias vi=vim
-fi
-
 # ls aliases
 alias l='ls -Ahlb'
 alias ll=l
