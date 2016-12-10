@@ -367,10 +367,10 @@ map <silent> <leader>E :NERDTreeFind<CR>
 "=== ctrlp-funky ==============================================================
 
 " Open the CtrlPFunky function search window.
-nnoremap <Leader>fu :CtrlPFunky<Cr>
+nnoremap <Leader>f :CtrlPFunky<Cr>
 
 " Open CtrlPFunky with search field prepopulated with word under cursor.
-nnoremap <Leader>fU :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
+nnoremap <Leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
 "=== Autocomplete =============================================================
 
@@ -679,3 +679,10 @@ map <silent> <leader>qs <Plug>ReplaceWithStraight
 
 " Use Python syntax for type hinting stub files.
 autocmd BufRead,BufNewFile *.pyi set filetype=python
+
+let g:ctrlp_funky_use_cache=0
+
+"=== GitGutter ================================================================
+
+" Workaround for conflict between GitGutter and ctrlp-funky.
+let g:gitgutter_async = 0
