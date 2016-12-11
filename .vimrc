@@ -29,71 +29,49 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'elzr/vim-json'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
+    Plug 'godlygeek/tabular'
     Plug 'groenewege/vim-less'
-    Plug 'jmcantrell/vim-virtualenv'
+    Plug 'jeetsukumaran/vim-buffergator'
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'justinmk/vim-sneak'
-    Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
     Plug 'rust-lang/rust.vim'
+    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
+    Plug 'sjl/gundo.vim'
     Plug 'tacahiroy/ctrlp-funky'
+    Plug 'tmhedberg/SimpylFold'
     Plug 'tpope/vim-capslock'
     Plug 'tpope/vim-characterize'
     Plug 'tpope/vim-commentary'
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-git'
     Plug 'tpope/vim-jdaddy'
     Plug 'tpope/vim-obsession'
-    Plug 'tpope/vim-ragtag'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
-    Plug 'vim-airline/vim-airline'
-    Plug 'vim-airline/vim-airline-themes'
     Plug 'vim-scripts/BufOnly.vim'
-    Plug 'vim-scripts/a.vim'
+    Plug 'vim-scripts/a.vim' " Switch between header and source files.
     Plug 'vim-utils/vim-man'
     Plug 'wesQ3/vim-windowswap'
-    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'jeetsukumaran/vim-buffergator'
 
     " Disabled:
     "
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'othree/html5.vim'
-    "Plug 'DrSpatula/vim-buddy'
-    "Plug 'Haron-Prime/Antares'
-    "Plug 'Haron-Prime/evening_vim'
-    "Plug 'Shougo/unite.vim'
-    "Plug 'benmills/vimux'
-    "Plug 'godlygeek/tabular'
-    "Plug 'joshdick/onedark.vim'
-    "Plug 'kh3phr3n/python-syntax'
-    "Plug 'mhinz/vim-startify'
-    "Plug 'mkarmona/colorsbox'
-    "Plug 'sjl/gundo.vim'
-    "Plug 'the31k/vim-colors-tayra'
-    "Plug 'tpope/vim-afterimage'
-    "Plug 'wellsjo/wellsokai.vim'
-    "Plug 'xero/sourcerer.vim'
-    "Plug 'zsoltf/vim-maui'
     "Plug 'plasticboy/vim-markdown'
-
-    " Music player control
-    "Plug 'wikimatze/vim-banshee' " Throws error if Banshee not installed
-    "Plug 'professorsloth/cmus-remote-vim'
-
-    " Python folding
-    "Plug 'tmhedberg/SimpylFold'
-    "Plug 'vim-scripts/jpythonfold.vim'
+    "Plug 'tpope/vim-git'
+    "Plug 'kh3phr3n/python-syntax'
+    "
+    " Replaces straight quotes with printer's quotes:
+    "Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
 
     call plug#end()
 endif
@@ -171,8 +149,11 @@ set gdefault
 " Never conceal text.
 set conceallevel=0
 
-" Don't auto-wrap code.
+" Don't auto-wrap code. Comments and Markdown text will still be wrapped. This
+" doesn't apply to text files, though, so we have to make an exception for that
+" filetype.
 set formatoptions-=t
+autocmd FileType text setlocal formatoptions+=t
 
 " Ignore various types of files.
 set wildignore=*.o,*.obj,*.pyc
@@ -212,23 +193,25 @@ syntax enable
 " Use 256-color terminal.
 set t_Co=256
 
+" Use 24-bit color.
+" See :h termguicolors and :h xterm-true-color for details.
+set termguicolors
+let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+
 silent! colorscheme jellybeans
 
-" Modify brace-match highlighting to make it easier to keep track of the
-" cursor.
-highlight MatchParen cterm=bold ctermbg=none ctermfg=208
+let s:using_24_bit_color = &termguicolors || has("gui_running")
+
+" If we're in 256-color mode, modify brace-match highlighting to make it easier
+" to keep track of the cursor. If we're in 24-bit-color mode, the built-in
+" highlighting is sufficient.
+if s:using_24_bit_color
+    highlight MatchParen cterm=bold ctermbg=none ctermfg=208
+endif
 
 " Get the number of columns in the terminal.
 let s:cols = &columns
-
-" Hide line numbers on small screens. This buys us several crucial columns
-" that we need in order to comfortably include two 80-column windows and a
-" small tagbar window.
-"if s:cols <= 190
-"    set nonumber
-"else
-"    set number
-"endif
 
 " Show line numbers.
 set number
@@ -249,7 +232,12 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 " From http://stackoverflow.com/a/3765575/2530735
 if exists('+colorcolumn')
     set colorcolumn=80
-    highlight ColorColumn ctermbg=240
+
+    if s:using_24_bit_color
+        highlight ColorColumn guibg=Gray
+    else
+        highlight ColorColumn ctermbg=240
+    endif
 else
       autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 endif
@@ -334,6 +322,7 @@ set textwidth=79
 
 " Strip trailing whitespace on save.
 " From http://stackoverflow.com/a/1618401/2530735
+" TODO: Don't strip whitespace after \ at end of line.
 fun! <SID>StripTrailingWhitespaces()
     let l = line(".")
     let c = col(".")
@@ -460,14 +449,15 @@ let g:airline_theme = 'base16'
 let g:airline_powerline_fonts = 0
 
 if !exists('g:airline_symbols')
-    let g:airline_symbols = {}
 
     "let g:airline_left_sep = '»'
-    "let g:airline_left_sep = '▶'
     "let g:airline_right_sep = '«'
+    "let g:airline_left_sep = '▶'
     "let g:airline_right_sep = '◀'
     let g:airline_left_sep = ''
     let g:airline_right_sep = ''
+
+    let g:airline_symbols = {}
     let g:airline_symbols.crypt = '🔒'
     let g:airline_symbols.linenr = '␊'
     let g:airline_symbols.linenr = '␤'
@@ -522,19 +512,6 @@ nmap <silent> <leader>t :TagbarToggle<CR>
 " On a 190-column screen, this leaves room for two 80-column windows, plus some
 " padding.
 let g:tagbar_width = 30
-
-" Only auto-open tagbar in reasonably wide terminals.
-" if s:cols > (80 + g:tagbar_width)
-"     " Open tagbar when opening Vim with a supported filetype.
-"     autocmd VimEnter * nested :call tagbar#autoopen(1)
-"
-"     " Open tagbar when opening a supported file in a running instance of Vim.
-"     autocmd FileType * nested :call tagbar#autoopen(0)
-"
-"     " Open tagbar when opening a tab containing a loaded buffer with a supported
-"     " filetype.
-"     autocmd BufEnter * nested :call tagbar#autoopen(0)
-" endif
 
 "=== ctags ====================================================================
 
@@ -663,17 +640,19 @@ nnoremap <silent> <leader>a :A<CR>
 
 "=== vim-textobj-quote ========================================================
 
-" Enable curly quotes in text files.
-augroup textobj_quote
-    autocmd!
-    autocmd FileType markdown call textobj#quote#init()
-    autocmd FileType textile call textobj#quote#init()
-    autocmd FileType text call textobj#quote#init({'educate': 0})
-augroup END
+" Plugin disabled
 
-" Quote replacement shortcuts.
-map <silent> <leader>qc <Plug>ReplaceWithCurly
-map <silent> <leader>qs <Plug>ReplaceWithStraight
+" " Enable curly quotes in text files.
+" augroup textobj_quote
+"     autocmd!
+"     autocmd FileType markdown call textobj#quote#init()
+"     autocmd FileType textile call textobj#quote#init()
+"     autocmd FileType text call textobj#quote#init({'educate': 0})
+" augroup END
+
+" " Quote replacement shortcuts.
+" map <silent> <leader>qc <Plug>ReplaceWithCurly
+" map <silent> <leader>qs <Plug>ReplaceWithStraight
 
 "=== Python ===================================================================
 
@@ -685,4 +664,25 @@ let g:ctrlp_funky_use_cache=0
 "=== GitGutter ================================================================
 
 " Workaround for conflict between GitGutter and ctrlp-funky.
+" See https://github.com/tacahiroy/ctrlp-funky/issues/85
 let g:gitgutter_async = 0
+
+"=== SimpylFold ===============================================================
+
+" Show docstring preview in fold text.
+let g:SimpylFold_docstring_preview = 1
+
+"=== Statusline ===============================================================
+
+" Returns the name of the currently used keymap. Like %k, but prettier.
+function! StatuslineKeymap()
+    if &keymap == '' || &iminsert == 0
+        return ''
+    endif
+
+    if b:keymap_name == 'hy'
+        return 'Հայերէն'
+    endif
+endfunction
+
+set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
