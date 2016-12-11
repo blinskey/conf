@@ -1,10 +1,17 @@
+" vim: set foldmethod=marker:
+
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
 autocmd!
 
-"=== vim-plug =================================================================
+" {{{1 vim-plug ===============================================================
 
 " See https://github.com/junegunn/vim-plug
+"
+" Usage:
+" - :PlugInstall to install the plugins listed below
+" - :PlugUpdate to update plugins
+" - :PlugUpgrade to update vim-plug
 
 " Try to automatically install plug.vim if it's not already installed.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -76,16 +83,18 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#end()
 endif
 
-"=== Keymap ===================================================================
+"{{{1 Keymap ==================================================================
 
-" Enable Western Armenian keymapping.
-set keymap=armenian-western_utf-8
+if v:version >= 800
+    " Enable Western Armenian keymapping.
+    set keymap=armenian-western_utf-8
 
-" Disable keymapping by default. (Use Ctrl-^ to switch in insert mode.)
-set iminsert=0
-set imsearch=0
+    " Disable keymap by default. (Use Ctrl-^ to switch in insert mode.)
+    set iminsert=0
+    set imsearch=0
+endif
 
-"=== Miscellaneous ============================================================
+"{{{1 Miscellaneous ===========================================================
 
 " Disable vi compatibility
 set nocompatible
@@ -93,16 +102,10 @@ set nocompatible
 " Enable plugins
 filetype plugin on
 
-" Use Markdown syntax for .md and to-do list files.
+" File-extension-specific syntax settings
 autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
-
-" Use conf syntax for .gitignore files.
 autocmd BufRead,BufNewFile .gitignore set filetype=conf
-
-" Use Rust syntax for .rs files.
 autocmd BufRead,BufNewFile .rs set filetype=rust
-
-" Use D syntax for D interface files.
 autocmd BufRead,BufNewFile .di set filetype=d
 
 " Map <leader> to comma.
@@ -126,8 +129,8 @@ set laststatus=2
 " Always show tab line.
 set showtabline=2
 
-" Don't show mode in last line. Mode is displayed by Airline.
-set noshowmode
+" Show mode in last line.
+set showmode
 
 " Time out on key codes after 50 ms.
 set ttimeoutlen=50
@@ -149,16 +152,10 @@ set gdefault
 " Never conceal text.
 set conceallevel=0
 
-" Don't auto-wrap code. Comments and Markdown text will still be wrapped. This
-" doesn't apply to text files, though, so we have to make an exception for that
-" filetype.
-set formatoptions-=t
-autocmd FileType text setlocal formatoptions+=t
-
 " Ignore various types of files.
 set wildignore=*.o,*.obj,*.pyc
 
-"=== Mouse ====================================================================
+"{{{1 Mouse ===================================================================
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
 " using the mouse. This assumes that we're using a relatively recent terminal
@@ -185,39 +182,55 @@ endfunction
 command! MouseToggle :call ToggleMouseMode()
 nnoremap <leader>m :MouseToggle<CR>
 
-"=== Appearance ===============================================================
+"{{{1 Appearance ==============================================================
 
 " Enable syntax highlighting.
 syntax enable
 
-" Use 256-color terminal.
+" Use 256-color terminal when not using GUI colors.
 set t_Co=256
 
-" Use 24-bit color.
-" See :h termguicolors and :h xterm-true-color for details.
-set termguicolors
-let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+if v:version >= 800
+    " Toggle GUI colors on and off. Some colorschemes only properly support
+    " either GUI or terminal mode; others support both but look better in one
+    " of the two.
+    let s:use_gui_colors = 1
 
-silent! colorscheme jellybeans
+    let default_t_8f = &t_8f
+    let default_t_8b = &t_8b
 
-let s:using_24_bit_color = &termguicolors || has("gui_running")
+    if s:use_gui_colors
+        " Use 24-bit color.
+        " See :h termguicolors and :h xterm-true-color for details.
+        set termguicolors
+        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
+    else
+        set notermguicolors
+        let &t_8f = default_t_8f
+        let &t_8b = default_t_8b
+    endif
 
-" If we're in 256-color mode, modify brace-match highlighting to make it easier
-" to keep track of the cursor. If we're in 24-bit-color mode, the built-in
-" highlighting is sufficient.
-if s:using_24_bit_color
-    highlight MatchParen cterm=bold ctermbg=none ctermfg=208
+    let s:using_24_bit_color = &termguicolors || has("gui_running")
+
+    " If we're in 256-color mode, modify brace-match highlighting to make it
+    " easier to keep track of the cursor. If we're in 24-bit-color mode, the
+    " built-in highlighting is sufficient.
+    if s:using_24_bit_color
+        highlight MatchParen cterm=bold ctermbg=none ctermfg=208
+    endif
 endif
 
-" Get the number of columns in the terminal.
-let s:cols = &columns
+silent! colorscheme jellybeans
 
 " Show line numbers.
 set number
 
-" Highlight current line
+" Highlight current line.
 set cursorline
+
+" Disable cursorline underline set by some colorschemes.
+hi Cursorline gui=none cterm=none
 
 " Limit redraws to offset slowdown from cursorline.
 set lazyredraw
@@ -233,7 +246,7 @@ set listchars=tab:>-,trail:~,extends:>,precedes:<
 if exists('+colorcolumn')
     set colorcolumn=80
 
-    if s:using_24_bit_color
+    if v:version >= 800 && s:using_24_bit_color
         highlight ColorColumn guibg=Gray
     else
         highlight ColorColumn ctermbg=240
@@ -244,23 +257,38 @@ endif
 
 " Enable syntax highlighting in Markdown fenced code blocks.
 " (For default Markdown plugin.)
-"let g:markdown_fenced_languages = [
-"    \'c',
-"    \'css',
-"    \'haskell',
-"    \'html',
-"    \'java',
-"    \'javascript',
-"    \'json',
-"    \'mysql',
-"    \'python',
-"    \'sh',
-"    \'sql',
-"    \'xml',
-"    \'zsh'
-"\]
+let g:markdown_fenced_languages = [
+    \'c',
+    \'css',
+    \'haskell',
+    \'html',
+    \'java',
+    \'javascript',
+    \'json',
+    \'mysql',
+    \'python',
+    \'sh',
+    \'sql',
+    \'xml',
+    \'zsh'
+\]
 
-"=== Indentation and tabs =====================================================
+"{{{1 Statusline ==============================================================
+
+" Returns the name of the currently used keymap. Like %k, but prettier.
+function! StatuslineKeymap()
+    if &keymap == '' || &iminsert == 0
+        return ''
+    endif
+
+    if b:keymap_name == 'hy'
+        return 'Հայերէն'
+    endif
+endfunction
+
+set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
+
+"{{{1 Indentation and tabs ====================================================
 
 " Insert spaces rather than tabs.
 set expandtab
@@ -292,7 +320,7 @@ filetype indent on
 " Use two-space tabs in Markdown and HTML files.
 autocmd Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
-"=== Search ===================================================================
+"{{{1 Search ==================================================================
 
 " Ignore case when the search pattern contains only lowercase letters.
 set ignorecase
@@ -310,7 +338,7 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " Toggle search highlighting mode with F4.
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 
-"=== Line wrapping ============================================================
+"{{{1 Line wrapping ===========================================================
 
 " Don't soft-wrap lines.
 set nowrap
@@ -318,7 +346,13 @@ set nowrap
 " Hard-wrap lines after 79 characters.
 set textwidth=79
 
-"=== Whitespace ===============================================================
+" Don't auto-wrap code. Comments and Markdown text will still be wrapped. This
+" doesn't apply to text files, though, so we have to make an exception for that
+" filetype.
+set formatoptions-=t
+autocmd FileType text setlocal formatoptions+=t
+
+"{{{1 Whitespace ==============================================================
 
 " Strip trailing whitespace on save.
 " From http://stackoverflow.com/a/1618401/2530735
@@ -331,7 +365,7 @@ fun! <SID>StripTrailingWhitespaces()
 endfun
 autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
-"=== netrw ====================================================================
+"{{{1 netrw ===================================================================
 
 " Currently using NERD Tree instead of netrw.
 
@@ -340,11 +374,11 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 "
 "" Use tree-style view.
 "let g:netrw_liststyle=3
+"
+"" Ignore files that we don't want to open.
+"let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
 
-" Ignore files that we don't want to open.
-let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
-
-"=== NERD Tree ================================================================
+"{{{1 NERD Tree ===============================================================
 
 " Opens and closes the panel.
 map <silent> <leader>e :NERDTreeToggle<CR>
@@ -353,7 +387,10 @@ map <silent> <leader>e :NERDTreeToggle<CR>
 " file.
 map <silent> <leader>E :NERDTreeFind<CR>
 
-"=== ctrlp-funky ==============================================================
+" Show hidden files by default.
+let NERDTreeShowHidden=1
+
+"{{{1 ctrlp-funky =============================================================
 
 " Open the CtrlPFunky function search window.
 nnoremap <Leader>f :CtrlPFunky<Cr>
@@ -361,7 +398,7 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 " Open CtrlPFunky with search field prepopulated with word under cursor.
 nnoremap <Leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-"=== Autocomplete =============================================================
+"{{{1 Autocomplete ============================================================
 
 " Based on https://robots.thoughtbot.com/vim-macros-and-you
 " See :h ins-completion
@@ -372,16 +409,16 @@ set complete=.,b,u,]
 " Replacement settings, similar to zsh defaults.
 set wildmode=longest,list:longest
 
-" Add 'k' to :set complete list to enable dictionary completion.
+" Add 'k' to ':set complete' list to enable dictionary completion.
 set dictionary+=/usr/share/dict/words
 
-"=== SuperTab =================================================================
+"{{{1 SuperTab ================================================================
 
 " Disable autocomplete before and after certain characters.
 let g:SuperTabNoCompleteBefore = [' ', '\t']
 let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
 
-"=== Splits ===================================================================
+"{{{1 Splits ==================================================================
 
 " Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
 " See :h splits
@@ -396,7 +433,7 @@ nnoremap <C-H> <C-W><C-H>
 set splitbelow
 set splitright
 
-"=== Syntastic ================================================================
+"{{{1 Syntastic ===============================================================
 
 " Recommended newbie settings from Syntastic readme
 
@@ -422,7 +459,7 @@ let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 " Toggle mode with F9.
 nnoremap <F9> :SyntasticToggleMode<CR>
 
-"=== ctrlp ====================================================================
+"{{{1 ctrlp ===================================================================
 
 " Set base directory to cwd or nearest ancestor with version control file.
 let g:ctrlp_working_path_mode = 'rw'
@@ -433,7 +470,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-"=== IndentLine ===============================================================
+"{{{1 IndentLine ==============================================================
 
 " Line color
 let g:indentLine_color_term = 239
@@ -441,57 +478,7 @@ let g:indentLine_color_term = 239
 " List of file types for which indentation line should not be shown
 let g:indentLine_fileTypeExclude = ['text']
 
-"=== airline ==================================================================
-
-"let g:airline_theme = 'distinguished'
-let g:airline_theme = 'base16'
-
-let g:airline_powerline_fonts = 0
-
-if !exists('g:airline_symbols')
-
-    "let g:airline_left_sep = '»'
-    "let g:airline_right_sep = '«'
-    "let g:airline_left_sep = '▶'
-    "let g:airline_right_sep = '◀'
-    let g:airline_left_sep = ''
-    let g:airline_right_sep = ''
-
-    let g:airline_symbols = {}
-    let g:airline_symbols.crypt = '🔒'
-    let g:airline_symbols.linenr = '␊'
-    let g:airline_symbols.linenr = '␤'
-    let g:airline_symbols.linenr = '¶'
-    let g:airline_symbols.branch = '⎇'
-    let g:airline_symbols.paste = 'ρ'
-    let g:airline_symbols.paste = 'Þ'
-    let g:airline_symbols.paste = '∥'
-    let g:airline_symbols.notexists = '∄'
-    let g:airline_symbols.whitespace = 'Ξ'
-endif
-
-"=== tabline ==================================================================
-
-" Use Airline's tabline integration.
-let g:airline#extensions#tabline#enabled = 1
-
-" Show number in tabline.
-let g:airline#extensions#tabline#show_tab_nr = 1
-
-" Set tabline number to tab number.
-let g:airline#extensions#tabline#tab_nr_type = 1
-
-" Hide close button.
-let g:airline#extensions#tabline#show_close_button = 0
-
-" Set the tab name format algorithm.
-"let g:airline#extensions#tabline#formatter = 'unique_tail_improved'
-let g:airline#extensions#tabline#formatter = 'default'
-
-" For unique filenames, print only the filename, not the full path.
-let g:airline#extensions#tabline#fnamemod = ':t'
-
-"=== tagbar ===================================================================
+"{{{1 tagbar ==================================================================
 
 " Enable Airline tagbar plugin integration.
 let g:airline#extensions#tagbar#enabled = 1
@@ -513,7 +500,7 @@ nmap <silent> <leader>t :TagbarToggle<CR>
 " padding.
 let g:tagbar_width = 30
 
-"=== ctags ====================================================================
+"{{{1 ctags ===================================================================
 
 " Generate tags on write.
 "
@@ -521,10 +508,11 @@ let g:tagbar_width = 30
 " http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
 ":autocmd BufWritePost * call system("ctags -R")
 
-"=== Folding ==================================================================
+"{{{1 Folding =================================================================
 
-" Fold based on indentation.
-set foldmethod=indent
+set foldmethod=syntax
+autocmd FileType python set foldmethod=indent
+autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
 
 " Don't make an exception for any character when folding.
 set foldignore=
@@ -532,21 +520,12 @@ set foldignore=
 " Start with all folds open.
 set foldlevelstart=99
 
-"=== Unite ====================================================================
+"{{{1 SimpylFold ==============================================================
 
-"call unite#filters#matcher_default#use(['matcher_fuzzy'])
+" Show docstring preview in fold text.
+let g:SimpylFold_docstring_preview = 1
 
-" Recursive search through pwd.
-"
-" Note: This may be slow for large projects. We could speed things up with
-" the unite-source-file_rec/async source, but that requires vim-proc, which
-" requires a native extension, which is a bit too heavy.
-"nnoremap <leader>r :<C-u>Unite -start-insert file_rec<CR>
-
-" Search buffers.
-"nnoremap <leader>b :<C-u>Unite buffer<CR>
-
-"=== PHP ======================================================================
+"{{{1 PHP =====================================================================
 
 " Improve doc comment syntax. From the php.vim readme.
 
@@ -560,18 +539,19 @@ augroup phpSyntaxOverride
     autocmd FileType php call PhpSyntaxOverride()
 augroup END
 
-"=== JSON =====================================================================
+"{{{1 JSON ====================================================================
 
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
 
-"=== vim-man ==================================================================
+"{{{1 vim-man =================================================================
 
 " Open man page for word under cursor in horizontal or vertical split.
+map K <Plug>(Man)
 map <leader>k <Plug>(Man)
 map <leader>v <Plug>(Vman)
 
-"=== Help =====================================================================
+"{{{1 Help ====================================================================
 
 " Open help in a vertical split if there is enough room.
 function! s:position_help()
@@ -581,32 +561,18 @@ function! s:position_help()
 endfunction
 autocmd FileType help call s:position_help()
 
-"=== gundo ====================================================================
+"{{{1 gundo ===================================================================
 
 " Toggle undo tree with F3.
 nnoremap <F3> :GundoToggle<CR>
 
-"=== Startify =================================================================
 
-" Enable cursorline in Startify menu. (See ":help startify-faq-01".)
-autocmd User Startified setlocal cursorline
-
-" See ":help startify-options" for explanations of the settings below.
-let g:startify_bookmarks = [{ 'v': '~/.vimrc' }]
-let g:startify_files_number = 8
-let g:startify_session_autoload = 1
-let g:startify_session_persistence = 0 " Using Obsession for this for now.
-let g:startify_session_delete_buffers = 0"
-let g:startify_change_to_dir = 1
-let g:startify_change_to_vcs_root = 1
-let g:startify_enable_special = 1
-
-"=== python.vim ===============================================================
+"{{{1 python.vim ==============================================================
 
 " Enable all syntax-highlighting features.
 let python_highlight_all = 1
 
-"=== Jedi =====================================================================
+"{{{1 Jedi ====================================================================
 
 " Don't automatically pop up completion box when a period is entered.
 " Use the completion key to open the completion box.
@@ -621,24 +587,24 @@ nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
 " Don't auto-complete 'import' after 'from ...'.
 let g:jedi#smart_auto_mappings = 0
 
-"=== Auto-Pairs ===============================================================
+"{{{1 Auto-Pairs ==============================================================
 
 " Disable problematic behavior when inserting closing delimiter within existing
 " delimiter pair.
 let g:AutoPairsMultilineClose = 0
 
-"=== DelimitMate ==============================================================
+"{{{1 DelimitMate =============================================================
 
 let delimitMate_autoclose = 1
 let delimitMate_expand_cr = 2
 let delimitMate_insert_eol_marker = 2
 
-"=== A.vim ====================================================================
+"{{{1 A.vim ===================================================================
 
 " Toggle between header and source files with <leader>+a.
 nnoremap <silent> <leader>a :A<CR>
 
-"=== vim-textobj-quote ========================================================
+"{{{1 vim-textobj-quote =======================================================
 
 " Plugin disabled
 
@@ -654,35 +620,14 @@ nnoremap <silent> <leader>a :A<CR>
 " map <silent> <leader>qc <Plug>ReplaceWithCurly
 " map <silent> <leader>qs <Plug>ReplaceWithStraight
 
-"=== Python ===================================================================
+"{{{1 Python ==================================================================
 
 " Use Python syntax for type hinting stub files.
 autocmd BufRead,BufNewFile *.pyi set filetype=python
 
-let g:ctrlp_funky_use_cache=0
-
-"=== GitGutter ================================================================
+"{{{1 GitGutter ===============================================================
 
 " Workaround for conflict between GitGutter and ctrlp-funky.
 " See https://github.com/tacahiroy/ctrlp-funky/issues/85
 let g:gitgutter_async = 0
 
-"=== SimpylFold ===============================================================
-
-" Show docstring preview in fold text.
-let g:SimpylFold_docstring_preview = 1
-
-"=== Statusline ===============================================================
-
-" Returns the name of the currently used keymap. Like %k, but prettier.
-function! StatuslineKeymap()
-    if &keymap == '' || &iminsert == 0
-        return ''
-    endif
-
-    if b:keymap_name == 'hy'
-        return 'Հայերէն'
-    endif
-endfunction
-
-set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
