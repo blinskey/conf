@@ -630,4 +630,3 @@ autocmd BufRead,BufNewFile *.pyi set filetype=python
 " Workaround for conflict between GitGutter and ctrlp-funky.
 " See https://github.com/tacahiroy/ctrlp-funky/issues/85
 let g:gitgutter_async = 0
-
