@@ -576,7 +576,7 @@ let python_highlight_all = 1
 
 " Don't automatically pop up completion box when a period is entered.
 " Use the completion key to open the completion box.
-"let g:jedi#popup_on_dot = 0
+let g:jedi#popup_on_dot = 0
 
 " Wait 1 second before showing call signature.
 let g:jedi#show_call_signatures_delay = 1000
