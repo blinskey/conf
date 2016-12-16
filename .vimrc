@@ -60,7 +60,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-jdaddy'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-sensible'
     Plug 'tpope/vim-speeddating'
     Plug 'tpope/vim-surround'
     Plug 'tpope/vim-unimpaired'
@@ -133,6 +132,7 @@ set showtabline=2
 set showmode
 
 " Time out on key codes after 50 ms.
+set ttimeout
 set ttimeoutlen=50
 
 " Since we remap <C-L> for window navigation below, set a new mapping
@@ -154,6 +154,20 @@ set conceallevel=0
 
 " Ignore various types of files.
 set wildignore=*.o,*.obj,*.pyc
+
+" Enable the command-line completion window.
+set wildmenu
+
+" Set scroll boundaries.
+set scrolloff=1
+set sidescrolloff=5
+
+" Auto-reload files changed outside of Vim if they haven't been changed
+" inside of Vim.
+set autoread
+
+" Enable the built-in matchit plugin.
+packadd! matchit
 
 "{{{1 Mouse ===================================================================
 
@@ -320,6 +334,11 @@ filetype indent on
 " Use two-space tabs in Markdown and HTML files.
 autocmd Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
+set autoindent
+set backspace=indent,eol,start
+set complete-=i
+set smarttab
+
 "{{{1 Search ==================================================================
 
 " Ignore case when the search pattern contains only lowercase letters.
@@ -338,19 +357,24 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " Toggle search highlighting mode with F4.
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 
-"{{{1 Line wrapping ===========================================================
-
-" Don't soft-wrap lines.
-set nowrap
+"{{{1 Formatting ==============================================================
 
 " Hard-wrap lines after 79 characters.
 set textwidth=79
 
-" Don't auto-wrap code. Comments and Markdown text will still be wrapped. This
-" doesn't apply to text files, though, so we have to make an exception for that
-" filetype.
-set formatoptions-=t
+set formatoptions-=t " Disable text auto-wrapping
+set formatoptions+=c " Enable comment auto-wrapping
+set formatoptions+=q " Enable formatting of comments with 'gq'
+set formatoptions+=n " Recognize and format numbered lists
+set formatoptions+=l " Don't auto-wrap if line was already longer than tw
+set formatoptions+=1 " Try not to break after a one-letter word
+set formatoptions+=j " Remove comment leader when joining lines
+
+" Auto-wrap plain text.
 autocmd FileType text setlocal formatoptions+=t
+
+" Don't soft-wrap lines.
+set nowrap
 
 "{{{1 Whitespace ==============================================================
 
@@ -630,4 +654,3 @@ autocmd BufRead,BufNewFile *.pyi set filetype=python
 " Workaround for conflict between GitGutter and ctrlp-funky.
 " See https://github.com/tacahiroy/ctrlp-funky/issues/85
 let g:gitgutter_async = 0
-
