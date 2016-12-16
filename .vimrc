@@ -27,13 +27,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Raimondi/delimitMate'
     Plug 'StanAngeloff/php.vim'
     Plug 'Valloric/MatchTagAlways'
-    Plug 'Yggdroot/indentLine'
     Plug 'airblade/vim-gitgutter'
     Plug 'ciaranm/detectindent'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'davidhalter/jedi-vim'
-    Plug 'digitaltoad/vim-jade'
-    Plug 'elzr/vim-json'
     Plug 'ervandew/supertab'
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
@@ -48,7 +45,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'rust-lang/rust.vim'
     Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
     Plug 'scrooloose/syntastic'
-    Plug 'sjl/gundo.vim'
     Plug 'tacahiroy/ctrlp-funky'
     Plug 'tmhedberg/SimpylFold'
     Plug 'tpope/vim-capslock'
@@ -57,7 +53,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-endwise'
     Plug 'tpope/vim-eunuch'
     Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-jdaddy'
     Plug 'tpope/vim-obsession'
     Plug 'tpope/vim-repeat'
     Plug 'tpope/vim-speeddating'
@@ -70,11 +65,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
     " Disabled:
     "
+    "Plug 'sjl/gundo.vim'
+    "Plug 'Yggdroot/indentLine'
     "Plug 'jiangmiao/auto-pairs'
     "Plug 'othree/html5.vim'
     "Plug 'plasticboy/vim-markdown'
     "Plug 'tpope/vim-git'
     "Plug 'kh3phr3n/python-syntax'
+    "Plug 'digitaltoad/vim-jade'
     "
     " Replaces straight quotes with printer's quotes:
     "Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
@@ -300,7 +298,16 @@ function! StatuslineKeymap()
     endif
 endfunction
 
-set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
+function! StatuslineVenv()
+    let l:txt = virtualenv#statusline()
+    if l:txt == ''
+        return ''
+    else
+        return '[venv: ' . l:txt . ']'
+    endif
+endfunction
+
+set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ %{StatuslineVenv()}\ \|\ %l:%c\ \|\ %p%%\ \|
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
