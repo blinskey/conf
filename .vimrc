@@ -302,6 +302,12 @@ endfunction
 
 set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
 
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+hi warningmsg guibg=DarkRed guifg=White
+
 "{{{1 Indentation and tabs ====================================================
 
 " Insert spaces rather than tabs.
@@ -460,10 +466,6 @@ set splitright
 "{{{1 Syntastic ===============================================================
 
 " Recommended newbie settings from Syntastic readme
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
 
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
