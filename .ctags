@@ -2,6 +2,4 @@
 --tag-relative=yes
 --exclude='*.git'
 --exclude='*.svn'
-
-# Exclude improt statements from Python tags.
 --python-kinds=-i
