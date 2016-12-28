@@ -32,12 +32,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'davidhalter/jedi-vim'
     Plug 'ervandew/supertab'
+    Plug 'fisadev/vim-isort.git'
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
     Plug 'groenewege/vim-less'
     Plug 'jeetsukumaran/vim-buffergator'
     Plug 'jmcantrell/vim-virtualenv'
     Plug 'justinmk/vim-sneak'
+    Plug 'kh3phr3n/python-syntax'
     Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
@@ -71,7 +73,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'othree/html5.vim'
     "Plug 'plasticboy/vim-markdown'
     "Plug 'tpope/vim-git'
-    "Plug 'kh3phr3n/python-syntax'
     "Plug 'digitaltoad/vim-jade'
     "
     " Replaces straight quotes with printer's quotes:
@@ -284,6 +285,9 @@ let g:markdown_fenced_languages = [
     \'xml',
     \'zsh'
 \]
+
+" Enable all Python syntax highlighting options.
+let python_highlight_all = 1
 
 "{{{1 Statusline ==============================================================
 
