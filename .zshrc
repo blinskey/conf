@@ -1,6 +1,6 @@
-# Path to zsh-syntax-highlighting plugin. This is the path where the plugin
-# is installed by the Debian zsh-syntax-highlighting package. Source available
-# from https://github.com/zsh-users/zsh-syntax-highlighting
+# Path to zsh-syntax-highlighting plugin. This is the path where the plugin is
+# installed by the Debian and RPM zsh-syntax-highlighting packages. Source
+# available from https://github.com/zsh-users/zsh-syntax-highlighting
 readonly SYNTAX_HIGHLIGHTING=/usr/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # Ubuntu command-not-found zsh script
@@ -152,7 +152,12 @@ fi
 export GPG_TTY=$(tty)
 export GPGKEY=838AA558
 
-# virtualenvwrapper (installed through pip)
+# virtualenvwrapper: The best way to set this up is to run
+# "pip install --user virtualenv virtualenvwrapper". The next time you start
+# a terminal emulator, you'll see some output from virtualenvwrapper.sh, and
+# everything will work properly thereafter. Make sure that you do this with
+# the version of pip that corresponds to your system's default version of
+# Python; otherwise, you'll get an error.
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
 
