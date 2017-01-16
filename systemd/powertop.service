@@ -1,0 +1,12 @@
+# Enable this service to run powertop's autotune command at startup. See
+# powertop(8) for details.
+
+[Unit]
+Description=Powertop auto-tune
+
+[Service]
+Type=oneshot
+ExecStart=/usr/sbin/powertop --auto-tune
+
+[Install]
+WantedBy=multi-user.target
