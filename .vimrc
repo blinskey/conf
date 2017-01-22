@@ -489,7 +489,7 @@ let g:syntastic_check_on_wq = 0
 let g:syntastic_javascript_checkers = ["eslint"]
 let g:syntastic_java_checkers = []
 let g:syntastic_json_checkers = ["jsonlint"]
-let g:syntastic_python_checkers = ["flake8"]
+let g:syntastic_python_checkers = ["flake8", "pylint"]
 
 let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 
