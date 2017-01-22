@@ -166,7 +166,8 @@ set sidescrolloff=5
 set autoread
 
 " Enable the built-in matchit plugin.
-packadd! matchit
+" FIXME: This fails in Vim 7.
+"packadd! matchit
 
 "{{{1 Mouse ===================================================================
 
