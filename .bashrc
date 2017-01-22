@@ -163,3 +163,8 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
 fi
+
+# Red Hat's /etc/bashrc uses PROMPT_COMMAND to emit a terminal escape sequence
+# that sets tmux's window name to the same text as the default Bash prompt.
+# Override this so that we get the default tmux window name behavior.
+PROMPT_COMMAND=
