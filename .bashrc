@@ -103,19 +103,17 @@ fi
 # Use vi keybindings.
 set -o vi
 
-# Color man pages using less.
-# From https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
-# FIXME: This doesn't work on Fedora.
-man() {
-        env LESS_TERMCAP_mb=$'\E[01;31m' \
-        LESS_TERMCAP_md=$'\E[01;38;5;74m' \
-        LESS_TERMCAP_me=$'\E[0m' \
-        LESS_TERMCAP_se=$'\E[0m' \
-        LESS_TERMCAP_so=$'\E[38;5;246m' \
-        LESS_TERMCAP_ue=$'\E[0m' \
-        LESS_TERMCAP_us=$'\E[04;38;5;146m' \
-        man "$@"
-}
+# Set less colors, which result in colored man pages.
+# Based on https://wiki.archlinux.org/index.php/Color_output_in_console#less
+export GROFF_NO_SGR=1 # Required in certain terminal emulators.
+export LESS=-R
+export LESS_TERMCAP_mb=$'\E[1;34m'     # begin bold
+export LESS_TERMCAP_md=$'\E[1;34m'     # begin blink
+export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
+export LESS_TERMCAP_so=$'\E[01;34;34m' # begin reverse video
+export LESS_TERMCAP_se=$'\E[0m'        # reset reverse video
+export LESS_TERMCAP_us=$'\E[1;37m'     # begin underline
+export LESS_TERMCAP_ue=$'\E[0m'        # reset underline
 
 # GPG configuration
 export GPG_TTY=$(tty)
