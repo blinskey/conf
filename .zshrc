@@ -111,6 +111,7 @@ fi
 
 # Color man pages using less.
 # From https://wiki.archlinux.org/index.php/Man_page#Colored_man_pages
+# FIXME: This doesn't work on Fedora.
 man() {
         env LESS_TERMCAP_mb=$'\E[01;31m' \
         LESS_TERMCAP_md=$'\E[01;38;5;74m' \
