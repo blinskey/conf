@@ -26,8 +26,17 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Set prompt
-PS1="[\u@\h:\W]\\$"
+# Set prompt.
+color_prompt=1
+if [ $color_prompt -eq 1 ]; then
+    # This is the same as the uncolored prompt below, but with several
+    # portions set to light blue.
+    PS1="[\[\e[1;34m\]\u\[\e[m\]@\[\e[1;34m\h\e[m\]:\[\e[1;34m\W\e[m\]]\\$ "
+else
+    PS1="[\u@\h:\W]\\$ "
+fi
+
+
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
