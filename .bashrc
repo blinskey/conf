@@ -102,6 +102,8 @@ fi
 
 # Use vi keybindings.
 set -o vi
+bind -m vi-insert '"\C-p": previous-history'
+bind -m vi-insert '"\C-n": next-history'
 
 # Set less colors, which result in colored man pages.
 # Based on https://wiki.archlinux.org/index.php/Color_output_in_console#less
