@@ -26,20 +26,38 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Set prompt.
+# Color escape sequences
+readonly LB="\[\e[1;34m\]" # Light blue
+readonly LG="\[\e[1;32m\]" # Light green
+readonly LR="\[\e[1;31m\]" # Light red
+readonly NC="\[\e[0m\]" # No color
+
+# Set number of trailing directories to show in prompt with \w option.
+PROMPT_DIRTRIM=3
+
+# make_prompt() is run after each command and sets PS1. Color and non-versions
+# contain the same content: username, truncated hostname, truncated path,
+# and last exit code, if it was non-zero.
 color_prompt=1
-if [ $color_prompt -eq 1 ]; then
-    readonly local LB="\[\e[1;34m\]" # Light blue
-    readonly local NC="\[\e[0m\]" # No color
+PROMPT_COMMAND=make_prompt
+make_prompt() {
+    exit_code="$?"
 
-    # This is the same as the uncolored prompt below, but with several
-    # portions set to light blue.
-    PS1="[${LB}\u${NC}@${LB}\h${NC}:${LB}\W${NC}]\\$ "
-else
-    PS1="[\u@\h:\W]\\$ "
-fi
+    if [ "$color_prompt" -eq 1 ]; then
+        if [ $exit_code == 0 ]; then
+            PS1="[${LB}\u${NC}@${LB}\h${NC}:${LG}\w${NC}]\\$ "
+        else
+            PS1="[${LB}\u${NC}@${LB}\h${NC}:${LG}\w${NC}][${LR}${exit_code}${NC}]\\$ "
+        fi
 
-
+    else
+        if [ "$exit_code" == 0 ]; then
+            PS1="[\u@\h:\w]\\$ "
+        else
+            PS1="[\u@\h:\w][${exit_code}]\\$ "
+        fi
+    fi
+}
 
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
@@ -47,15 +65,6 @@ shopt -s globstar
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# If this is an xterm set the title to user@host:dir
-case "$TERM" in
-xterm*|rxvt*)
-    PS1="\[\e]0;${debian_chroot:+($debian_chroot)}\u@\h: \w\a\]$PS1"
-    ;;
-*)
-    ;;
-esac
 
 # enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
@@ -180,8 +189,3 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
 fi
-
-# Red Hat's /etc/bashrc uses PROMPT_COMMAND to emit a terminal escape sequence
-# that sets tmux's window name to the same text as the default Bash prompt.
-# Override this so that we get the default tmux window name behavior.
-PROMPT_COMMAND=
