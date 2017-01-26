@@ -116,6 +116,7 @@ fi
 set -o vi
 bind -m vi-insert '"\C-p": previous-history'
 bind -m vi-insert '"\C-n": next-history'
+bind -m vi-insert '"\C-l": clear-screen'
 
 # less options:
 # -R: Output ANSI color escape sequences in raw form (for custom colors below)
