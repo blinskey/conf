@@ -105,10 +105,15 @@ set -o vi
 bind -m vi-insert '"\C-p": previous-history'
 bind -m vi-insert '"\C-n": next-history'
 
+# less options:
+# -R: Output ANSI color escape sequences in raw form (for custom colors below)
+# -X: Disable termcap initialization and deinitialization strings (so pager
+#     display won't be cleared from screen on exit)
+export LESS=-RX
+
 # Set less colors, which result in colored man pages.
 # Based on https://wiki.archlinux.org/index.php/Color_output_in_console#less
 export GROFF_NO_SGR=1 # Required in certain terminal emulators.
-export LESS=-R
 export LESS_TERMCAP_mb=$'\E[1;34m'     # begin bold
 export LESS_TERMCAP_md=$'\E[1;34m'     # begin blink
 export LESS_TERMCAP_me=$'\E[0m'        # reset bold/blink
