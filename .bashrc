@@ -29,9 +29,12 @@ shopt -s checkwinsize
 # Set prompt.
 color_prompt=1
 if [ $color_prompt -eq 1 ]; then
+    readonly local LB="\[\e[1;34m\]" # Light blue
+    readonly local NC="\[\e[0m\]" # No color
+
     # This is the same as the uncolored prompt below, but with several
     # portions set to light blue.
-    PS1="[\[\e[1;34m\]\u\[\e[m\]@\[\e[1;34m\h\e[m\]:\[\e[1;34m\W\e[m\]]\\$ "
+    PS1="[${LB}\u${NC}@${LB}\h${NC}:${LB}\W${NC}]\\$ "
 else
     PS1="[\u@\h:\W]\\$ "
 fi
