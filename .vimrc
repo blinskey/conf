@@ -31,7 +31,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ciaranm/detectindent'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'davidhalter/jedi-vim'
-    Plug 'ervandew/supertab'
     Plug 'fisadev/vim-isort.git'
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
@@ -74,6 +73,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'plasticboy/vim-markdown'
     "Plug 'tpope/vim-git'
     "Plug 'digitaltoad/vim-jade'
+    "Plug 'ervandew/supertab'
     "
     " Replaces straight quotes with printer's quotes:
     "Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
@@ -456,9 +456,28 @@ set dictionary+=/usr/share/dict/words
 
 "{{{1 SuperTab ================================================================
 
+" Currently disabled.
+
 " Disable autocomplete before and after certain characters.
-let g:SuperTabNoCompleteBefore = [' ', '\t']
-let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
+"let g:SuperTabNoCompleteBefore = [' ', '\t']
+"let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
+
+"{{{1 Completion ==============================================================
+
+
+" Mappings suggested in :h ins-completion:
+
+" Tags
+inoremap <C-]> <C-X><C-]>
+
+" Filenames
+inoremap <C-F> <C-X><C-F>
+
+" Definitions or macros
+inoremap <C-D> <C-X><C-D>
+
+" Whole lines
+inoremap <C-L> <C-X><C-L>
 
 "{{{1 Splits ==================================================================
 
