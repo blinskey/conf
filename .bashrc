@@ -30,24 +30,40 @@ shopt -s checkwinsize
 readonly LB="\[\e[1;34m\]" # Light blue
 readonly LG="\[\e[1;32m\]" # Light green
 readonly LR="\[\e[1;31m\]" # Light red
+readonly LY="\[\e[1;33m\]" # Light yellow
 readonly NC="\[\e[0m\]" # No color
 
 # Set number of trailing directories to show in prompt with \w option.
 PROMPT_DIRTRIM=3
 
+# Set to 1 to enable color prompt.
+color_prompt=1
+
+# If color prompt is enabled, create ~/.prompt-hostname-red or
+# ~/.prompt-hostname-yellow to change the color of the hostname in order to
+# easily distinguish this machine.
+if [ "$color_prompt" -eq 1 ]; then
+    if [ -f "${HOME}/.prompt-hostname-red" ]; then
+        readonly HOSTNAME_COLOR="$LR"
+    elif [ -f "${HOME}/.prompt-hostname-yellow" ]; then
+        readonly HOSTNAME_COLOR="$LY"
+    else
+        readonly HOSTNAME_COLOR="$LB"
+    fi
+fi
+
 # make_prompt() is run after each command and sets PS1. Color and non-versions
 # contain the same content: username, truncated hostname, truncated path,
 # and last exit code, if it was non-zero.
-color_prompt=1
 PROMPT_COMMAND=make_prompt
 make_prompt() {
     exit_code="$?"
 
     if [ "$color_prompt" -eq 1 ]; then
         if [ $exit_code == 0 ]; then
-            PS1="[${LB}\u${NC}@${LB}\h${NC}:${LG}\w${NC}]\\$ "
+            PS1="[${LB}\u${NC}@${HOSTNAME_COLOR}\h${NC}:${LG}\w${NC}]\\$ "
         else
-            PS1="[${LB}\u${NC}@${LB}\h${NC}:${LG}\w${NC}][${LR}${exit_code}${NC}]\\$ "
+            PS1="[${LB}\u${NC}@${HOSTNAME_COLOR}\h${NC}:${LG}\w${NC}][${LR}${exit_code}${NC}]\\$ "
         fi
 
     else
