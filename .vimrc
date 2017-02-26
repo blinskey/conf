@@ -31,7 +31,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ciaranm/detectindent'
     Plug 'ctrlpvim/ctrlp.vim'
     Plug 'davidhalter/jedi-vim'
-    Plug 'fisadev/vim-isort.git'
     Plug 'flazz/vim-colorschemes'
     Plug 'godlygeek/tabular'
     Plug 'groenewege/vim-less'
@@ -83,7 +82,7 @@ endif
 
 "{{{1 Keymap ==================================================================
 
-if v:version >= 800
+if v:version >= 800 || !empty(glob('/usr/share/vim/vim74/keymap/armenian-western_utf-8.vim'))
     " Enable Western Armenian keymapping.
     set keymap=armenian-western_utf-8
 
