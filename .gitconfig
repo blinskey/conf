@@ -9,6 +9,6 @@
 [gpg]
 	program = gpg2
 [core]
-    excludesfile = /home/blinskey/.gitignore_global
+    excludesfile = ~blinskey/.gitignore_global
 [merge]
 	tool = vimdiff
