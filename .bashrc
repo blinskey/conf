@@ -94,11 +94,6 @@ if [ -x /usr/bin/dircolors ]; then
     alias egrep='egrep --color=auto'
 fi
 
-# some more ls aliases
-alias ll='ls -alF'
-alias la='ls -A'
-alias l='ls -CF'
-
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
@@ -170,9 +165,24 @@ if [[ -f "$VIRTUALENVWRAPPER" ]]; then
 fi
 
 # ls aliases
-alias l='ls -Ahlb'
-alias ll=l
-alias lll='ls -Ahlb --color=always | less -R'
+alias l='ls -CF'
+alias la='ls -A'
+
+# Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
+readonly os_name="$(uname)"
+if [ "$os_name" = "OpenBSD" ]; then
+    alias ll='ls -AhlF'
+else
+    alias ll='ls -AhlFb'
+fi
+
+# Use color for lll on Linux.
+if [ "$os_name" = "Linux" ]; then
+    alias lll='ll --color=always | less -R'
+else
+    alias lll='ll | less'
+fi
+
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
