@@ -168,6 +168,10 @@ set autoread
 " FIXME: This fails in Vim 7.
 "packadd! matchit
 
+" Open new windows to the right and bottom of current window.
+set splitbelow
+set splitright
+
 "{{{1 Mouse ===================================================================
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
@@ -477,21 +481,6 @@ inoremap <C-D> <C-X><C-D>
 
 " Whole lines
 inoremap <C-L> <C-X><C-L>
-
-"{{{1 Splits ==================================================================
-
-" Based on https://robots.thoughtbot.com/vim-splits-move-faster-and-more-naturally
-" See :h splits
-
-" Simple window movement with HJKL.
-nnoremap <C-J> <C-W><C-J>
-nnoremap <C-K> <C-W><C-K>
-nnoremap <C-L> <C-W><C-L>
-nnoremap <C-H> <C-W><C-H>
-
-" Open new windows to the right and bottom of current window.
-set splitbelow
-set splitright
 
 "{{{1 Syntastic ===============================================================
 
