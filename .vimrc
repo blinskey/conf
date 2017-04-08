@@ -172,6 +172,10 @@ set autoread
 set splitbelow
 set splitright
 
+" In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
+" Taken from ":h uppercase".
+map! <C-F> <Esc>gUiw`]a
+
 "{{{1 Mouse ===================================================================
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
@@ -474,7 +478,7 @@ set dictionary+=/usr/share/dict/words
 inoremap <C-]> <C-X><C-]>
 
 " Filenames
-inoremap <C-F> <C-X><C-F>
+"inoremap <C-F> <C-X><C-F>
 
 " Definitions or macros
 inoremap <C-D> <C-X><C-D>
