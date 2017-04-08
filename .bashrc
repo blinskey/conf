@@ -75,9 +75,12 @@ make_prompt() {
     fi
 }
 
+# globstar: Available starting in Bash 4.0.
 # If set, the pattern "**" used in a pathname expansion context will
 # match all files and zero or more directories and subdirectories.
-shopt -s globstar
+if [ ${BASH_VERSION:0:1} -gt 3 ]; then
+    shopt -s globstar
+fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
