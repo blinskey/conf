@@ -24,90 +24,40 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     " Syntax
+    "Plug 'rust-lang/rust.vim'
     Plug 'StanAngeloff/php.vim'
     Plug 'kh3phr3n/python-syntax'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
-    "Plug 'rust-lang/rust.vim'
 
-    " A collection of colorschemes.
-    Plug 'flazz/vim-colorschemes'
+    Plug 'AndrewRadev/undoquit.vim' " Reopen closed windows.
+    Plug 'Raimondi/delimitMate' " Automatically add closing parentheses, &c.
+    Plug 'Valloric/MatchTagAlways' " Highlight enclosing HTML and XML tags.
+    Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
+    Plug 'davidhalter/jedi-vim' " Python autocompletion using Jedi library.
+    Plug 'ervandew/supertab' " Built-in completion using Tab.
+    Plug 'flazz/vim-colorschemes' " Colorscheme collection.
+    Plug 'godlygeek/tabular' " Text alignment.
+    Plug 'jeetsukumaran/vim-buffergator' " List all buffers.
+    Plug 'jmcantrell/vim-virtualenv' " Use Python virtualenvs.
+    Plug 'justinmk/vim-sneak' " Quickly jump to a location.
+    Plug 'majutsushi/tagbar' " Open a window displaying tags in buffer.
+    Plug 'scrooloose/syntastic' " Linter integration.
+    Plug 'tacahiroy/ctrlp-funky' " Ctrlp extension for search within buffer.
+    Plug 'tpope/vim-characterize' " Adds additional data to 'ga' output.
+    Plug 'tpope/vim-endwise' " Automatically add 'fi', &c. at end of blocks.
+    Plug 'tpope/vim-obsession' " Automated session management.
+    Plug 'tpope/vim-repeat' " Allows plugins to use the '.' command.
+    Plug 'tpope/vim-speeddating' " <C-A> and <C-X> handle dates intelligently.
+    Plug 'tpope/vim-surround' " Manipulate characters enclosing a selection.
+    Plug 'vim-scripts/BufOnly.vim' " Close everything but a single buffer.
+    Plug 'wesQ3/vim-windowswap' " Swap position of arbitrary windows.
 
-    " Provides a command to reopen closed windows.
-    Plug 'AndrewRadev/undoquit.vim'
-
-    " Highlights HTML and XML tags enclosing cursor location.
-    Plug 'Valloric/MatchTagAlways'
-
-    " Fuzzy finder.
-    Plug 'ctrlpvim/ctrlp.vim'
-
-    " Ctrlp extension for searching for tokens in current file.
-    Plug 'tacahiroy/ctrlp-funky'
-
-    " Python autocompletion using the Jedi library.
-    Plug 'davidhalter/jedi-vim'
-
-    " Aligns text.
-    Plug 'godlygeek/tabular'
-
-    " Provides a command to open a window listing all buffers.
-    Plug 'jeetsukumaran/vim-buffergator'
-
-    " Use and switch between Python virtualenvs.
-    Plug 'jmcantrell/vim-virtualenv'
-
-    " Quickly jump to a location specified by two characters.
-    Plug 'justinmk/vim-sneak'
-
-    " Opens a window displaying tags.
-    Plug 'majutsushi/tagbar'
-
-    " Linter integration.
-    Plug 'scrooloose/syntastic'
-
-    " Adds additional data to output of the "ga" action.
-    Plug 'tpope/vim-characterize'
-
-    " Commands for closing everything but a single buffer.
-    Plug 'vim-scripts/BufOnly.vim'
-
-    " Swap placement of arbitrary windows.
-    Plug 'wesQ3/vim-windowswap'
-    "
-    " Python folding.
-    "Plug 'tmhedberg/SimpylFold'
-
-    " Shows Git diff markers and allows for undoing and unstaging hunks.
-    "Plug 'airblade/vim-gitgutter'
-
-    " Automatically sets shiftwidth, expandtab, and tabstop for open file.
-    "Plug 'ciaranm/detectindent'
-
-    " Automatically adds closing parentheses, brackets, &c.
-    "Plug 'Raimondi/delimitMate'
-
-    " Completion with <Tab>.
-    "Plug 'ervandew/supertab'
-
-    " Automatically inserts "end," "fi," &c. at the end of blocks.
-    "Plug 'tpope/vim-endwise'
-
-    " Automated session management.
-    "Plug 'tpope/vim-obsession'
-
-    " Allows plugins to use the "." command.
-    "Plug 'tpope/vim-repeat'
-
-    " Use built-in numeric manipulation commands with dates.
-    "Plug 'tpope/vim-speeddating'
-
-    " Commands for manipulating characters on either side of a selection.
-    "Plug 'tpope/vim-surround'
-
-    " Switch between header and source files.
-    "Plug 'vim-scripts/a.vim'
+    "Plug 'airblade/vim-gitgutter' " Git diff markers, &c.
+    "Plug 'ciaranm/detectindent' " Automatic indentation settings.
+    "Plug 'tmhedberg/SimpylFold' " Python folding.
+    "Plug 'vim-scripts/a.vim' " Switch between header and source file.
 
     call plug#end()
 endif
@@ -274,7 +224,7 @@ if v:version >= 800
     endif
 endif
 
-" Other nice colorschemes: hybrid, Tomorrow-Night, iceberg, molokai, ir_black
+" Some nice colorschemes: jellybeans, hybrid, Tomorrow-Night, iceberg, ir_black
 silent! colorscheme jellybeans
 
 " Show line numbers.
@@ -469,30 +419,22 @@ nnoremap <Leader>f :CtrlPFunky<Cr>
 " Open CtrlPFunky with search field prepopulated with word under cursor.
 nnoremap <Leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
 
-"{{{1 Autocomplete ============================================================
+"{{{1 SuperTab ================================================================
 
-" Based on https://robots.thoughtbot.com/vim-macros-and-you
-" See :h ins-completion
+" Disable autocomplete before and after certain characters.
+let g:SuperTabNoCompleteBefore = [' ', '\t']
+let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
+
+"{{{1 Completion ==============================================================
 
 " Populate suggestions from current file, other buffers, and tags file.
 set complete=.,b,u,]
 
-" Replacement settings, similar to zsh defaults.
+" Replacement settings
 set wildmode=longest,list:longest
 
 " Add 'k' to ':set complete' list to enable dictionary completion.
 set dictionary+=/usr/share/dict/words
-
-"{{{1 SuperTab ================================================================
-
-" Currently disabled.
-
-" Disable autocomplete before and after certain characters.
-"let g:SuperTabNoCompleteBefore = [' ', '\t']
-"let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
-
-"{{{1 Completion ==============================================================
-
 
 " Mappings suggested in :h ins-completion:
 
