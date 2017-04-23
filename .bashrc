@@ -1,5 +1,8 @@
 # vim:ts=4:sw=4
 
+# Set to 1 to enable color prompt.
+readonly COLOR_PROMPT=1
+
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	source /etc/bashrc
@@ -26,29 +29,31 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Color escape sequences
-readonly LB="\[\e[1;34m\]" # Light blue
-readonly LG="\[\e[1;32m\]" # Light green
-readonly LR="\[\e[1;31m\]" # Light red
-readonly LY="\[\e[1;33m\]" # Light yellow
-readonly NC="\[\e[0m\]" # No color
-
 # Set number of trailing directories to show in prompt with \w option.
 PROMPT_DIRTRIM=3
 
-# Set to 1 to enable color prompt.
-color_prompt=1
+# Color escape sequences
+readonly RED="\[\e[31m\]"
+readonly BRIGHT_RED="\[\e[1;31m\]"
+readonly BRIGHT_YELLOW="\[\e[1;33m\]"
+readonly BRIGHT_BLUE="\[\e[1;34m\]"
+readonly GREEN="\[\e[32m\]"
+readonly BRIGHT_GREEN="\[\e[1;32m\]"
+readonly RESET_COLOR="\[\e[0m\]"
 
-# If color prompt is enabled, create ~/.prompt-hostname-red or
-# ~/.prompt-hostname-yellow to change the color of the hostname in order to
-# easily distinguish this machine.
-if [ "$color_prompt" -eq 1 ]; then
+readonly USER_COLOR=$BRIGHT_BLUE
+readonly DEFAULT_HOSTNAME_COLOR=$USER_COLOR
+readonly PWD_COLOR=$BRIGHT_GREEN
+
+# If color prompt is enabled, create ~/.prompt-hostname-<color>  to change the
+# color of the hostname in order to easily identify the machine.
+if [ "$COLOR_PROMPT" -eq 1 ]; then
     if [ -f "${HOME}/.prompt-hostname-red" ]; then
-        readonly HOSTNAME_COLOR="$LR"
+        readonly HOSTNAME_COLOR="$BRIGHT_RED"
     elif [ -f "${HOME}/.prompt-hostname-yellow" ]; then
-        readonly HOSTNAME_COLOR="$LY"
+        readonly HOSTNAME_COLOR="$BRIGHT_YELLOW"
     else
-        readonly HOSTNAME_COLOR="$LB"
+        readonly HOSTNAME_COLOR="$DEFAULT_HOSTNAME_COLOR"
     fi
 fi
 
@@ -59,11 +64,11 @@ PROMPT_COMMAND=make_prompt
 make_prompt() {
     exit_code="$?"
 
-    if [ "$color_prompt" -eq 1 ]; then
+    if [ "$COLOR_PROMPT" -eq 1 ]; then
         if [ $exit_code == 0 ]; then
-            PS1="[${LB}\u${NC}@${HOSTNAME_COLOR}\h${NC}:${LG}\w${NC}]\\$ "
+            PS1="[${USER_COLOR}\u${RESET_COLOR}@${HOSTNAME_COLOR}\h${RESET_COLOR}:${PWD_COLOR}\w${RESET_COLOR}]\\$ "
         else
-            PS1="[${LB}\u${NC}@${HOSTNAME_COLOR}\h${NC}:${LG}\w${NC}][${LR}${exit_code}${NC}]\\$ "
+            PS1="[${USER_COLOR}\u${RESET_COLOR}@${HOSTNAME_COLOR}\h${RESET_COLOR}:${PWD_COLOR}\w${RESET_COLOR}][${BRIGHT_RED}${exit_code}${RESET_COLOR}]\\$ "
         fi
 
     else
@@ -84,18 +89,6 @@ fi
 
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# enable color support of ls and also add handy aliases
-if [ -x /usr/bin/dircolors ]; then
-    test -r ~/.dircolors && eval "$(dircolors -b ~/.dircolors)" || eval "$(dircolors -b)"
-    alias ls='ls --color=auto'
-    #alias dir='dir --color=auto'
-    #alias vdir='vdir --color=auto'
-
-    alias grep='grep --color=auto'
-    alias fgrep='fgrep --color=auto'
-    alias egrep='egrep --color=auto'
-fi
 
 # Add an "alert" alias for long running commands.  Use like so:
 #   sleep 10; alert
@@ -172,10 +165,14 @@ alias l='ls -CF'
 alias la='ls -A'
 
 # Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
+# FreeBSD and Darwin have the -G option, but OpenBSD doesn't.
 readonly os_name="$(uname)"
 if [ "$os_name" = "OpenBSD" ]; then
     alias ll='ls -AhlF'
+elif [ "$os_name" = "FreeBSD" ] || [ "$os_name" = "Darwin" ]; then
+    alias ll='ls -AhlFbG'
 else
+    # Linux
     alias ll='ls -AhlFb'
 fi
 
@@ -185,7 +182,6 @@ if [ "$os_name" = "Linux" ]; then
 else
     alias lll='ll | less'
 fi
-
 
 # Enable color support of ls and also add handy aliases
 if [ -x /usr/bin/dircolors ]; then
