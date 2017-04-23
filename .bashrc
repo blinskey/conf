@@ -1,7 +1,7 @@
 # vim:ts=4:sw=4
 
 # Set to 1 to enable color prompt.
-readonly COLOR_PROMPT=1
+readonly COLOR_PROMPT=0
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
