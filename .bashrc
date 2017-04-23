@@ -1,7 +1,7 @@
 # vim:ts=4:sw=4
 
 # Set to 1 to enable color prompt.
-readonly COLOR_PROMPT=0
+readonly COLOR_PROMPT=1
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
@@ -36,14 +36,15 @@ PROMPT_DIRTRIM=3
 readonly RED="\[\e[31m\]"
 readonly BRIGHT_RED="\[\e[1;31m\]"
 readonly BRIGHT_YELLOW="\[\e[1;33m\]"
+readonly BLUE="\[\e[34m\]"
 readonly BRIGHT_BLUE="\[\e[1;34m\]"
 readonly GREEN="\[\e[32m\]"
 readonly BRIGHT_GREEN="\[\e[1;32m\]"
 readonly RESET_COLOR="\[\e[0m\]"
 
-readonly USER_COLOR=$BRIGHT_BLUE
+readonly USER_COLOR=$BLUE
 readonly DEFAULT_HOSTNAME_COLOR=$USER_COLOR
-readonly PWD_COLOR=$BRIGHT_GREEN
+readonly PWD_COLOR=$GREEN
 
 # If color prompt is enabled, create ~/.prompt-hostname-<color>  to change the
 # color of the hostname in order to easily identify the machine.
