@@ -23,59 +23,91 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'AndrewRadev/undoquit.vim'
-    Plug 'Raimondi/delimitMate'
+    " Syntax
     Plug 'StanAngeloff/php.vim'
-    Plug 'Valloric/MatchTagAlways'
-    Plug 'airblade/vim-gitgutter'
-    Plug 'ciaranm/detectindent'
-    Plug 'ctrlpvim/ctrlp.vim'
-    Plug 'davidhalter/jedi-vim'
-    Plug 'flazz/vim-colorschemes'
-    Plug 'godlygeek/tabular'
-    Plug 'groenewege/vim-less'
-    Plug 'jeetsukumaran/vim-buffergator'
-    Plug 'jmcantrell/vim-virtualenv'
-    Plug 'justinmk/vim-sneak'
     Plug 'kh3phr3n/python-syntax'
-    Plug 'majutsushi/tagbar'
     Plug 'othree/html5-syntax.vim'
     Plug 'othree/javascript-libraries-syntax.vim'
     Plug 'pangloss/vim-javascript'
-    Plug 'rust-lang/rust.vim'
-    Plug 'scrooloose/nerdtree' | Plug 'Xuyuanp/nerdtree-git-plugin'
-    Plug 'scrooloose/syntastic'
-    Plug 'tacahiroy/ctrlp-funky'
-    Plug 'tmhedberg/SimpylFold'
-    Plug 'tpope/vim-capslock'
-    Plug 'tpope/vim-characterize'
-    Plug 'tpope/vim-commentary'
-    Plug 'tpope/vim-endwise'
-    Plug 'tpope/vim-eunuch'
-    Plug 'tpope/vim-fugitive'
-    Plug 'tpope/vim-obsession'
-    Plug 'tpope/vim-repeat'
-    Plug 'tpope/vim-speeddating'
-    Plug 'tpope/vim-surround'
-    Plug 'tpope/vim-unimpaired'
-    Plug 'vim-scripts/BufOnly.vim'
-    Plug 'vim-scripts/a.vim' " Switch between header and source files.
-    Plug 'vim-utils/vim-man'
-    Plug 'wesQ3/vim-windowswap'
+    "Plug 'rust-lang/rust.vim'
 
-    " Disabled:
+    " A collection of colorschemes.
+    Plug 'flazz/vim-colorschemes'
+
+    " Provides a command to reopen closed windows.
+    Plug 'AndrewRadev/undoquit.vim'
+
+    " Highlights HTML and XML tags enclosing cursor location.
+    Plug 'Valloric/MatchTagAlways'
+
+    " Fuzzy finder.
+    Plug 'ctrlpvim/ctrlp.vim'
+
+    " Ctrlp extension for searching for tokens in current file.
+    Plug 'tacahiroy/ctrlp-funky'
+
+    " Python autocompletion using the Jedi library.
+    Plug 'davidhalter/jedi-vim'
+
+    " Aligns text.
+    Plug 'godlygeek/tabular'
+
+    " Provides a command to open a window listing all buffers.
+    Plug 'jeetsukumaran/vim-buffergator'
+
+    " Use and switch between Python virtualenvs.
+    Plug 'jmcantrell/vim-virtualenv'
+
+    " Quickly jump to a location specified by two characters.
+    Plug 'justinmk/vim-sneak'
+
+    " Opens a window displaying tags.
+    Plug 'majutsushi/tagbar'
+
+    " Linter integration.
+    Plug 'scrooloose/syntastic'
+
+    " Adds additional data to output of the "ga" action.
+    Plug 'tpope/vim-characterize'
+
+    " Commands for closing everything but a single buffer.
+    Plug 'vim-scripts/BufOnly.vim'
+
+    " Swap placement of arbitrary windows.
+    Plug 'wesQ3/vim-windowswap'
     "
-    "Plug 'sjl/gundo.vim'
-    "Plug 'Yggdroot/indentLine'
-    "Plug 'jiangmiao/auto-pairs'
-    "Plug 'othree/html5.vim'
-    "Plug 'plasticboy/vim-markdown'
-    "Plug 'tpope/vim-git'
-    "Plug 'digitaltoad/vim-jade'
+    " Python folding.
+    "Plug 'tmhedberg/SimpylFold'
+
+    " Shows Git diff markers and allows for undoing and unstaging hunks.
+    "Plug 'airblade/vim-gitgutter'
+
+    " Automatically sets shiftwidth, expandtab, and tabstop for open file.
+    "Plug 'ciaranm/detectindent'
+
+    " Automatically adds closing parentheses, brackets, &c.
+    "Plug 'Raimondi/delimitMate'
+
+    " Completion with <Tab>.
     "Plug 'ervandew/supertab'
-    "
-    " Replaces straight quotes with printer's quotes:
-    "Plug 'kana/vim-textobj-user' | Plug 'reedes/vim-textobj-quote'
+
+    " Automatically inserts "end," "fi," &c. at the end of blocks.
+    "Plug 'tpope/vim-endwise'
+
+    " Automated session management.
+    "Plug 'tpope/vim-obsession'
+
+    " Allows plugins to use the "." command.
+    "Plug 'tpope/vim-repeat'
+
+    " Use built-in numeric manipulation commands with dates.
+    "Plug 'tpope/vim-speeddating'
+
+    " Commands for manipulating characters on either side of a selection.
+    "Plug 'tpope/vim-surround'
+
+    " Switch between header and source files.
+    "Plug 'vim-scripts/a.vim'
 
     call plug#end()
 endif
@@ -242,6 +274,7 @@ if v:version >= 800
     endif
 endif
 
+" Other nice colorschemes: hybrid, Tomorrow-Night, iceberg, molokai, ir_black
 silent! colorscheme jellybeans
 
 " Show line numbers.
@@ -416,28 +449,17 @@ autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 "{{{1 netrw ===================================================================
 
-" Currently using NERD Tree instead of netrw.
+" Open netrw.
+map <leader>e :Explore<cr>
 
-"" Open netrw.
-"map <leader>e :Explore<cr>
-"
-"" Use tree-style view.
-"let g:netrw_liststyle=3
-"
-"" Ignore files that we don't want to open.
-"let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
+" Use tree-style view.
+let g:netrw_liststyle = 3
 
-"{{{1 NERD Tree ===============================================================
+" Hide the banner at the top of the window.
+let g:netrw_banner = 0
 
-" Opens and closes the panel.
-map <silent> <leader>e :NERDTreeToggle<CR>
-
-" Opens the panel if it is not already open and moves the cursor to the current
-" file.
-map <silent> <leader>E :NERDTreeFind<CR>
-
-" Show hidden files by default.
-let NERDTreeShowHidden=1
+" Ignore files that we don't want to open.
+let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
 
 "{{{1 ctrlp-funky =============================================================
 
@@ -592,13 +614,6 @@ augroup END
 
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
-
-"{{{1 vim-man =================================================================
-
-" Open man page for word under cursor in horizontal or vertical split.
-map K <Plug>(Man)
-map <leader>k <Plug>(Man)
-map <leader>v <Plug>(Vman)
 
 "{{{1 Help ====================================================================
 
