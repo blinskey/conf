@@ -79,6 +79,12 @@ make_prompt() {
             PS1="[\u@\h:\w][${exit_code}]\\$ "
         fi
     fi
+
+    # If we're in a virtualenv, show its name.
+    if [ -n "$VIRTUAL_ENV" ]; then
+        env_name=$(basename $VIRTUAL_ENV)
+        PS1="[$env_name]$PS1"
+    fi
 }
 
 # globstar: Available starting in Bash 4.0.
