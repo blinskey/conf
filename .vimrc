@@ -43,7 +43,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'jmcantrell/vim-virtualenv' " Use Python virtualenvs.
     Plug 'justinmk/vim-sneak' " Quickly jump to a location.
     Plug 'majutsushi/tagbar' " Open a window displaying tags in buffer.
-    Plug 'scrooloose/syntastic' " Linter integration.
     Plug 'tacahiroy/ctrlp-funky' " Ctrlp extension for search within buffer.
     Plug 'tpope/vim-characterize' " Adds additional data to 'ga' output.
     Plug 'tpope/vim-endwise' " Automatically add 'fi', &c. at end of blocks.
@@ -53,6 +52,14 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'tpope/vim-surround' " Manipulate characters enclosing a selection.
     Plug 'vim-scripts/BufOnly.vim' " Close everything but a single buffer.
     Plug 'wesQ3/vim-windowswap' " Swap position of arbitrary windows.
+
+    " Linter: Use asynchronous plugin if Vim support is available.
+    let s:use_ale = v:version >= 800
+    if s:use_ale
+        Plug 'w0rp/ale'
+    else
+        Plug 'scrooloose/syntastic'
+    endif
 
     "Plug 'airblade/vim-gitgutter' " Git diff markers, &c.
     "Plug 'ciaranm/detectindent' " Automatic indentation settings.
@@ -305,7 +312,26 @@ endfunction
 set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ %{StatuslineVenv()}\ \|\ %l:%c\ \|\ %p%%\ \|
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
+
+if s:use_ale
+    function! LinterStatus() abort
+        let l:counts = ale#statusline#Count(bufnr(''))
+
+        let l:all_errors = l:counts.error + l:counts.style_error
+        let l:all_non_errors = l:counts.total - l:all_errors
+
+        return l:counts.total == 0 ? '' : printf(
+        \   ' W: %d E: %d ',
+        \   all_non_errors,
+        \   all_errors
+        \)
+    endfunction
+
+    set statusline+=%{LinterStatus()}
+else
+    set statusline+=%{SyntasticStatuslineFlag()}
+endif
+
 set statusline+=%*
 
 hi warningmsg guibg=DarkRed guifg=White
@@ -452,25 +478,33 @@ inoremap <C-L> <C-X><C-L>
 
 "{{{1 Syntastic ===============================================================
 
-" Recommended newbie settings from Syntastic readme
+if !s:use_ale
+    " Recommended newbie settings from Syntastic readme
 
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
+    let g:syntastic_always_populate_loc_list = 1
+    let g:syntastic_auto_loc_list = 1
+    let g:syntastic_check_on_open = 1
+    let g:syntastic_check_on_wq = 0
 
-" End recommended settings
+    " End recommended settings
 
-" Define custom linters for various filetypes.
-let g:syntastic_javascript_checkers = ["eslint"]
-let g:syntastic_java_checkers = []
-let g:syntastic_json_checkers = ["jsonlint"]
-let g:syntastic_python_checkers = ["flake8", "pylint"]
+    " Define custom linters for various filetypes.
+    let g:syntastic_javascript_checkers = ["eslint"]
+    let g:syntastic_java_checkers = []
+    let g:syntastic_json_checkers = ["jsonlint"]
+    let g:syntastic_python_checkers = ["flake8", "pylint"]
 
-let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
+    let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
 
-" Toggle mode with F9.
-nnoremap <F9> :SyntasticToggleMode<CR>
+    " Toggle mode with F9.
+    nnoremap <F9> :SyntasticToggleMode<CR>
+endif
+
+"{{{1 ALE =====================================================================
+
+if s:use_ale
+   let g:ale_open_list = 1
+endif
 
 "{{{1 ctrlp ===================================================================
 
