@@ -1,6 +1,6 @@
 [user]
 	name = Benjamin Linskey
-	email = git@blinskey.org
+	email = git@linskey.org
 	signingkey = E4361B58
 [push]
 	default = simple
