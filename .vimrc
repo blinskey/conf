@@ -503,7 +503,8 @@ endif
 "{{{1 ALE =====================================================================
 
 if s:use_ale
-   let g:ale_open_list = 1
+    " Set this to 1 to always show errors in a quickfix list.
+    let g:ale_open_list = 0
 endif
 
 "{{{1 ctrlp ===================================================================
