@@ -1,5 +1,7 @@
 # vim:ts=4:sw=4
 
+readonly OS_NAME="$(uname)"
+
 # Set to 1 to enable color prompt.
 readonly COLOR_PROMPT=1
 
@@ -173,10 +175,9 @@ alias la='ls -A'
 
 # Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
 # FreeBSD and Darwin have the -G option, but OpenBSD doesn't.
-readonly os_name="$(uname)"
-if [ "$os_name" = "OpenBSD" ]; then
+if [ "$OS_NAME" = "OpenBSD" ]; then
     alias ll='ls -AhlF'
-elif [ "$os_name" = "FreeBSD" ] || [ "$os_name" = "Darwin" ]; then
+elif [ "$OS_NAME" = "FreeBSD" ] || [ "$OS_NAME" = "Darwin" ]; then
     alias ll='ls -AhlFbG'
 else
     # Linux
@@ -184,7 +185,7 @@ else
 fi
 
 # Use color for lll on Linux.
-if [ "$os_name" = "Linux" ]; then
+if [ "$OS_NAME" = "Linux" ]; then
     alias lll='ll --color=always | less -R'
 else
     alias lll='ll | less'
@@ -221,4 +222,10 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
+fi
+
+# UTF-8 on FreeBSD (requires the vt console driver; see vt(4)).
+if [ "$OS_NAME" = "FreeBSD" ]; then
+    export CHARSET="UTF-8"
+    export LANG="en_US.UTF-8"
 fi
