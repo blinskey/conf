@@ -311,20 +311,12 @@ endfunction
 
 set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ %{StatuslineVenv()}\ \|\ %l:%c\ \|\ %p%%\ \|
 
-set statusline+=%#warningmsg#
-
 if s:use_ale
     function! LinterStatus() abort
         let l:counts = ale#statusline#Count(bufnr(''))
-
         let l:all_errors = l:counts.error + l:counts.style_error
         let l:all_non_errors = l:counts.total - l:all_errors
-
-        return l:counts.total == 0 ? '' : printf(
-        \   ' W: %d E: %d ',
-        \   all_non_errors,
-        \   all_errors
-        \)
+        return printf(' W: %d E: %d ', all_non_errors, all_errors)
     endfunction
 
     set statusline+=%{LinterStatus()}
@@ -505,6 +497,10 @@ endif
 if s:use_ale
     " Set this to 1 to always show errors in a quickfix list.
     let g:ale_open_list = 0
+
+    " Always show the gutter so that the text doesn't jump around as errors are
+    " detected and resolved.
+    let g:ale_sign_column_always = 1
 endif
 
 "{{{1 ctrlp ===================================================================
