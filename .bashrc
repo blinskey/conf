@@ -1,15 +1,18 @@
 # vim:ts=4:sw=4
 
-# Set to 1 to enable color prompt.
-readonly COLOR_PROMPT=1
+readonly OS_NAME="$(uname)"
 
 # Source global definitions
 if [ -f /etc/bashrc ]; then
 	source /etc/bashrc
 fi
 
-# If not running interactively, don't do anything
+# If not running interactively, don't do anything.
 [ -z "$PS1" ] && return
+
+if [ -f ~/.bash_aliases ]; then
+    . ~/.bash_aliases
+fi
 
 # append to the history file, don't overwrite it
 shopt -s histappend
@@ -29,63 +32,15 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-# Set number of trailing directories to show in prompt with \w option.
-PROMPT_DIRTRIM=3
-
-# Color escape sequences
-readonly RED="\[\e[31m\]"
-readonly BRIGHT_RED="\[\e[1;31m\]"
-readonly BRIGHT_YELLOW="\[\e[1;33m\]"
-readonly BLUE="\[\e[34m\]"
-readonly BRIGHT_BLUE="\[\e[1;34m\]"
-readonly GREEN="\[\e[32m\]"
-readonly BRIGHT_GREEN="\[\e[1;32m\]"
-readonly RESET_COLOR="\[\e[0m\]"
-
-readonly USER_COLOR=$BLUE
-readonly DEFAULT_HOSTNAME_COLOR=$USER_COLOR
-readonly PWD_COLOR=$GREEN
-
-# If color prompt is enabled, create ~/.prompt-hostname-<color>  to change the
-# color of the hostname in order to easily identify the machine.
-if [ "$COLOR_PROMPT" -eq 1 ]; then
-    if [ -f "${HOME}/.prompt-hostname-red" ]; then
-        readonly HOSTNAME_COLOR="$BRIGHT_RED"
-    elif [ -f "${HOME}/.prompt-hostname-yellow" ]; then
-        readonly HOSTNAME_COLOR="$BRIGHT_YELLOW"
-    else
-        readonly HOSTNAME_COLOR="$DEFAULT_HOSTNAME_COLOR"
-    fi
-fi
-
-# make_prompt() is run after each command and sets PS1. Color and non-versions
-# contain the same content: username, truncated hostname, truncated path,
-# and last exit code, if it was non-zero.
-PROMPT_COMMAND=make_prompt
-make_prompt() {
-    exit_code="$?"
-
-    if [ "$COLOR_PROMPT" -eq 1 ]; then
-        if [ $exit_code == 0 ]; then
-            PS1="[${USER_COLOR}\u${RESET_COLOR}@${HOSTNAME_COLOR}\h${RESET_COLOR}:${PWD_COLOR}\w${RESET_COLOR}]\\$ "
-        else
-            PS1="[${USER_COLOR}\u${RESET_COLOR}@${HOSTNAME_COLOR}\h${RESET_COLOR}:${PWD_COLOR}\w${RESET_COLOR}][${BRIGHT_RED}${exit_code}${RESET_COLOR}]\\$ "
-        fi
-
-    else
-        if [ "$exit_code" == 0 ]; then
-            PS1="[\u@\h:\w]\\$ "
-        else
-            PS1="[\u@\h:\w][${exit_code}]\\$ "
-        fi
-    fi
-
+venv_segment() {
     # If we're in a virtualenv, show its name.
     if [ -n "$VIRTUAL_ENV" ]; then
         env_name=$(basename $VIRTUAL_ENV)
-        PS1="[$env_name]$PS1"
+        echo "[$env_name]"
     fi
 }
+
+PS1="$(venv_segment)[\u@\h:\W]\\$ "
 
 # globstar: Available starting in Bash 4.0.
 # If set, the pattern "**" used in a pathname expansion context will
@@ -97,14 +52,6 @@ fi
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
-# Add an "alert" alias for long running commands.  Use like so:
-#   sleep 10; alert
-alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
-
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # enable programmable completion features (you don't need to enable
 # this, if it's already enabled in /etc/bash.bashrc and /etc/profile
 # sources /etc/bash.bashrc).
@@ -114,11 +61,9 @@ fi
 
 # Set editor.
 if [[ -f /usr/bin/vim ]]; then
-    # Path to Vim installed via apt.
     export EDITOR=/usr/bin/vim
     export VISUAL=/usr/bin/vim
 elif [[ -f /usr/local/bin/vim  ]]; then
-    # Path to Vim compiled from source.
     export EDITOR=/usr/local/bin/vim
     export VISUAL=/usr/local/bin/vim
 elif [[ -f /usr/bin/vi ]]; then
@@ -161,7 +106,6 @@ export GPGKEY=838AA558
 # Python; otherwise, you'll get an error.
 export WORKON_HOME=$HOME/.virtualenvs
 export PROJECT_HOME=$HOME/src
-
 readonly VIRTUALENVWRAPPER="$HOME/.local/bin/virtualenvwrapper.sh"
 if [[ -f "$VIRTUALENVWRAPPER" ]]; then
     source "$VIRTUALENVWRAPPER"
@@ -173,10 +117,9 @@ alias la='ls -A'
 
 # Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
 # FreeBSD and Darwin have the -G option, but OpenBSD doesn't.
-readonly os_name="$(uname)"
-if [ "$os_name" = "OpenBSD" ]; then
+if [ "$OS_NAME" = "OpenBSD" ]; then
     alias ll='ls -AhlF'
-elif [ "$os_name" = "FreeBSD" ] || [ "$os_name" = "Darwin" ]; then
+elif [ "$OS_NAME" = "FreeBSD" ] || [ "$OS_NAME" = "Darwin" ]; then
     alias ll='ls -AhlFbG'
 else
     # Linux
@@ -184,7 +127,7 @@ else
 fi
 
 # Use color for lll on Linux.
-if [ "$os_name" = "Linux" ]; then
+if [ "$OS_NAME" = "Linux" ]; then
     alias lll='ll --color=always | less -R'
 else
     alias lll='ll | less'
@@ -210,9 +153,7 @@ alias tmux='tmux -2'
 alias lynx='lynx -tna'
 
 export GOPATH=$HOME/go
-
 export PATH="$PATH:$HOME/bin:$GOPATH/bin"
-
 export PYTHONPATH="$PATH:"
 
 # Directories in which to search for Lynx config files (excluding .lynxrc,
@@ -221,4 +162,10 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
+fi
+
+# UTF-8 on FreeBSD (requires the vt console driver; see vt(4)).
+if [ "$OS_NAME" = "FreeBSD" ]; then
+    export CHARSET="UTF-8"
+    export LANG="en_US.UTF-8"
 fi
