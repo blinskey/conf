@@ -165,6 +165,12 @@ set splitright
 " Taken from ":h uppercase".
 map! <C-F> <Esc>gUiw`]a
 
+" Check for modelines in the first and last lines.
+set modelines=1
+
+" Set the encryption method to use with :X.
+set cm=blowfish2
+
 "{{{1 Mouse ===================================================================
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
