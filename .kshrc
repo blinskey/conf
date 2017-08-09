@@ -1,4 +1,4 @@
-readonly os_name="$(uname)"
+readonly OS_NAME="$(uname)"
 
 venv_segment() {
     # If we're in a virtualenv, show its name.
@@ -15,7 +15,7 @@ set -o vi
 
 alias gpg=gpg2
 
-if [ "$os_name" = "OpenBSD" ]; then
+if [ "$OS_NAME" = "OpenBSD" ]; then
     alias sudo=doas
 fi
 
