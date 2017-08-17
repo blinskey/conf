@@ -40,7 +40,7 @@ make_prompt() {
     else
         venv=""
     fi
-    PS1="${venv}[\u@\h:\W]\\$ "
+    PS1="[\u@\h:\W]${venv}\\$ "
 }
 
 PROMPT_COMMAND=make_prompt
