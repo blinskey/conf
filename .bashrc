@@ -52,6 +52,9 @@ if [ ${BASH_VERSION:0:1} -gt 3 ]; then
     shopt -s globstar
 fi
 
+# Set pager.
+export PAGER="less"
+
 # make less more friendly for non-text input files, see lesspipe(1)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
