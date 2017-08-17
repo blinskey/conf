@@ -32,15 +32,18 @@ HISTFILESIZE=2000
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
 
-venv_segment() {
+make_prompt() {
     # If we're in a virtualenv, show its name.
     if [ -n "$VIRTUAL_ENV" ]; then
         env_name=$(basename $VIRTUAL_ENV)
-        echo "[$env_name]"
+        venv="($env_name)"
+    else
+        venv=""
     fi
+    PS1="${venv}[\u@\h:\W]\\$ "
 }
 
-PS1="$(venv_segment)[\u@\h:\W]\\$ "
+PROMPT_COMMAND=make_prompt
 
 # globstar: Available starting in Bash 4.0.
 # If set, the pattern "**" used in a pathname expansion context will
