@@ -15,10 +15,6 @@ set -o vi
 
 alias gpg=gpg2
 
-if [ "$OS_NAME" = "OpenBSD" ]; then
-    alias sudo=doas
-fi
-
 # ls aliases
 alias l='ls -CF'
 alias la='ls -A'
