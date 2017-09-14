@@ -5,10 +5,6 @@
 
 readonly OS_NAME="$(uname)"
 
-if [ -f ~/.bash_aliases ]; then
-    . ~/.bash_aliases
-fi
-
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
