@@ -70,9 +70,10 @@ bind -m vi-insert '"\C-n": next-history'
 bind -m vi-insert '"\C-l": clear-screen'
 
 # less options:
+# -R: Output ANSI color escape sequences in raw form
 # -X: Disable termcap initialization and deinitialization strings (so pager
 #     display won't be cleared from screen on exit)
-export LESS=-X
+export LESS=-RX
 
 # GPG configuration
 export GPG_TTY=$(tty)

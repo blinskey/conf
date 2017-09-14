@@ -4,10 +4,10 @@ readonly OS_NAME="$(uname)"
 export PAGER="less"
 
 # less options:
+# -R: Output ANSI color escape sequences in raw form
 # -X: Disable termcap initialization and deinitialization strings (so pager
 #     display won't be cleared from screen on exit)
-export LESS=-X
-
+export LESS=-RX
 
 # Set editor.
 if type vim >/dev/null; then
