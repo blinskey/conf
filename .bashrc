@@ -74,29 +74,13 @@ bind -m vi-insert '"\C-n": next-history'
 bind -m vi-insert '"\C-l": clear-screen'
 
 # less options:
-# -R: Output ANSI color escape sequences in raw form (for custom colors below)
 # -X: Disable termcap initialization and deinitialization strings (so pager
 #     display won't be cleared from screen on exit)
-export LESS=-RX
+export LESS=-X
 
 # GPG configuration
 export GPG_TTY=$(tty)
 export GPGKEY=838AA558
-
-# virtualenvwrapper: The best way to set this up is to run this:
-#
-#     pip install --user virtualenv virtualenvwrapper
-#
-# The next time you start a terminal emulator, you'll see some output from
-# virtualenvwrapper.sh, and everything will work properly thereafter. Make sure
-# that you do this with the version of pip that corresponds to your system's
-# default version of Python; otherwise, you'll get an error.
-export WORKON_HOME=$HOME/.virtualenvs
-export PROJECT_HOME=$HOME/src
-readonly VIRTUALENVWRAPPER="$HOME/.local/bin/virtualenvwrapper.sh"
-if [[ -f "$VIRTUALENVWRAPPER" ]]; then
-    source "$VIRTUALENVWRAPPER"
-fi
 
 # ls aliases
 alias l='ls -CF'
