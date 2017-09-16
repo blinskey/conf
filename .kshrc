@@ -1,22 +1,27 @@
-readonly OS_NAME="$(uname)"
+# .kshrc -- ksh configuration file
+#
+# To use this file, specify its location in the  ENV paramater in ~/.profile:
+#
+# 	export ENV=$HOME/.kshrc
 
-# Set pager.
-export PAGER="less"
+# Source the system-wide config file if it exists.
+if [ -f /etc/ksh.kshrc ]; then
+    . /etc/ksh.kshrc
+fi
 
-# less options:
-# -R: Output ANSI color escape sequences in raw form
-# -X: Disable termcap initialization and deinitialization strings (so pager
-#     display won't be cleared from screen on exit)
-export LESS=-RX
+# Set the history file location.
+export HISTFILE="$HOME/.sh_history"
 
-# Set editor.
+# Set editor. Use vim if available, or vi otherwise.
 if type vim >/dev/null; then
     export VISUAL=vim
 else
     export VISUAL=vi
 fi
-export EDITOR="$VISUAL"
 
+# PS1 helper function. Echoes the name of the current Python virtual
+# environment, enclosed in brackets, or an empty string if a virtualenv is not
+# active.
 venv_segment() {
     # If we're in a virtualenv, show its name.
     if [ -n "$VIRTUAL_ENV" ]; then
@@ -25,38 +30,20 @@ venv_segment() {
     fi
 }
 
+# Set the prompt.
 export PS1="$(venv_segment)[\u@\h:\W]\\$ "
 
+# Use vi mode for command line editing.
 set -o vi
 
-# ls aliases
-alias l='ls -CF'
-alias la='ls -A'
-
-# Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
-if [ "$OS_NAME" = "OpenBSD" ]; then
+# Set up some ls aliases. Linux, FreeBSD, and Darwin have the -b option, but
+# OpenBSD doesn't.
+alias l='ls -CFA'
+if [ "$(uname)" = "OpenBSD" ]; then
     alias ll='ls -AhlF'
 else
     alias ll='ls -AhlFb'
 fi
 
-# Always start tmux in 256-color mode.
-alias tmux='tmux -2'
-
-export GOPATH=$HOME/go
-export PATH="$PATH:$HOME/bin:$GOPATH/bin"
-export PYTHONPATH="$PATH:"
-
-# Directories in which to search for Lynx config files (excluding .lynxrc,
-# which must always be in the home directory)
-export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
-
-if [ -f ~/.lynx/lynx.cfg ]; then
-    export LYNX_CFG=~/.lynx/lynx.cfg
-fi
-
-# UTF-8 on FreeBSD (requires the vt console driver; see vt(4)).
-if [ "$OS_NAME" = "FreeBSD" ]; then
-    export CHARSET="UTF-8"
-    export LANG="en_US.UTF-8"
-fi
+# Enable csh-style history editing.
+set -o csh-history
