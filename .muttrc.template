@@ -1,0 +1,62 @@
+# Mutt configuration
+#
+# ~/.cache/mutt must exist.
+#
+# Tested with Mutt 1.8.0 from the OpenBSD ports collection. Note that settings
+# with acceptable defaults are not explicitly specified here.
+
+set imap_user='user@example.com'
+set imap_pass='password'
+
+set smtp_url='smtps://user@example.com@smtp.example.com:465'
+set smtp_pass='password'
+
+set folder='imaps://imap.example.com'
+set spoolfile=+INBOX
+set imap_idle
+set imap_check_subscribed
+set ssl_force_tls
+
+set header_cache=~/.cache/mutt/headers
+set message_cachedir=~/.cache/mutt/messages
+
+# Note that postponed is not set to +Drafts here, but uses the default local
+# mailbox instead. This allows us to save drafts offline.
+set record=+Sent
+set trash=+Trash
+
+mailboxes `echo $MAIL`
+
+alternates .*@(.*\.)?example\.com .*@(.*\.)?example\.org
+
+set from="user@example.com"
+set realname="Real Name"
+
+set menu_context=2
+set pager_context=2
+set pager_stop
+set delete
+
+set sort=threads
+set sort_aux=reverse-last-date-received
+
+macro index,pager A "<save-message>=Inbox/.Archive<enter>" "Archive"
+
+bind attach,index gg first-entry
+bind attach,index G last-entry
+bind index,pager R group-reply
+bind index <space> collapse-thread
+bind pager k  previous-line
+bind pager j  next-line
+bind pager gg top
+bind pager G bottom
+bind attach,index,pager \Cf next-page
+bind attach,index,pager \Cb previous-page
+
+# Prevent the user from viewing passwords.
+bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+
+set date_format = "%I:%M %p %D"
+set index_format = "[%Z] %d  %-40.40F %s"
+
+source ~/.conf/vombatidae-mutt/vombatidae.mutt
