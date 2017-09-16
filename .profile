@@ -34,3 +34,10 @@ fi
 #     display won't be cleared from screen on exit)
 export PAGER="less"
 export LESS=-RX
+
+# Set editor. Use vim if available, or vi otherwise.
+if type vim >/dev/null; then
+    export VISUAL=vim
+else
+    export VISUAL=vi
+fi

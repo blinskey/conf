@@ -7,16 +7,6 @@
 # Set the history file location.
 HISTFILE="$HOME/.sh_history"
 
-# Set editor. Use vim if available, or vi otherwise.
-if type vim >/dev/null; then
-    VISUAL=vim
-else
-    VISUAL=vi
-fi
-
-# Use vi mode for command line editing.
-set -o vi
-
 # Set up some ls aliases.
 alias l='ls -CFA'
 alias ll='ls -AhlF'
