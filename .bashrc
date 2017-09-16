@@ -8,7 +8,7 @@ readonly OS_NAME="$(uname)"
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
-# Turn on parallel history
+# Turn on parallel history.
 history -a
 
 # Don't put duplicate lines or lines starting with space in the history.
@@ -42,9 +42,6 @@ if [ ${BASH_VERSION:0:1} -gt 3 ]; then
     shopt -s globstar
 fi
 
-# Set pager.
-export PAGER="less"
-
 # Active lesspipe if present. (Commonly installed by default on Linux.)
 [ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
 
@@ -57,56 +54,14 @@ fi
 
 # Set editor.
 if type vim >/dev/null; then
-    export VISUAL=vim
+    VISUAL=vim
 else
-    export VISUAL=vi
+    VISUAL=vi
 fi
-export EDITOR="$VISUAL"
 
 # Use vi keybindings.
 set -o vi
-bind -m vi-insert '"\C-p": previous-history'
-bind -m vi-insert '"\C-n": next-history'
-bind -m vi-insert '"\C-l": clear-screen'
-
-# less options:
-# -R: Output ANSI color escape sequences in raw form
-# -X: Disable termcap initialization and deinitialization strings (so pager
-#     display won't be cleared from screen on exit)
-export LESS=-RX
-
-# GPG configuration
-export GPG_TTY=$(tty)
-export GPGKEY=838AA558
 
 # ls aliases
-alias l='ls -CF'
-alias la='ls -A'
-
-# Linux, FreeBSD, and Darwin have the -b option, but OpenBSD doesn't.
-if [ "$OS_NAME" = "OpenBSD" ]; then
-    alias ll='ls -AhlF'
-else
-    alias ll='ls -AhlFb'
-fi
-
-# Always start tmux in 256-color mode.
-alias tmux='tmux -2'
-
-export GOPATH=$HOME/go
-export PATH="$PATH:$HOME/bin:$GOPATH/bin"
-export PYTHONPATH="$PATH:"
-
-# Directories in which to search for Lynx config files (excluding .lynxrc,
-# which must always be in the home directory)
-export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
-
-if [ -f ~/.lynx/lynx.cfg ]; then
-    export LYNX_CFG=~/.lynx/lynx.cfg
-fi
-
-# UTF-8 on FreeBSD (requires the vt console driver; see vt(4)).
-if [ "$OS_NAME" = "FreeBSD" ]; then
-    export CHARSET="UTF-8"
-    export LANG="en_US.UTF-8"
-fi
+alias l='ls -CFA'
+alias ll='ls -AhlFb'
