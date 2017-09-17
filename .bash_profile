@@ -39,4 +39,3 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
 fi
-

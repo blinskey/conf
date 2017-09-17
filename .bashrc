@@ -1,10 +1,3 @@
-# vim:ts=4:sw=4
-
-# If not running interactively, don't do anything.
-[ -z "$PS1" ] && return
-
-readonly OS_NAME="$(uname)"
-
 # Append to the history file, don't overwrite it.
 shopt -s histappend
 
@@ -21,19 +14,6 @@ HISTFILESIZE=2000
 # Check the window size after each command and, if necessary,
 # update the values of LINES and COLUMNS.
 shopt -s checkwinsize
-
-make_prompt() {
-    # If we're in a virtualenv, show its name.
-    if [ -n "$VIRTUAL_ENV" ]; then
-        env_name=$(basename $VIRTUAL_ENV)
-        venv="($env_name)"
-    else
-        venv=""
-    fi
-
-    PS1="[\u@\h:\W]${venv}\\$ "
-}
-PROMPT_COMMAND=make_prompt
 
 # globstar: Available starting in Bash 4.0.
 # If set, the pattern "**" used in a pathname expansion context will
@@ -58,10 +38,13 @@ if type vim >/dev/null; then
 else
     VISUAL=vi
 fi
+EDITOR="$VISUAL"
 
 # Use vi keybindings.
 set -o vi
 
 # ls aliases
 alias l='ls -CFA'
-alias ll='ls -AhlFb'
+alias ll='ls -AhlF'
+
+PS1='\$ '
