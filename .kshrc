@@ -3,6 +3,9 @@
 # To use this file, specify its location in the  ENV paramater in ~/.profile:
 #
 # 	export ENV=$HOME/.kshrc
+#
+# This is primarily targeted at OpenBSD's ksh but should also work with other
+# versions in the pdksh lineage. The AT&T ksh is not supported.
 
 readonly OS=$(uname)
 
@@ -32,7 +35,11 @@ prompt_venv() {
 # Prints the basename of the working directory, or a tilde if the PWD is $HOME.
 # This performs the same function as the \W escape sequence in OpenBSD's ksh.
 prompt_dir() {
-	if [ "$PWD" = "$HOME" ]; then
+    # On systems such as FreeBSD where /home is a symbolic link to /usr/home,
+    # we need to resolve the link before we compare it to $PWD. Neither
+    # readlink nor realpath is fully portable, so we just try the latter and
+    # give up if it's not available.
+    if type realpath >/dev/null && [ "$PWD" = "$(realpath $HOME)" ]; then
 		echo '~'
 	else
 		echo $(basename "$PWD")
@@ -44,5 +51,5 @@ prompt_dir() {
 if [ "$OS" = OpenBSD ]; then
 	PS1='$(prompt_venv)[\u@\h:\W]\\$ '
 else
-	PS1='$(prompt_venv)[$USER@$(hostname -s):$(prompt_dir)]\\$ '
+	PS1='$(prompt_venv)[$USER@$(hostname -s):$(prompt_dir)]$ '
 fi
