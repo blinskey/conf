@@ -59,4 +59,6 @@ bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' no
 set date_format = "%I:%M %p %D"
 set index_format = "[%Z] %d  %-40.40F %s"
 
+set wrap=80
+
 source ~/.mutt/vombatidae-mutt/vombatidae.mutt
