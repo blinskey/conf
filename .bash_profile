@@ -39,3 +39,12 @@ export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
 fi
+
+# Set editor.
+if type vim >/dev/null; then
+    export VISUAL=vim
+else
+    export VISUAL=vi
+fi
+export EDITOR="$VISUAL"
+

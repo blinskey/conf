@@ -32,14 +32,6 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
     . /etc/bash_completion
 fi
 
-# Set editor.
-if type vim >/dev/null; then
-    VISUAL=vim
-else
-    VISUAL=vi
-fi
-EDITOR="$VISUAL"
-
 # Use vi keybindings.
 set -o vi
 
