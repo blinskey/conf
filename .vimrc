@@ -237,8 +237,8 @@ if v:version >= 800
     endif
 endif
 
-" Some nice colorschemes: jellybeans, hybrid, Tomorrow-Night, iceberg, ir_black
-silent! colorscheme iceberg
+" Some nice colorschemes: jellybeans, Tomorrow-Night, iceberg, ir_black
+silent! colorscheme jellybeans
 
 " Show line numbers.
 set number
