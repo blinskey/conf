@@ -16,7 +16,7 @@ linux: common ksh bash
 
 mac: common bash
 
-common: vim tmux ctags inputrc
+common: vim tmux ctags inputrc git
 
 vim:
 	ln -fs $(SRC_DIR)/.vimrc ~
@@ -39,3 +39,9 @@ bash:
 
 inputrc:
 	ln -fs $(SRC_DIR)/.inputrc ~
+
+git:
+	# .gitconfig needs to be customized in certain environments, so we don't
+	# link it.
+	cp $(SRC_DIR)/.gitconfig ~
+	ln -fs $(SRC_DIR)/.gitignore_global ~
