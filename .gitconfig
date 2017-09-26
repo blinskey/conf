@@ -5,10 +5,10 @@
 [push]
 	default = simple
 [commit]
-	gpgsign = true
+	gpgsign = false
 [gpg]
-	program = gpg2
+	program = gpg
 [core]
-    excludesfile = ~blinskey/.gitignore_global
+    excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff
