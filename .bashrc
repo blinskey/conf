@@ -39,15 +39,4 @@ set -o vi
 alias l='ls -CFA'
 alias ll='ls -AhlF'
 
-make_prompt() {
-    # If we're in a virtualenv, show its name.
-    if [ -n "$VIRTUAL_ENV" ]; then
-        env_name=$(basename $VIRTUAL_ENV)
-        venv="($env_name)"
-    else
-        venv=""
-    fi
-
-    PS1="${venv}[\u@\h:\W]\\$ "
-}
-PROMPT_COMMAND=make_prompt
+PS1="[\u@\h:\W]\\$ "
