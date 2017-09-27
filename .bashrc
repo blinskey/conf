@@ -37,6 +37,6 @@ set -o vi
 
 # ls aliases
 alias l='ls -CFA'
-alias ll='ls -AhlF'
+alias ll='ls -ahlF'
 
 PS1="[\u@\h:\W]\\$ "

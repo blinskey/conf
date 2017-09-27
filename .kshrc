@@ -14,7 +14,7 @@ HISTFILE="$HOME/.sh_history"
 
 # Set up some ls aliases.
 alias l='ls -CFA'
-alias ll='ls -AhlF'
+alias ll='ls -ahlF'
 
 # Enable csh-style history editing.
 if [ "$OS" = OpenBSD ]; then
