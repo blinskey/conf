@@ -23,26 +23,19 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    " Syntax
-    "Plug 'rust-lang/rust.vim'
-    Plug 'StanAngeloff/php.vim'
-    Plug 'kh3phr3n/python-syntax'
-    Plug 'othree/html5-syntax.vim'
-    Plug 'othree/javascript-libraries-syntax.vim'
-    Plug 'pangloss/vim-javascript'
-
     Plug 'AndrewRadev/undoquit.vim' " Reopen closed windows.
-    Plug 'Raimondi/delimitMate' " Automatically add closing parentheses, &c.
-    Plug 'Valloric/MatchTagAlways' " Highlight enclosing HTML and XML tags.
+    Plug 'StanAngeloff/php.vim'
     Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
-    Plug 'davidhalter/jedi-vim' " Python autocompletion using Jedi library.
-    Plug 'ervandew/supertab' " Built-in completion using Tab.
     Plug 'flazz/vim-colorschemes' " Colorscheme collection.
     Plug 'godlygeek/tabular' " Text alignment.
     Plug 'jeetsukumaran/vim-buffergator' " List all buffers.
     Plug 'jmcantrell/vim-virtualenv' " Use Python virtualenvs.
     Plug 'justinmk/vim-sneak' " Quickly jump to a location.
+    Plug 'kh3phr3n/python-syntax'
     Plug 'majutsushi/tagbar' " Open a window displaying tags in buffer.
+    Plug 'othree/html5-syntax.vim'
+    Plug 'othree/javascript-libraries-syntax.vim'
+    Plug 'pangloss/vim-javascript'
     Plug 'tacahiroy/ctrlp-funky' " Ctrlp extension for search within buffer.
     Plug 'tpope/vim-characterize' " Adds additional data to 'ga' output.
     Plug 'tpope/vim-endwise' " Automatically add 'fi', &c. at end of blocks.
@@ -65,6 +58,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'ciaranm/detectindent' " Automatic indentation settings.
     "Plug 'tmhedberg/SimpylFold' " Python folding.
     "Plug 'vim-scripts/a.vim' " Switch between header and source file.
+    "Plug 'Raimondi/delimitMate' " Automatically add closing parentheses, &c.
+    "Plug 'Valloric/MatchTagAlways' " Highlight enclosing HTML and XML tags.
+    "Plug 'davidhalter/jedi-vim' " Python autocompletion using Jedi library.
+    "Plug 'ervandew/supertab' " Built-in completion using Tab.
+    "Plug 'rust-lang/rust.vim'
 
     call plug#end()
 endif
@@ -477,14 +475,10 @@ inoremap <C-L> <C-X><C-L>
 "{{{1 Syntastic ===============================================================
 
 if !s:use_ale
-    " Recommended newbie settings from Syntastic readme
-
     let g:syntastic_always_populate_loc_list = 1
     let g:syntastic_auto_loc_list = 1
     let g:syntastic_check_on_open = 1
     let g:syntastic_check_on_wq = 0
-
-    " End recommended settings
 
     " Define custom linters for various filetypes.
     let g:syntastic_javascript_checkers = ["eslint"]
@@ -604,12 +598,6 @@ function! s:position_help()
 endfunction
 autocmd FileType help call s:position_help()
 
-"{{{1 gundo ===================================================================
-
-" Toggle undo tree with F3.
-nnoremap <F3> :GundoToggle<CR>
-
-
 "{{{1 python.vim ==============================================================
 
 " Enable all syntax-highlighting features.
@@ -646,22 +634,6 @@ let delimitMate_insert_eol_marker = 2
 
 " Toggle between header and source files with <leader>+a.
 nnoremap <silent> <leader>a :A<CR>
-
-"{{{1 vim-textobj-quote =======================================================
-
-" Plugin disabled
-
-" " Enable curly quotes in text files.
-" augroup textobj_quote
-"     autocmd!
-"     autocmd FileType markdown call textobj#quote#init()
-"     autocmd FileType textile call textobj#quote#init()
-"     autocmd FileType text call textobj#quote#init({'educate': 0})
-" augroup END
-
-" " Quote replacement shortcuts.
-" map <silent> <leader>qc <Plug>ReplaceWithCurly
-" map <silent> <leader>qs <Plug>ReplaceWithStraight
 
 "{{{1 Python ==================================================================
 
