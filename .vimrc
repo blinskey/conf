@@ -1,5 +1,12 @@
 " vim: set foldmethod=marker:
 
+" Emulate Vi when invoked as such. This works with Debian's 'vim.basic' binary.
+if v:progname == 'vi'
+    set compatible
+    syntax off
+    finish
+endif
+
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
 autocmd!
