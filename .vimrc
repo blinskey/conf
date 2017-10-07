@@ -53,30 +53,26 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/BufOnly.vim' " Close everything but a single buffer.
     Plug 'wesQ3/vim-windowswap' " Swap position of arbitrary windows.
 
-    " Linter: Use asynchronous plugin if Vim support is available.
+    " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
     if s:use_ale
         Plug 'w0rp/ale'
-    else
-        Plug 'scrooloose/syntastic'
     endif
 
     "Plug 'airblade/vim-gitgutter' " Git diff markers, &c.
     "Plug 'ciaranm/detectindent' " Automatic indentation settings.
-    "Plug 'tmhedberg/SimpylFold' " Python folding.
     "Plug 'vim-scripts/a.vim' " Switch between header and source file.
     "Plug 'Raimondi/delimitMate' " Automatically add closing parentheses, &c.
     "Plug 'Valloric/MatchTagAlways' " Highlight enclosing HTML and XML tags.
     "Plug 'davidhalter/jedi-vim' " Python autocompletion using Jedi library.
     "Plug 'ervandew/supertab' " Built-in completion using Tab.
-    "Plug 'rust-lang/rust.vim'
 
     call plug#end()
 endif
 
-"{{{1 Keymap ==================================================================
+"{{{1 Miscellaneous ===========================================================
 
-if v:version >= 800 || !empty(glob('/usr/share/vim/vim74/keymap/armenian-western_utf-8.vim'))
+if v:version >= 800
     " Enable Western Armenian keymapping.
     set keymap=armenian-western_utf-8
 
@@ -85,19 +81,12 @@ if v:version >= 800 || !empty(glob('/usr/share/vim/vim74/keymap/armenian-western
     set imsearch=0
 endif
 
-"{{{1 Miscellaneous ===========================================================
-
-" Disable vi compatibility
-set nocompatible
-
 " Enable plugins
 filetype plugin on
 
 " File-extension-specific syntax settings
-autocmd BufRead,BufNewFile *.md,TODO set filetype=markdown
+autocmd BufRead,BufNewFile *.md set filetype=markdown
 autocmd BufRead,BufNewFile .gitignore set filetype=conf
-autocmd BufRead,BufNewFile .rs set filetype=rust
-autocmd BufRead,BufNewFile .di set filetype=d
 
 " Map <leader> to comma.
 let mapleader=","
@@ -106,10 +95,7 @@ let mapleader=","
 autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
 " Set path to word list for spellchecking.
-let s:spellfile_path = '/home/blinskey/code/config-files/vim-spellfile.utf-8.add'
-if !empty(glob(s:spellfile_path))
-    let &spellfile=s:spellfile_path
-endif
+set spellfile=~/.vim/spellfile.utf-8.add
 
 " Disable spellchecking in help documentation.
 autocmd FileType help setlocal nospell
@@ -127,13 +113,6 @@ set showmode
 set ttimeout
 set ttimeoutlen=50
 
-" Since we remap <C-L> for window navigation below, set a new mapping
-" to redraw the screen.
-nnoremap <silent> <leader>l :redraw!<CR>
-
-" Crude macro to surround unquoted word with quotes.
-let @q='viwoi"xea"'
-
 " Make sure the encoding is set to UTF-8.
 set encoding=utf-8
 set termencoding=utf-8
@@ -144,11 +123,10 @@ set gdefault
 " Never conceal text.
 set conceallevel=0
 
-" Ignore various types of files.
-set wildignore=*.o,*.obj,*.pyc
-
-" Enable the command-line completion window.
+" Enable and configure the command-line completion window.
 set wildmenu
+set wildmode=longest,list:longest
+set wildignore=*.o,*.obj,*.pyc
 
 " Set scroll boundaries.
 set scrolloff=1
@@ -158,9 +136,10 @@ set sidescrolloff=5
 " inside of Vim.
 set autoread
 
-" Enable the built-in matchit plugin.
-" FIXME: This fails in Vim 7.
-"packadd! matchit
+if has('packages')
+    " Enable the built-in matchit plugin.
+    packadd! matchit
+endif
 
 " Open new windows to the right and bottom of current window.
 set splitbelow
@@ -174,76 +153,56 @@ map! <C-F> <Esc>gUiw`]a
 set modelines=1
 
 " Set the encryption method to use with :X.
-set cm=blowfish2
-
-"{{{1 Mouse ===================================================================
+set cryptmethod=blowfish2
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
-" using the mouse. This assumes that we're using a relatively recent terminal
-" emulator.
+" using the mouse. Requires a relatively modern terminal emulator.
 set ttymouse=xterm2
 
-" By default, disable the mouse. Define a command and keymapping to toggle
-" the mouse in normal mode.
+" Enable mouse in normal mode only for easy window resizing.
+set mouse=n
 
-let s:mouse_mode = 0
+" Strip trailing whitespace on save.
+autocmd BufWritePre * %s/\s\+$//e
 
-function! ToggleMouseMode()
-    if s:mouse_mode
-        set mouse=
-        let s:mouse_mode = 0
-        redraw | echom "Mouse disabled"
-    else
-        set mouse=n
-        let s:mouse_mode = 1
-        redraw | echom "Mouse enabled"
+" Open help in a vertical split if there is enough room.
+function! s:position_help()
+    if winwidth(0) >= 160
+        wincmd L
     endif
 endfunction
-
-command! MouseToggle :call ToggleMouseMode()
-nnoremap <leader>m :MouseToggle<CR>
+autocmd FileType help call s:position_help()
 
 "{{{1 Appearance ==============================================================
 
 " Enable syntax highlighting.
-syntax enable
+if has("syntax")
+    syntax enable
+endif
 
 " Use 256-color terminal when not using GUI colors.
 set t_Co=256
 
-if v:version >= 800
-    " Toggle GUI colors on and off. Some colorschemes only properly support
-    " either GUI or terminal mode; others support both but look better in one
-    " of the two.
-    let s:use_gui_colors = 1
-
-    let default_t_8f = &t_8f
-    let default_t_8b = &t_8b
-
-    if s:use_gui_colors
-        " Use 24-bit color.
-        " See :h termguicolors and :h xterm-true-color for details.
-        set termguicolors
-        let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-        let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-    else
-        set notermguicolors
-        let &t_8f = default_t_8f
-        let &t_8b = default_t_8b
-    endif
+if has('termguicolors')
+    " Use 24-bit color.
+    " See :h termguicolors and :h xterm-true-color for details.
+    set termguicolors
+    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
+    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
 
     let s:using_24_bit_color = &termguicolors || has("gui_running")
-
-    " If we're in 256-color mode, modify brace-match highlighting to make it
-    " easier to keep track of the cursor. If we're in 24-bit-color mode, the
-    " built-in highlighting is sufficient.
-    if s:using_24_bit_color
-        highlight MatchParen cterm=bold ctermbg=none ctermfg=208
-    endif
 endif
 
-" Some nice colorschemes: jellybeans, Tomorrow-Night, iceberg, ir_black
+set colorcolumn=80
+
+set background=dark
+
 silent! colorscheme jellybeans
+
+if has('termguicolors')
+    " NOTE: Only need this with certain colorschemes.
+    highlight ColorColumn guibg=Gray
+endif
 
 " Show line numbers.
 set number
@@ -262,38 +221,6 @@ set nolist
 
 " Define whitespace characters to print when showlist is enabled.
 set listchars=tab:>-,trail:~,extends:>,precedes:<
-
-" Draw ruler at column 80.
-" From http://stackoverflow.com/a/3765575/2530735
-if exists('+colorcolumn')
-    set colorcolumn=80
-
-    if v:version >= 800 && s:using_24_bit_color
-        highlight ColorColumn guibg=Gray
-    else
-        highlight ColorColumn ctermbg=240
-    endif
-else
-      autocmd BufWinEnter * let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
-endif
-
-" Enable syntax highlighting in Markdown fenced code blocks.
-" (For default Markdown plugin.)
-let g:markdown_fenced_languages = [
-    \'c',
-    \'css',
-    \'haskell',
-    \'html',
-    \'java',
-    \'javascript',
-    \'json',
-    \'mysql',
-    \'python',
-    \'sh',
-    \'sql',
-    \'xml',
-    \'zsh'
-\]
 
 " Enable all Python syntax highlighting options.
 let python_highlight_all = 1
@@ -331,13 +258,9 @@ if s:use_ale
     endfunction
 
     set statusline+=%{LinterStatus()}
-else
-    set statusline+=%{SyntasticStatuslineFlag()}
 endif
 
 set statusline+=%*
-
-hi warningmsg guibg=DarkRed guifg=White
 
 "{{{1 Indentation and tabs ====================================================
 
@@ -413,18 +336,6 @@ autocmd FileType text setlocal formatoptions+=t
 " Don't soft-wrap lines.
 set nowrap
 
-"{{{1 Whitespace ==============================================================
-
-" Strip trailing whitespace on save.
-" From http://stackoverflow.com/a/1618401/2530735
-" TODO: Don't strip whitespace after \ at end of line.
-fun! <SID>StripTrailingWhitespaces()
-    let l = line(".")
-    let c = col(".")
-    %s/\s\+$//e
-    call cursor(l, c)
-endfun
-autocmd BufWritePre * :call <SID>StripTrailingWhitespaces()
 
 "{{{1 netrw ===================================================================
 
@@ -440,27 +351,10 @@ let g:netrw_banner = 0
 " Ignore files that we don't want to open.
 let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
 
-"{{{1 ctrlp-funky =============================================================
-
-" Open the CtrlPFunky function search window.
-nnoremap <Leader>f :CtrlPFunky<Cr>
-
-" Open CtrlPFunky with search field prepopulated with word under cursor.
-nnoremap <Leader>F :execute 'CtrlPFunky ' . expand('<cword>')<Cr>
-
-"{{{1 SuperTab ================================================================
-
-" Disable autocomplete before and after certain characters.
-let g:SuperTabNoCompleteBefore = [' ', '\t']
-let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
-
 "{{{1 Completion ==============================================================
 
 " Populate suggestions from current file, other buffers, and tags file.
 set complete=.,b,u,]
-
-" Replacement settings
-set wildmode=longest,list:longest
 
 " Add 'k' to ':set complete' list to enable dictionary completion.
 set dictionary+=/usr/share/dict/words
@@ -479,25 +373,16 @@ inoremap <C-D> <C-X><C-D>
 " Whole lines
 inoremap <C-L> <C-X><C-L>
 
-"{{{1 Syntastic ===============================================================
+"{{{1 ctrlp-funky =============================================================
 
-if !s:use_ale
-    let g:syntastic_always_populate_loc_list = 1
-    let g:syntastic_auto_loc_list = 1
-    let g:syntastic_check_on_open = 1
-    let g:syntastic_check_on_wq = 0
+" Open the CtrlPFunky function search window.
+nnoremap <Leader>f :CtrlPFunky<Cr>
 
-    " Define custom linters for various filetypes.
-    let g:syntastic_javascript_checkers = ["eslint"]
-    let g:syntastic_java_checkers = []
-    let g:syntastic_json_checkers = ["jsonlint"]
-    let g:syntastic_python_checkers = ["flake8", "pylint"]
+"{{{1 SuperTab ================================================================
 
-    let g:syntastic_python_pylint_args = '--rcfile=~/.pylintrc'
-
-    " Toggle mode with F9.
-    nnoremap <F9> :SyntasticToggleMode<CR>
-endif
+" Disable autocomplete before and after certain characters.
+let g:SuperTabNoCompleteBefore = [' ', '\t']
+let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
 
 "{{{1 ALE =====================================================================
 
@@ -521,18 +406,7 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-"{{{1 IndentLine ==============================================================
-
-" Line color
-let g:indentLine_color_term = 239
-
-" List of file types for which indentation line should not be shown
-let g:indentLine_fileTypeExclude = ['text']
-
 "{{{1 tagbar ==================================================================
-
-" Enable Airline tagbar plugin integration.
-let g:airline#extensions#tagbar#enabled = 1
 
 " List tags in the order in which they appear in the source file.
 let g:tagbar_sort = 0
@@ -540,24 +414,12 @@ let g:tagbar_sort = 0
 " Toggle tagbar with F8.
 nnoremap <silent> <F8> :TagbarToggle<CR>
 
-" Jump to tagbar with <leader>+t, opening it if it is currently closed and
-" keeping it open after selecting a function.
-"nmap <silent> <leader>t :TagbarOpen fj<CR>
-
 " Toggle the tagbar with <leader>+t.
 nmap <silent> <leader>t :TagbarToggle<CR>
 
 " On a 190-column screen, this leaves room for two 80-column windows, plus some
 " padding.
 let g:tagbar_width = 30
-
-"{{{1 ctags ===================================================================
-
-" Generate tags on write.
-"
-" For a Git hook-based alternative, see
-" http://tbaggery.com/2011/08/08/effortless-ctags-with-git.html
-":autocmd BufWritePost * call system("ctags -R")
 
 "{{{1 Folding =================================================================
 
@@ -570,11 +432,6 @@ set foldignore=
 
 " Start with all folds open.
 set foldlevelstart=99
-
-"{{{1 SimpylFold ==============================================================
-
-" Show docstring preview in fold text.
-let g:SimpylFold_docstring_preview = 1
 
 "{{{1 PHP =====================================================================
 
@@ -594,16 +451,6 @@ augroup END
 
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
-
-"{{{1 Help ====================================================================
-
-" Open help in a vertical split if there is enough room.
-function! s:position_help()
-    if winwidth(0) >= 160
-        wincmd L
-    endif
-endfunction
-autocmd FileType help call s:position_help()
 
 "{{{1 python.vim ==============================================================
 
