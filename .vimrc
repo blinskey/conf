@@ -30,42 +30,29 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    Plug 'AndrewRadev/undoquit.vim' " Reopen closed windows.
-    Plug 'StanAngeloff/php.vim'
-    Plug 'ctrlpvim/ctrlp.vim' " Fuzzy finder
-    Plug 'flazz/vim-colorschemes' " Colorscheme collection.
-    Plug 'godlygeek/tabular' " Text alignment.
-    Plug 'jeetsukumaran/vim-buffergator' " List all buffers.
-    Plug 'jmcantrell/vim-virtualenv' " Use Python virtualenvs.
-    Plug 'justinmk/vim-sneak' " Quickly jump to a location.
-    Plug 'kh3phr3n/python-syntax'
-    Plug 'majutsushi/tagbar' " Open a window displaying tags in buffer.
-    Plug 'othree/html5-syntax.vim'
-    Plug 'othree/javascript-libraries-syntax.vim'
-    Plug 'pangloss/vim-javascript'
-    Plug 'tacahiroy/ctrlp-funky' " Ctrlp extension for search within buffer.
-    Plug 'tpope/vim-characterize' " Adds additional data to 'ga' output.
-    Plug 'tpope/vim-endwise' " Automatically add 'fi', &c. at end of blocks.
-    Plug 'tpope/vim-obsession' " Automated session management.
-    Plug 'tpope/vim-repeat' " Allows plugins to use the '.' command.
-    Plug 'tpope/vim-speeddating' " <C-A> and <C-X> handle dates intelligently.
-    Plug 'tpope/vim-surround' " Manipulate characters enclosing a selection.
-    Plug 'vim-scripts/BufOnly.vim' " Close everything but a single buffer.
-    Plug 'wesQ3/vim-windowswap' " Swap position of arbitrary windows.
+    Plug 'AndrewRadev/undoquit.vim'        " Reopen closed windows.
+    Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
+    Plug 'flazz/vim-colorschemes'          " Colorscheme collection.
+    Plug 'godlygeek/tabular'               " Text alignment.
+    Plug 'jeetsukumaran/vim-buffergator'   " List all buffers.
+    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
+    Plug 'justinmk/vim-sneak'              " Quickly jump to a location.
+    Plug 'majutsushi/tagbar'               " Open a window displaying tags in buffer.
+    Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
+    Plug 'tpope/vim-characterize'          " Adds additional data to 'ga' output.
+    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
+    Plug 'tpope/vim-obsession'             " Automated session management.
+    Plug 'tpope/vim-repeat'                " Allows plugins to use the '.' command.
+    Plug 'tpope/vim-surround'              " Manipulate characters enclosing a selection.
+    Plug 'vim-scripts/BufOnly.vim'         " Close everything but a single buffer.
+    Plug 'vim-scripts/a.vim'               " Switch between header and source file.
+    Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
     if s:use_ale
         Plug 'w0rp/ale'
     endif
-
-    "Plug 'airblade/vim-gitgutter' " Git diff markers, &c.
-    "Plug 'ciaranm/detectindent' " Automatic indentation settings.
-    "Plug 'vim-scripts/a.vim' " Switch between header and source file.
-    "Plug 'Raimondi/delimitMate' " Automatically add closing parentheses, &c.
-    "Plug 'Valloric/MatchTagAlways' " Highlight enclosing HTML and XML tags.
-    "Plug 'davidhalter/jedi-vim' " Python autocompletion using Jedi library.
-    "Plug 'ervandew/supertab' " Built-in completion using Tab.
 
     call plug#end()
 endif
@@ -197,7 +184,7 @@ set colorcolumn=80
 
 set background=dark
 
-silent! colorscheme jellybeans
+colorscheme jellybeans
 
 if has('termguicolors')
     " NOTE: Only need this with certain colorschemes.
