@@ -144,10 +144,8 @@ set cryptmethod=blowfish2
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
 " using the mouse. Requires a relatively modern terminal emulator.
+" Use 'set mouse=n' to enable resizing of windows in normal mode.
 set ttymouse=xterm2
-
-" Enable mouse in normal mode only for easy window resizing.
-set mouse=n
 
 " Strip trailing whitespace on save.
 autocmd BufWritePre * %s/\s\+$//e
