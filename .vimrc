@@ -31,8 +31,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'AndrewRadev/undoquit.vim'        " Reopen closed windows.
+    Plug 'blinskey/btl.vim'                " Colorscheme
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
-    Plug 'flazz/vim-colorschemes'          " Colorscheme collection.
     Plug 'godlygeek/tabular'               " Text alignment.
     Plug 'jeetsukumaran/vim-buffergator'   " List all buffers.
     Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
@@ -184,12 +184,7 @@ set colorcolumn=80
 
 set background=dark
 
-colorscheme jellybeans
-
-if has('termguicolors')
-    " NOTE: Only need this with certain colorschemes.
-    highlight ColorColumn guibg=Gray
-endif
+colorscheme btl
 
 " Show line numbers.
 set number
