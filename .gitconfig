@@ -12,3 +12,5 @@
     excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff
+[tag]
+	sort = version:refname
