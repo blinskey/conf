@@ -11,3 +11,6 @@ Session.vim
 # Python bytecode
 *.pyc
 __pycache__
+
+# Mac Finder data
+.DS_Store
