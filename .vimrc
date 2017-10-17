@@ -47,7 +47,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
     Plug 'Vimjas/vim-python-pep8-indent'
+
+    " Color schemes
     Plug 'cocopon/iceberg.vim'
+    Plug 'widatama/vim-phoenix'
+    Plug 'nanotech/jellybeans.vim'
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
