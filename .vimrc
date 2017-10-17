@@ -31,7 +31,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
     Plug 'AndrewRadev/undoquit.vim'        " Reopen closed windows.
-    Plug 'blinskey/btl.vim'                " Colorscheme
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
     Plug 'godlygeek/tabular'               " Text alignment.
     Plug 'jeetsukumaran/vim-buffergator'   " List all buffers.
@@ -47,6 +46,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/BufOnly.vim'         " Close everything but a single buffer.
     Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
+    Plug 'cocopon/iceberg.vim'
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
@@ -182,7 +182,8 @@ set colorcolumn=80
 
 set background=dark
 
-colorscheme btl
+colorscheme iceberg
+hi comment guifg=#888888
 
 " Show line numbers.
 set number
