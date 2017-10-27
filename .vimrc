@@ -383,6 +383,9 @@ endif
 
 "{{{1 ctrlp ===================================================================
 
+" Open menu by pressing <leader> twice.
+let g:ctrlp_map='<leader><leader>'
+
 " Set base directory to cwd or nearest ancestor with version control file.
 let g:ctrlp_working_path_mode = 'rw'
 
