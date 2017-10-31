@@ -40,3 +40,6 @@ alias l='ls -CFA'
 alias ll='ls -ahlF'
 
 PS1="[\u@\h:\W]\\$ "
+
+# Alias VBoxManage to something less painful to type.
+alias vbm='VBoxManage'
