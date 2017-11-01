@@ -49,6 +49,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
     Plug 'Vimjas/vim-python-pep8-indent'
+    Plug 'fatih/vim-go'
 
     " Color schemes
     Plug 'cocopon/iceberg.vim'
