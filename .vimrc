@@ -9,7 +9,9 @@ endif
 
 " Remove all autocommands for the current group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
-autocmd!
+augroup vimrc
+    autocmd!
+augroup END
 
 " {{{1 vim-plug ===============================================================
 
@@ -24,7 +26,7 @@ autocmd!
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd VimEnter * PlugInstall
+    autocmd vimrc VimEnter * PlugInstall
 endif
 
 if !empty(glob('~/.vim/autoload/plug.vim'))
@@ -77,20 +79,20 @@ endif
 filetype plugin on
 
 " File-extension-specific syntax settings
-autocmd BufRead,BufNewFile *.md set filetype=markdown
-autocmd BufRead,BufNewFile .gitignore set filetype=conf
+autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
+autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 
 " Map <leader> to comma.
 let mapleader=","
 
 " Enable spellchecking in prose files.
-autocmd BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
+autocmd vimrc BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
 " Set path to word list for spellchecking.
 set spellfile=~/.vim/spellfile.utf-8.add
 
 " Disable spellchecking in help documentation.
-autocmd FileType help setlocal nospell
+autocmd vimrc FileType help setlocal nospell
 
 " Always show status line on last window.
 set laststatus=2
@@ -153,7 +155,7 @@ set cryptmethod=blowfish2
 set ttymouse=xterm2
 
 " Strip trailing whitespace on save.
-autocmd BufWritePre * %s/\s\+$//e
+autocmd vimrc BufWritePre * %s/\s\+$//e
 
 " Open help in a vertical split if there is enough room.
 function! s:position_help()
@@ -161,7 +163,7 @@ function! s:position_help()
         wincmd L
     endif
 endfunction
-autocmd FileType help call s:position_help()
+autocmd vimrc FileType help call s:position_help()
 
 "{{{1 Appearance ==============================================================
 
@@ -278,7 +280,7 @@ let g:detectindent_max_lines_to_analyse = 1024
 filetype indent on
 
 " Use two-space tabs in Markdown and HTML files.
-autocmd Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd vimrc Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set backspace=indent,eol,start
@@ -317,7 +319,7 @@ set formatoptions+=1 " Try not to break after a one-letter word
 set formatoptions+=j " Remove comment leader when joining lines
 
 " Auto-wrap plain text.
-autocmd FileType text setlocal formatoptions+=t
+autocmd vimrc FileType text setlocal formatoptions+=t
 
 " Don't soft-wrap lines.
 set nowrap
@@ -413,8 +415,8 @@ let g:tagbar_width = 30
 "{{{1 Folding =================================================================
 
 set foldmethod=syntax
-autocmd FileType python set foldmethod=indent
-autocmd BufRead,BufNewFile .vimrc set foldmethod=marker
+autocmd vimrc FileType python set foldmethod=indent
+autocmd vimrc BufRead,BufNewFile .vimrc set foldmethod=marker
 
 " Don't make an exception for any character when folding.
 set foldignore=
@@ -481,7 +483,7 @@ nnoremap <silent> <leader>a :A<CR>
 "{{{1 Python ==================================================================
 
 " Use Python syntax for type hinting stub files.
-autocmd BufRead,BufNewFile *.pyi set filetype=python
+autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
 
 "{{{1 GitGutter ===============================================================
 
