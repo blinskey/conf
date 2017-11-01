@@ -7,18 +7,13 @@ fi
 
 # User specific environment and startup programs
 
-PATH=$PATH:$HOME/.local/bin:$HOME/bin
+export GOPATH=$HOME/src/go
+export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$GOPATH/bin
 
 # Add MacPorts bin directories on Mac.
 if [ "$(uname)" == "Darwin" ]; then
     PATH="$PATH:/opt/local/bin:/opt/local/sbin"
 fi
-
-export GOPATH=$HOME/go
-
-PATH="$PATH:$HOME/bin:$GOPATH/bin"
-
-export PATH
 
 # Set pager and options.
 #

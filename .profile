@@ -1,11 +1,8 @@
 # sh/ksh initialization
 
-PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:.
 
-PATH="$PATH:$HOME/bin"
-
-GOPATH=$HOME/go
-PATH="$PATH:$GOPATH/bin"
+GOPATH=$HOME/src/go
+PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:$HOME/bin:$GOPATH/bin:.
 
 export PATH HOME TERM GOPATH
 
