@@ -7,7 +7,7 @@ fi
 
 # User specific environment and startup programs
 
-export GOPATH=$HOME/src/go
+export GOPATH=$HOME/go
 export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$GOPATH/bin
 
 # Add MacPorts bin directories on Mac.
