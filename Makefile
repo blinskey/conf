@@ -45,3 +45,7 @@ git:
 	# link it.
 	cp $(SRC_DIR)/.gitconfig ~
 	ln -fs $(SRC_DIR)/.gitignore_global ~
+
+go:
+	mkdir ~/go
+	ln -fs ~/go ~/src
