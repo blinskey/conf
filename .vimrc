@@ -48,13 +48,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'vim-scripts/BufOnly.vim'         " Close everything but a single buffer.
     Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
-    Plug 'Vimjas/vim-python-pep8-indent'
-    Plug 'fatih/vim-go'
-
-    " Color schemes
-    Plug 'cocopon/iceberg.vim'
-    Plug 'widatama/vim-phoenix'
-    Plug 'nanotech/jellybeans.vim'
+    Plug 'fatih/vim-go'                    " Golang tools.
+    Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
+    Plug 'cocopon/iceberg.vim'             " Color scheme.
+    "Plug 'Vimjas/vim-python-pep8-indent'   " Python formatting improvements.
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
@@ -280,8 +277,8 @@ let g:detectindent_max_lines_to_analyse = 1024
 " Load indent file for specific filetypes.
 filetype indent on
 
-" Use two-space tabs in Markdown and HTML files.
-autocmd vimrc Filetype markdown,html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+" Use two-space tabs for certain filetypes.
+autocmd vimrc Filetype html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set backspace=indent,eol,start
@@ -491,3 +488,8 @@ autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
 " Workaround for conflict between GitGutter and ctrlp-funky.
 " See https://github.com/tacahiroy/ctrlp-funky/issues/85
 let g:gitgutter_async = 0
+
+"{{{1 vim-go ==================================================================
+
+" Don't auto-populate new files from template.
+let g:go_template_autocreate = 0
