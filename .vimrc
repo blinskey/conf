@@ -51,7 +51,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'fatih/vim-go'                    " Golang tools.
     Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
     Plug 'cocopon/iceberg.vim'             " Color scheme.
-    "Plug 'Vimjas/vim-python-pep8-indent'   " Python formatting improvements.
+    Plug 'ervandew/supertab'               " Autocompletion with tab.
+    "Plug 'Vimjas/vim-python-pep8-indent'  " Python formatting improvements.
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
