@@ -41,7 +41,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'majutsushi/tagbar'               " Open a window displaying tags in buffer.
     Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
     Plug 'tpope/vim-characterize'          " Adds additional data to 'ga' output.
-    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
     Plug 'tpope/vim-obsession'             " Automated session management.
     Plug 'tpope/vim-repeat'                " Allows plugins to use the '.' command.
     Plug 'tpope/vim-surround'              " Manipulate characters enclosing a selection.
@@ -52,7 +51,11 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
     Plug 'cocopon/iceberg.vim'             " Color scheme.
     Plug 'ervandew/supertab'               " Autocompletion with tab.
+
     "Plug 'Vimjas/vim-python-pep8-indent'  " Python formatting improvements.
+
+    " Conflicts with DelimitMate.
+    "Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
