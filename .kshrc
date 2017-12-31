@@ -45,3 +45,10 @@ if [ "$OS" = OpenBSD ]; then
 else
 	PS1='[$USER@$(hostname -s):$(prompt_dir)]$ '
 fi
+
+# Shortcut for a set of grep options that I commonly use: grep for a literal
+# string, ignoring case, recursing through the current working directory,
+# ignoring binary files, and output the line number with each match.
+grepfor() {
+    fgrep -riIn "$1" .
+}

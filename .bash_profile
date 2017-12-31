@@ -12,7 +12,7 @@ export PATH=$PATH:$HOME/.local/bin:$HOME/bin:$GOPATH/bin
 
 # Add MacPorts bin directories on Mac.
 if [ "$(uname)" == "Darwin" ]; then
-    PATH="$PATH:/opt/local/bin:/opt/local/sbin"
+    PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
 
 # Set pager and options.
