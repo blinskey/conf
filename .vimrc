@@ -35,7 +35,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'AndrewRadev/undoquit.vim'        " Reopen closed windows.
     "Plug 'godlygeek/tabular'               " Text alignment.
     "Plug 'jeetsukumaran/vim-buffergator'   " List all buffers.
-    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
     "Plug 'justinmk/vim-sneak'              " Quickly jump to a location.
     "Plug 'majutsushi/tagbar'               " Open a window displaying tags in buffer.
     "Plug 'tpope/vim-characterize'          " Adds additional data to 'ga' output.
@@ -45,14 +44,12 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'vim-scripts/BufOnly.vim'         " Close everything but a single buffer.
     "Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     "Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
-    Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
 
+    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
+    Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
     Plug 'ervandew/supertab'               " Autocompletion with tab.
     Plug 'Vimjas/vim-python-pep8-indent'  " Python formatting improvements.
-
-    " Conflicts with DelimitMate.
-    "Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
-
+    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
     Plug 'cocopon/iceberg.vim'             " Color scheme.
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
     Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
@@ -156,6 +153,9 @@ set cryptmethod=blowfish2
 " using the mouse. Requires a relatively modern terminal emulator.
 " Use 'set mouse=n' to enable resizing of windows in normal mode.
 set ttymouse=xterm2
+
+" Enable mouse in Normal mode.
+set mouse=n
 
 " Strip trailing whitespace on save.
 autocmd vimrc BufWritePre * %s/\s\+$//e
@@ -386,12 +386,12 @@ if s:use_ale
     let g:ale_sign_column_always = 1
 
     "let g:ale_lint_on_text_changed = 'never'
-    let g:ale_set_loclist = 0
+    let g:ale_set_loclist = 1
     let g:ale_set_quickfix = 0
 
     " The default delay of 10 ms can cause serious lag when editing files
     " with more than a few errors.
-    let g:ale_echo_delay = 500
+    let g:ale_echo_delay = 100
 endif
 
 "{{{1 ctrlp ===================================================================
