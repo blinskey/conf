@@ -157,8 +157,13 @@ set ttymouse=xterm2
 " Enable mouse in Normal mode.
 set mouse=n
 
-" Strip trailing whitespace on save.
-autocmd vimrc BufWritePre * %s/\s\+$//e
+" Strip trailing whitespace on write, preserving window view.
+function! s:StripTrailingWhitespace()
+    let l:view = winsaveview()
+    %s/\s\+$//e
+    call winrestview(l:view)
+endfun
+autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 
 " Open help in a vertical split if there is enough room.
 function! s:position_help()
