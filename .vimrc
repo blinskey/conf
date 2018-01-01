@@ -165,6 +165,8 @@ set ttymouse=xterm2
 set mouse=n
 
 " Strip trailing whitespace on write, preserving window view.
+" Note that this is applied to all file types, even though there are a few
+" where this may not be desireable.
 function! s:StripTrailingWhitespace()
     let l:view = winsaveview()
     %s/\s\+$//e
