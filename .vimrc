@@ -50,10 +50,17 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'ervandew/supertab'               " Autocompletion with tab.
     Plug 'Vimjas/vim-python-pep8-indent'  " Python formatting improvements.
     Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
-    Plug 'cocopon/iceberg.vim'             " Color scheme.
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
     Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
     Plug 'fatih/vim-go'                    " Golang tools.
+
+    " Color schemes
+    Plug 'AlessandroYorba/Alduin'
+    Plug 'cocopon/iceberg.vim'
+    Plug 'juanedi/predawn.vim'
+    Plug 'romainl/Apprentice'
+    Plug 'tyrannicaltoucan/vim-quantum'
+    Plug 'w0ng/vim-hybrid'
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
@@ -197,7 +204,7 @@ set colorcolumn=80
 
 set background=dark
 
-colorscheme iceberg
+colorscheme hybrid
 hi comment guifg=#888888
 
 " Show line numbers.
