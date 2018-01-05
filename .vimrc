@@ -55,12 +55,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'fatih/vim-go'                    " Golang tools.
 
     " Color schemes
-    Plug 'AlessandroYorba/Alduin'
     Plug 'cocopon/iceberg.vim'
-    Plug 'juanedi/predawn.vim'
+    Plug 'baskerville/bubblegum'
     Plug 'romainl/Apprentice'
-    Plug 'tyrannicaltoucan/vim-quantum'
-    Plug 'w0ng/vim-hybrid'
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
@@ -206,7 +203,7 @@ set colorcolumn=80
 
 set background=dark
 
-colorscheme hybrid
+colorscheme iceberg
 hi comment guifg=#888888
 
 " Show line numbers.
