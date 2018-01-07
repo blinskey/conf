@@ -26,7 +26,7 @@ augroup END
 if empty(glob('~/.vim/autoload/plug.vim'))
     silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
         \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-    autocmd vimrc VimEnter * PlugInstall
+    autocmd vimrc VimEnter * PlugInstall --sync | source $MYVIMRC
 endif
 
 if !empty(glob('~/.vim/autoload/plug.vim'))
@@ -45,18 +45,18 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'vim-scripts/a.vim'               " Switch between header and source file.
     "Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
 
-    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
     Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
-    Plug 'ervandew/supertab'               " Autocompletion with tab.
-    Plug 'Vimjas/vim-python-pep8-indent'  " Python formatting improvements.
-    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
+    Plug 'Vimjas/vim-python-pep8-indent'   " Python formatting improvements.
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
-    Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
+    Plug 'ervandew/supertab'               " Autocompletion with tab.
     Plug 'fatih/vim-go'                    " Golang tools.
+    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
+    Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
+    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
 
     " Color schemes
-    Plug 'cocopon/iceberg.vim'
     Plug 'baskerville/bubblegum'
+    Plug 'cocopon/iceberg.vim'
     Plug 'romainl/Apprentice'
 
     " ALE linter plugin requires async support.
@@ -151,7 +151,9 @@ map! <C-F> <Esc>gUiw`]a
 set modelines=1
 
 " Set the encryption method to use with :X.
-set cryptmethod=blowfish2
+if has("patch-7.4.401")
+    set cryptmethod=blowfish2
+endif
 
 " ttymouse must be set to xterm2, not xterm, to enable resizing of windows
 " using the mouse. Requires a relatively modern terminal emulator.
@@ -204,18 +206,21 @@ set colorcolumn=80
 set background=dark
 
 colorscheme iceberg
-hi comment guifg=#888888
+
+" Set comments to a light-gray color. Useful for some color schemes with
+" low-contrast comments.
+"hi comment guifg=#888888
 
 " Show line numbers.
 set number
 
-" Highlight current line.
-set cursorline
+" Highlight current line. Very slow in some environments.
+"set cursorline
 
 " Disable cursorline underline set by some colorschemes.
 hi Cursorline gui=none cterm=none
 
-" Limit redraws to offset slowdown from cursorline.
+" Limit redraws to improve performance.
 set lazyredraw
 
 " Don't show whitespace.
@@ -223,9 +228,6 @@ set nolist
 
 " Define whitespace characters to print when showlist is enabled.
 set listchars=tab:>-,trail:~,extends:>,precedes:<
-
-" Enable all Python syntax highlighting options.
-let python_highlight_all = 1
 
 "{{{1 Statusline ==============================================================
 
@@ -519,3 +521,5 @@ let g:gitgutter_async = 0
 
 " Don't auto-populate new files from template.
 let g:go_template_autocreate = 0
+
+" To install binaries expected by vim-go, run :GoInstallBinaries.
