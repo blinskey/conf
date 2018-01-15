@@ -353,7 +353,7 @@ let g:netrw_liststyle = 3
 let g:netrw_banner = 0
 
 " Ignore files that we don't want to open.
-let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,tags,\.git'
+let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
 
 "{{{1 Completion ==============================================================
 
