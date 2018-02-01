@@ -43,3 +43,5 @@ else
 fi
 export EDITOR="$VISUAL"
 
+# Don't kill shell due to inactivity.
+unset TMOUT

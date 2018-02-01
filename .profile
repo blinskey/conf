@@ -38,3 +38,6 @@ if type vim >/dev/null; then
 else
     export VISUAL=vi
 fi
+
+# Don't kill shell due to inactivity.
+unset TMOUT
