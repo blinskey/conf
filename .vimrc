@@ -37,10 +37,10 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     "Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
     "Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
     "Plug 'editorconfig/editorconfig-vim'
+    "Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
+    "Plug 'ervandew/supertab'               " Autocompletion with tab.
+    "Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
 
-    Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
-    Plug 'ervandew/supertab'               " Autocompletion with tab.
-    Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
     Plug 'cocopon/iceberg.vim'
 
     " ALE linter plugin requires async support.
