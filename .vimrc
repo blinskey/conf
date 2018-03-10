@@ -32,33 +32,16 @@ endif
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
-    "Plug 'AndrewRadev/undoquit.vim'        " Reopen closed windows.
-    "Plug 'godlygeek/tabular'               " Text alignment.
-    "Plug 'jeetsukumaran/vim-buffergator'   " List all buffers.
-    "Plug 'justinmk/vim-sneak'              " Quickly jump to a location.
-    "Plug 'majutsushi/tagbar'               " Open a window displaying tags in buffer.
-    "Plug 'tpope/vim-characterize'          " Adds additional data to 'ga' output.
-    "Plug 'tpope/vim-obsession'             " Automated session management.
-    "Plug 'tpope/vim-repeat'                " Allows plugins to use the '.' command.
-    "Plug 'tpope/vim-surround'              " Manipulate characters enclosing a selection.
-    "Plug 'vim-scripts/BufOnly.vim'         " Close everything but a single buffer.
-    "Plug 'vim-scripts/a.vim'               " Switch between header and source file.
-    "Plug 'wesQ3/vim-windowswap'            " Swap position of arbitrary windows.
+    "Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
+    "Plug 'Vimjas/vim-python-pep8-indent'   " Python formatting improvements.
+    "Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
+    "Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
+    "Plug 'editorconfig/editorconfig-vim'
 
-    Plug 'Raimondi/delimitMate'            " Automatic parenthesis completion.
-    Plug 'Vimjas/vim-python-pep8-indent'   " Python formatting improvements.
     Plug 'ctrlpvim/ctrlp.vim'              " Fuzzy finder
     Plug 'ervandew/supertab'               " Autocompletion with tab.
-    Plug 'fatih/vim-go'                    " Golang tools.
-    Plug 'jmcantrell/vim-virtualenv'       " Use Python virtualenvs.
     Plug 'tacahiroy/ctrlp-funky'           " Ctrlp extension for search within buffer.
-    Plug 'tpope/vim-endwise'               " Automatically add 'fi', &c. at end of blocks.
-    Plug 'editorconfig/editorconfig-vim'
-
-    " Color schemes
-    Plug 'baskerville/bubblegum'
     Plug 'cocopon/iceberg.vim'
-    Plug 'romainl/Apprentice'
 
     " ALE linter plugin requires async support.
     let s:use_ale = v:version >= 800
@@ -208,15 +191,11 @@ set background=dark
 
 colorscheme iceberg
 
-" Set comments to a light-gray color. Useful for some color schemes with
-" low-contrast comments.
-"hi comment guifg=#888888
-
 " Show line numbers.
 set number
 
 " Highlight current line. Very slow in some environments.
-"set cursorline
+set nocursorline
 
 " Disable cursorline underline set by some colorschemes.
 hi Cursorline gui=none cterm=none
@@ -243,16 +222,7 @@ function! StatuslineKeymap()
     endif
 endfunction
 
-function! StatuslineVenv()
-    let l:txt = virtualenv#statusline()
-    if l:txt == ''
-        return ''
-    else
-        return '[venv: ' . l:txt . ']'
-    endif
-endfunction
-
-set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ %{StatuslineVenv()}\ \|\ %l:%c\ \|\ %p%%\ \|
+set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
 
 if s:use_ale
     function! LinterStatus() abort
@@ -422,21 +392,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-"{{{1 tagbar ==================================================================
-
-" List tags in the order in which they appear in the source file.
-let g:tagbar_sort = 0
-
-" Toggle tagbar with F8.
-nnoremap <silent> <F8> :TagbarToggle<CR>
-
-" Toggle the tagbar with <leader>+t.
-nmap <silent> <leader>t :TagbarToggle<CR>
-
-" On a 190-column screen, this leaves room for two 80-column windows, plus some
-" padding.
-let g:tagbar_width = 30
-
 "{{{1 Folding =================================================================
 
 " NOTE: The 'syntax' method causes horrible lag in C files.
@@ -451,50 +406,10 @@ set foldignore=
 " Start with all folds open.
 set foldlevelstart=99
 
-"{{{1 PHP =====================================================================
-
-" Improve doc comment syntax. From the php.vim readme.
-
-function! PhpSyntaxOverride()
-    hi! def link phpDocTags  phpDefine
-    hi! def link phpDocParam phpType
-endfunction
-
-augroup phpSyntaxOverride
-    autocmd!
-    autocmd FileType php call PhpSyntaxOverride()
-augroup END
-
 "{{{1 JSON ====================================================================
 
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
-
-"{{{1 python.vim ==============================================================
-
-" Enable all syntax-highlighting features.
-let python_highlight_all = 1
-
-"{{{1 Jedi ====================================================================
-
-" Don't automatically pop up completion box when a period is entered.
-" Use the completion key to open the completion box.
-let g:jedi#popup_on_dot = 0
-
-" Wait 1 second before showing call signature.
-let g:jedi#show_call_signatures_delay = 1000
-
-" Rename with <leader>r
-nnoremap <silent> <buffer> <localleader>r :call jedi#rename()<cr>
-
-" Don't auto-complete 'import' after 'from ...'.
-let g:jedi#smart_auto_mappings = 0
-
-"{{{1 Auto-Pairs ==============================================================
-
-" Disable problematic behavior when inserting closing delimiter within existing
-" delimiter pair.
-let g:AutoPairsMultilineClose = 0
 
 "{{{1 DelimitMate =============================================================
 
@@ -502,25 +417,7 @@ let delimitMate_autoclose = 1
 let delimitMate_expand_cr = 2
 let delimitMate_insert_eol_marker = 2
 
-"{{{1 A.vim ===================================================================
-
-" Toggle between header and source files with <leader>+a.
-nnoremap <silent> <leader>a :A<CR>
-
 "{{{1 Python ==================================================================
 
 " Use Python syntax for type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
-
-"{{{1 GitGutter ===============================================================
-
-" Workaround for conflict between GitGutter and ctrlp-funky.
-" See https://github.com/tacahiroy/ctrlp-funky/issues/85
-let g:gitgutter_async = 0
-
-"{{{1 vim-go ==================================================================
-
-" Don't auto-populate new files from template.
-let g:go_template_autocreate = 0
-
-" To install binaries expected by vim-go, run :GoInstallBinaries.
