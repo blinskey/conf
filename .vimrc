@@ -54,6 +54,8 @@ endif
 
 "{{{1 Miscellaneous ===========================================================
 
+set nocompatible
+
 if v:version >= 800
     " Enable Western Armenian keymapping.
     set keymap=armenian-western_utf-8
@@ -330,23 +332,6 @@ let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
 
 " Populate suggestions from current file, other buffers, and tags file.
 set complete=.,b,u,]
-
-" Add 'k' to ':set complete' list to enable dictionary completion.
-set dictionary+=/usr/share/dict/words
-
-" Mappings suggested in :h ins-completion:
-
-" Tags
-inoremap <C-]> <C-X><C-]>
-
-" Filenames
-"inoremap <C-F> <C-X><C-F>
-
-" Definitions or macros
-inoremap <C-D> <C-X><C-D>
-
-" Whole lines
-inoremap <C-L> <C-X><C-L>
 
 "{{{1 ctrlp-funky =============================================================
 
