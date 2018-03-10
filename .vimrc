@@ -1,26 +1,15 @@
-" vim: set foldmethod=marker:
-
-" Emulate Vi when invoked as such. This works with Debian's 'vim.basic' binary.
+" When invoked as 'vi', try to emulate good, old, unimproved vi.
 if v:progname == 'vi'
     set compatible
     syntax off
     finish
 endif
 
-" Remove all autocommands for the current group. Prevents commands from being
+" Remove all autocommands in the 'vimrc' group. Prevents commands from being
 " duplicated when .vimrc is sourced multiple times.
 augroup vimrc
     autocmd!
 augroup END
-
-" {{{1 vim-plug ===============================================================
-
-" See https://github.com/junegunn/vim-plug
-"
-" Usage:
-" - :PlugInstall to install the plugins listed below
-" - :PlugUpdate to update plugins
-" - :PlugUpgrade to update vim-plug
 
 " Try to automatically install plug.vim if it's not already installed.
 if empty(glob('~/.vim/autoload/plug.vim'))
@@ -52,46 +41,32 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#end()
 endif
 
-"{{{1 Miscellaneous ===========================================================
-
 set nocompatible
 
+" Հայերէն -- disabled by default. Use Ctrl-^ to switch in Insert mode.
 if v:version >= 800
-    " Enable Western Armenian keymapping.
     set keymap=armenian-western_utf-8
-
-    " Disable keymap by default. (Use Ctrl-^ to switch in insert mode.)
     set iminsert=0
     set imsearch=0
 endif
 
-" Enable plugins
 filetype plugin on
 
 " File-extension-specific syntax settings
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 
-" Map <leader> to comma.
 let mapleader=","
 
 " Enable spellchecking in prose files.
 autocmd vimrc BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 
-" Set path to word list for spellchecking.
-set spellfile=~/.vim/spellfile.utf-8.add
+set spellfile=~/.vim/spellfile.utf-8.add  " Spellchecking word list
+autocmd vimrc FileType help setlocal nospell  " Don't spellcheck in help docs.
 
-" Disable spellchecking in help documentation.
-autocmd vimrc FileType help setlocal nospell
-
-" Always show status line on last window.
-set laststatus=2
-
-" Always show tab line.
-set showtabline=2
-
-" Show mode in last line.
-set showmode
+set laststatus=2 " Always show status line on last window.
+set showtabline=2   " Always show tab line.
+set showmode  " Show mode in last line.
 
 " Time out on key codes after 50 ms.
 set ttimeout
@@ -101,11 +76,9 @@ set ttimeoutlen=50
 set encoding=utf-8
 set termencoding=utf-8
 
-" When substituting, substitute for all matches in each line by default.
-set gdefault
+set gdefault  " Substitute for all matches in each line by default.
 
-" Never conceal text.
-set conceallevel=0
+set conceallevel=0  " Never conceal text.
 
 " Enable and configure the command-line completion window.
 set wildmenu
@@ -130,28 +103,20 @@ set splitbelow
 set splitright
 
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
-" Taken from ":h uppercase".
 map! <C-F> <Esc>gUiw`]a
 
-" Check for modelines in the first and last lines.
-set modelines=1
+set modelines=1   " Check for modelines in the first and last lines.
 
 " Set the encryption method to use with :X.
 if has("patch-7.4.401")
     set cryptmethod=blowfish2
 endif
 
-" ttymouse must be set to xterm2, not xterm, to enable resizing of windows
-" using the mouse. Requires a relatively modern terminal emulator.
-" Use 'set mouse=n' to enable resizing of windows in normal mode.
-set ttymouse=xterm2
+set mouse=n  " Enable mouse in Normal mode.
+set ttymouse=xterm2  " Defines how mouse codes are handled.
 
-" Enable mouse in Normal mode.
-set mouse=n
-
-" Strip trailing whitespace on write, preserving window view.
-" Note that this is applied to all file types, even though there are a few
-" where this may not be desireable.
+" Strip trailing whitespace on write, preserving window view.  Note that this
+" may not be desirable in some file types.
 function! s:StripTrailingWhitespace()
     let l:view = winsaveview()
     %s/\s\+$//e
@@ -167,65 +132,39 @@ function! s:position_help()
 endfunction
 autocmd vimrc FileType help call s:position_help()
 
-"{{{1 Appearance ==============================================================
-
 " Enable syntax highlighting.
 if has("syntax")
     syntax enable
 endif
 
-" Use 256-color terminal when not using GUI colors.
-set t_Co=256
-
+" Use 24-bit color if available, or 256 colors otherwise.
+" See :h termguicolors, :h xterm-true-color.
 if has('termguicolors')
-    " Use 24-bit color.
-    " See :h termguicolors and :h xterm-true-color for details.
     set termguicolors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-
-    let s:using_24_bit_color = &termguicolors || has("gui_running")
+else
+    set t_Co=256
 endif
 
-set colorcolumn=80
-
+colorscheme iceberg
 set background=dark
 
-colorscheme iceberg
+set colorcolumn=80  " Guideline at column 80.
 
-" Show line numbers.
-set number
+set number  " Show line numbers.
 
-" Highlight current line. Very slow in some environments.
-set nocursorline
+set nocursorline  " This is very slow in some environments.
+"hi Cursorline gui=none cterm=none  " Disable cursorline underline.
 
-" Disable cursorline underline set by some colorschemes.
-hi Cursorline gui=none cterm=none
+set lazyredraw  " Limit redraws to improve performance.
 
-" Limit redraws to improve performance.
-set lazyredraw
-
-" Don't show whitespace.
-set nolist
-
-" Define whitespace characters to print when showlist is enabled.
+set nolist  " Don't show whitespace.
+" Define whitespace characters to print when list is enabled.
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
-"{{{1 Statusline ==============================================================
-
-" Returns the name of the currently used keymap. Like %k, but prettier.
-function! StatuslineKeymap()
-    if &keymap == '' || &iminsert == 0
-        return ''
-    endif
-
-    if b:keymap_name == 'hy'
-        return 'Հայերէն'
-    endif
-endfunction
-
-set statusline=%y%q\ %f%r%h%w%m\ \%=\ %{StatuslineKeymap()}\ \|\ %l:%c\ \|\ %p%%\ \|
-
+" Statusline
+set statusline=%y%q\ %f%r%h%w%m\ \%=\ %k\ \|\ %l:%c\ \|\ %p%%\ \|
 if s:use_ale
     function! LinterStatus() abort
         let l:counts = ale#statusline#Count(bufnr(''))
@@ -233,39 +172,14 @@ if s:use_ale
         let l:all_non_errors = l:counts.total - l:all_errors
         return printf(' W: %d E: %d ', all_non_errors, all_errors)
     endfunction
-
     set statusline+=%{LinterStatus()}
 endif
 
-set statusline+=%*
+set expandtab  " Use spaces, not tabs.
+set tabstop=4  " A tab counts as four spaces.
+set softtabstop=4  " A tab counts as four spaces when editing.
+set shiftwidth=4  " Indent by four spaces.
 
-"{{{1 Indentation and tabs ====================================================
-
-" Insert spaces rather than tabs.
-set expandtab
-
-" Show tabs as four spaces.
-set tabstop=4
-
-" Print four spaces when entering a tab.
-set softtabstop=4
-
-" Indent by four columns.
-set shiftwidth=4
-
-" Use expandtab if detectindent cannot automatically set value.
-let g:detectindent_preferred_expandtab = 1
-
-" Use a four-space indent if detectindent cannot automatically set values.
-let g:detectindent_preferred_indent = 4
-
-" Use preferred values defined above if file mixes tabs and spaces.
-let g:detectindent_preferred_when_mixed = 1
-
-" Limit number of lines analyzed by detectindent.
-let g:detectindent_max_lines_to_analyse = 1024
-
-" Load indent file for specific filetypes.
 filetype indent on
 
 " Use two-space tabs for certain filetypes.
@@ -273,10 +187,7 @@ autocmd vimrc Filetype html,htmldjango,css setlocal expandtab tabstop=2 shiftwid
 
 set autoindent
 set backspace=indent,eol,start
-set complete-=i
 set smarttab
-
-"{{{1 Search ==================================================================
 
 " Ignore case when the search pattern contains only lowercase letters.
 set ignorecase
@@ -294,10 +205,8 @@ nnoremap <silent> <CR> :nohlsearch<CR><CR>
 " Toggle search highlighting mode with F4.
 nnoremap <F4> :set hlsearch! hlsearch?<CR>
 
-"{{{1 Formatting ==============================================================
-
-" Hard-wrap lines after 79 characters.
-set textwidth=79
+set nowrap  " Don't soft-wrap lines.
+set textwidth=79  " Hard-wrap lines at 79 characters.
 
 set formatoptions-=t " Disable text auto-wrapping
 set formatoptions+=c " Enable comment auto-wrapping
@@ -310,78 +219,21 @@ set formatoptions+=j " Remove comment leader when joining lines
 " Auto-wrap plain text.
 autocmd vimrc FileType text setlocal formatoptions+=t
 
-" Don't soft-wrap lines.
-set nowrap
-
-
-"{{{1 netrw ===================================================================
-
-" Open netrw.
+" netrw
 map <leader>e :Explore<cr>
-
-" Use tree-style view.
-let g:netrw_liststyle = 3
-
-" Hide the banner at the top of the window.
-let g:netrw_banner = 0
-
-" Ignore files that we don't want to open.
-let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
-
-"{{{1 Completion ==============================================================
-
-" Populate suggestions from current file, other buffers, and tags file.
-set complete=.,b,u,]
-
-"{{{1 ctrlp-funky =============================================================
-
-" Open the CtrlPFunky function search window.
-nnoremap <Leader>f :CtrlPFunky<Cr>
-
-"{{{1 SuperTab ================================================================
-
-" Disable autocomplete before and after certain characters.
-let g:SuperTabNoCompleteBefore = [' ', '\t']
-let g:SuperTabNoCompleteAfter = ['^', ',', ' ', '\t', ')', ']', '}', ':', ';', '#']
-
-"{{{1 ALE =====================================================================
+let g:netrw_liststyle = 3  " Tree-style view
+let g:netrw_banner = 0  " Hide banner
+let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'  " Ignore list
 
 if s:use_ale
-    " Set this to 1 to always show errors in a quickfix list.
-    let g:ale_open_list = 0
-
-    " Always show the gutter so that the text doesn't jump around as errors are
-    " detected and resolved.
-    let g:ale_sign_column_always = 1
-
-    "let g:ale_lint_on_text_changed = 'never'
+    let g:ale_open_list = 0  " Don't show errors in quickfix list.
+    let g:ale_sign_column_always = 1  " Always show gutter.
     let g:ale_set_loclist = 1
     let g:ale_set_quickfix = 0
-
-    " The default delay of 10 ms can cause serious lag when editing files
-    " with more than a few errors.
     let g:ale_echo_delay = 100
 endif
 
-"{{{1 ctrlp ===================================================================
-
-" Open menu by pressing <leader> twice.
-let g:ctrlp_map='<leader><leader>'
-
-" Set base directory to cwd or nearest ancestor with version control file.
-let g:ctrlp_working_path_mode = 'rw'
-
-" Preserve cache across sessions.
-let g:ctrlp_clear_cache_on_exit = 0
-
-" Include dotfiles.
-let g:ctrlp_show_hidden = 1
-
-"{{{1 Folding =================================================================
-
-" NOTE: The 'syntax' method causes horrible lag in C files.
-set foldmethod=indent
-"set foldmethod=syntax
+set foldmethod=indent  " Note: 'syntax' method can be very slow.
 autocmd vimrc FileType python set foldmethod=indent
 autocmd vimrc BufRead,BufNewFile .vimrc set foldmethod=marker
 
@@ -391,18 +243,8 @@ set foldignore=
 " Start with all folds open.
 set foldlevelstart=99
 
-"{{{1 JSON ====================================================================
-
 " Don't conceal quotes.
 let g:vim_json_syntax_conceal = 0
-
-"{{{1 DelimitMate =============================================================
-
-let delimitMate_autoclose = 1
-let delimitMate_expand_cr = 2
-let delimitMate_insert_eol_marker = 2
-
-"{{{1 Python ==================================================================
 
 " Use Python syntax for type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
