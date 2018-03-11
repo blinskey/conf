@@ -103,7 +103,7 @@ set termencoding=utf-8
 
 " Հայերէն -- disabled by default. Use Ctrl-^ to switch in Insert mode.
 if v:version >= 800
-    set keymap=armenian-western_utf-8
+    silent! set keymap=armenian-western_utf-8
     set iminsert=0
     set imsearch=0
 endif
