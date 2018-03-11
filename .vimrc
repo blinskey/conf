@@ -87,7 +87,7 @@ endfunction
 autocmd vimrc FileType help call s:position_help()
 
 " Store all swapfiles in a central directory.
-set directory=$HOME/.vim/swap
+set directory=$HOME/.vim/.swap
 
 " Substitute for all matches in each line by default.
 set gdefault
