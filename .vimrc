@@ -258,7 +258,7 @@ set softtabstop=4
 set shiftwidth=4
 
 " Use two-space tabs for certain filetypes.
-autocmd vimrc Filetype html,htmldjango,css setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
+autocmd vimrc Filetype html,htmldjango,css,javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
 
 set autoindent
 set smarttab
