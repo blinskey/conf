@@ -355,4 +355,4 @@ if s:use_ale
 endif
 
 "}}}
-" vi: set foldmethod=marker foldlevel=0:
+" vim: set foldmethod=marker foldlevel=0:
