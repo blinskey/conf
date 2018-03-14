@@ -120,6 +120,9 @@ set wildignore=*.o,*.obj,*.pyc,.git
 set ttimeout
 set ttimeoutlen=50
 
+" Only allow backspacing over auto-indent and end-of-line.
+set backspace=indent,eol
+
 "=== Filetype-Specific Settings ==========================================={{{1
 
 " Set filetype based on file extensions.
