@@ -61,16 +61,10 @@ endif
 " Use comma as leader.
 let mapleader=","
 
-" Auto-reload files changed outside of Vim if they haven't been changed in Vim.
-set autoread
-
 " Set the encryption method to use with :X.
 if has("patch-7.4.401")
     set cryptmethod=blowfish2
 endif
-
-" Check for modelines in the first and last lines.
-set modelines=1
 
 " Strip trailing whitespace on write, preserving window view.  Note that this
 " may not be desirable in some file types.
@@ -81,47 +75,24 @@ function! s:StripTrailingWhitespace()
 endfun
 autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 
-" Open help in a vertical split if there is enough room.
-function! s:position_help()
-    if winwidth(0) >= 160
-        wincmd L
-    endif
-endfunction
-autocmd vimrc FileType help call s:position_help()
-
-" Store all swapfiles in a central directory.
-set directory=$HOME/.vim/.swap
-
-" Substitute for all matches in each line by default.
-set gdefault
-
-" Never conceal text.
-set conceallevel=0
-
 " Make sure the encoding is set to UTF-8.
 set encoding=utf-8
 set termencoding=utf-8
 
 "=== Input ================================================================{{{1
 
-" Հայերէն -- disabled by default. Use Ctrl-^ to switch in Insert mode.
+" Հայերէն
 if v:version >= 800
     silent! set keymap=armenian-western_utf-8
     set iminsert=0
     set imsearch=0
 endif
 
-" Disable mouse.
-set mouse=
-
-" Defines how mouse codes are handled.
+" Default value, xterm, only works for up to 223 columns.
 set ttymouse=xterm2
 
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 map! <C-F> <Esc>gUiw`]a
-
-" Don't imitate vi backspace behavior.
-set backspace=indent,eol,start
 
 " Don't soft-wrap lines.
 set nowrap
@@ -129,22 +100,21 @@ set nowrap
 " Hard-wrap lines at 79 characters.
 set textwidth=79
 
-set formatoptions-=t " Disable text auto-wrapping
-set formatoptions+=c " Enable comment auto-wrapping
-set formatoptions+=q " Enable formatting of comments with 'gq'
-set formatoptions+=n " Recognize and format numbered lists
-set formatoptions+=l " Don't auto-wrap if line was already longer than tw
-set formatoptions+=1 " Try not to break after a one-letter word
-set formatoptions+=j " Remove comment leader when joining lines
+set formatoptions-=t " Disable text auto-wrapping.
+set formatoptions+=c " Enable comment auto-wrapping.
+set formatoptions+=q " Enable formatting of comments with 'gq'.
+set formatoptions+=n " Recognize and format numbered lists.
+set formatoptions+=l " Don't auto-wrap if line was already longer than tw.
+set formatoptions+=1 " Try not to break after a one-letter word.
+set formatoptions+=j " Remove comment leader when joining lines.
 
 " Auto-wrap plain text.
 autocmd vimrc FileType text setlocal formatoptions+=t
-"
+
 " Enable and configure the command-line completion window.
 set wildmenu
 set wildmode=longest,list
 set wildignore=*.o,*.obj,*.pyc,.git
-set wildignorecase
 
 " Time out on key codes after 50 ms.
 set ttimeout
@@ -155,9 +125,6 @@ set ttimeoutlen=50
 " Set filetype based on file extensions.
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
-
-" Don't conceal quotes.
-let g:vim_json_syntax_conceal = 0
 
 " Use Python syntax for type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
@@ -170,8 +137,8 @@ autocmd vimrc BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
 " Spellchecking word list
 set spellfile=~/.vim/spellfile.utf-8.add
 
-" Don't spellcheck in help docs.
-autocmd vimrc FileType help setlocal nospell
+" Spellcheck in text files.
+autocmd vimrc FileType text,markdown,mail,rst setlocal nospell
 
 "=== Color and Syntax Highlighting ========================================{{{1
 
@@ -193,7 +160,7 @@ endif
 " Use iceberg colorscheme. Silence error if not installed.
 silent! colorscheme iceberg
 
-" This should already be set by iceberg but can't hurt.
+" Use dark background.
 set background=dark
 
 "=== Interface ============================================================{{{1
@@ -207,16 +174,7 @@ set colorcolumn=80
 " Show line numbers.
 set number
 
-" Cursorline is useful, but can be very slow.
-set nocursorline
-
-" Minimize redraws to improve performance.
-set lazyredraw
-
-" Don't show whitespace.
-set nolist
-
-" Define whitespace characters to print when list is enabled.
+" Define whitespace characters to print when 'list' is enabled.
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
 " Always show status line on last window.
@@ -225,16 +183,12 @@ set laststatus=2
 " Always show tab line.
 set showtabline=2
 
-" Show mode in last line.
-set showmode
-
-" Set scroll boundaries.
-set scrolloff=1
-set sidescrolloff=5
-
 " Open new windows to the right and bottom of current window.
 set splitbelow
 set splitright
+
+" Leave one line of context at top and bottom of window when scrolling.
+set scrolloff=1
 
 "=== Statusline ==========================================================={{{1
 
@@ -269,6 +223,7 @@ set smarttab
 "=== Search ==============================================================={{{1
 
 " Ignore case when the search pattern contains only lowercase letters.
+set ignorecase
 set smartcase
 
 " Show search matches as the pattern is being typed.
@@ -277,15 +232,18 @@ set incsearch
 " By default, don't highlight search matches.
 set nohlsearch
 
-" Clear search highlighing by hitting Enter.
-nnoremap <silent> <CR> :nohlsearch<CR><CR>
+" Mapping to toggle search highlighting
+nnoremap <leader>o :set hlsearch! hlsearch?<CR>
 
-" Toggle search highlighting mode with F4.
-nnoremap <F4> :set hlsearch! hlsearch?<CR>
+" Mapping to clear search highlighing when hlsearch is set.
+nnoremap <silent> <leader>c :nohlsearch<CR>
 
 "=== netrw ================================================================{{{1
 
+" Mappings to open netrw
 map <leader>e :Explore<cr>
+map <leader>s :Sexplore<cr>
+map <leader>h :Hexplore<cr>
 
 " Tree-style view
 let g:netrw_liststyle = 3
@@ -309,11 +267,10 @@ set foldlevelstart=99
 
 "=== Completion ==========================================================={{{1
 
-" Insert-mode completion shortcuts recommended in :h ins-completion
-:inoremap ^] ^X^]
-:inoremap ^F ^X^F
-:inoremap ^D ^X^D
-:inoremap ^L ^X^L
+" Some insert-mode completion shortcuts recommended in :h ins-completion
+:inoremap <C-]> <C-X><C-]>
+:inoremap <C-D> <C-X><C-D>
+:inoremap <C-L> <C-X><C-L>
 
 "=== Ctrlp ================================================================{{{1
 
@@ -341,18 +298,8 @@ let g:ctrlp_show_hidden = 1
 "=== ALE =================================================================={{{1
 
 if s:use_ale
-    " Set this to 1 to always show errors in a quickfix list.
-    let g:ale_open_list = 0
-
-    " Always show the gutter so that the text doesn't jump around as errors are
-    " detected and resolved.
+    " Always show the gutter so that the text doesn't jump around.
     let g:ale_sign_column_always = 1
-
-    let g:ale_set_loclist = 1
-    let g:ale_set_quickfix = 0
-
-    let g:ale_echo_delay = 100
 endif
 
 "}}}
-" vim: set foldmethod=marker foldlevel=0:

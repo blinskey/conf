@@ -19,7 +19,7 @@ mac: common bash
 common: vim tmux ctags inputrc git
 
 vim:
-	mkdir -p ~/.vim/ftplugin ~/.vim/.swap
+	mkdir -p ~/.vim/ftplugin
 	ln -fs $(SRC_DIR)/.vimrc ~
 	ln -fs $(SRC_DIR)/.vim/ftplugin/* ~/.vim/ftplugin
 	ln -fs $(SRC_DIR)/.vim/autoload/plug.vim ~/.vim/autoload
