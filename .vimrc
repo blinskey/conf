@@ -301,5 +301,3 @@ if s:use_ale
     " Always show the gutter so that the text doesn't jump around.
     let g:ale_sign_column_always = 1
 endif
-
-"}}}
