@@ -22,8 +22,8 @@ augroup END
 
 "=== Plugins =============================================================={{{1
 
-" To install vim-plug:
-" curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+" Manually install this file from https://github.com/junegunn/vim-plug
+" (https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim).
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/bundle')
 
