@@ -121,7 +121,7 @@ set ttimeout
 set ttimeoutlen=50
 
 " Only allow backspacing over auto-indent and end-of-line.
-set backspace=indent,eol
+set backspace=indent,eol,start
 
 "=== Filetype-Specific Settings ==========================================={{{1
 
