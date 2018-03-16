@@ -132,17 +132,6 @@ autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 " Use Python syntax for type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
 
-"=== Spellchecking ========================================================{{{1
-
-" Enable spellchecking in prose files.
-autocmd vimrc BufRead,BufNewFile *.{md,txt} setlocal spell spelllang=en_us
-
-" Spellchecking word list
-set spellfile=~/.vim/spellfile.utf-8.add
-
-" Spellcheck in text files.
-autocmd vimrc FileType text,markdown,mail,rst setlocal nospell
-
 "=== Color and Syntax Highlighting ========================================{{{1
 
 " Enable syntax highlighting.
