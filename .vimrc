@@ -59,7 +59,7 @@ endif
 "=== General =============================================================={{{1
 
 " Use comma as leader.
-let mapleader=","
+"let mapleader=","
 
 " Set the encryption method to use with :X.
 if has("patch-7.4.401")
@@ -139,21 +139,19 @@ if has("syntax")
     syntax enable
 endif
 
-" Use 24-bit color if available, or 256 colors otherwise.
-" See :h termguicolors, :h xterm-true-color.
-if has('termguicolors') && $TERM_PROGRAM == 'iTerm.app'
+" Enable this block to use GUI highlight groups.
+if 0
     set termguicolors
     let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
     let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-else
-    set t_Co=256
 endif
 
-" Use iceberg colorscheme. Silence error if not installed.
+" Use Iceberg colorscheme if installed. Note that we do *not* set termguicolors
+" here; I prefer Iceberg's cterm colors to its GUI colors.
 silent! colorscheme iceberg
 
-" Use dark background.
-set background=dark
+" Enable cursorline highlight. Note that this can be slow in some cases.
+set cursorline
 
 "=== Interface ============================================================{{{1
 
@@ -230,6 +228,17 @@ nnoremap <leader>o :set hlsearch! hlsearch?<CR>
 " Mapping to clear search highlighing when hlsearch is set.
 nnoremap <silent> <leader>c :nohlsearch<CR>
 
+"=== Folds ================================================================{{{1
+
+" Fold using indents. ('Syntax' can be nice, but is sometimes very slow.)
+set foldmethod=indent
+
+" Don't make an exception for any character when folding.
+set foldignore=
+
+" Start with all folds open.
+set foldlevelstart=99
+
 "=== netrw ================================================================{{{1
 
 " Mappings to open netrw
@@ -245,17 +254,6 @@ let g:netrw_banner = 0
 
 " Ignore list
 let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
-
-"=== Folds ================================================================{{{1
-
-" Fold using indents. ('Syntax' can be nice, but is sometimes very slow.)
-set foldmethod=indent
-
-" Don't make an exception for any character when folding.
-set foldignore=
-
-" Start with all folds open.
-set foldlevelstart=99
 
 "=== Completion ==========================================================={{{1
 
@@ -293,3 +291,15 @@ if s:use_ale
     " Always show the gutter so that the text doesn't jump around.
     let g:ale_sign_column_always = 1
 endif
+
+"=== Go ==================================================================={{{1
+
+" Use tabs for Go.
+autocmd vimrc Filetype go setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
+
+" vim-go: Don't use templates for new files.
+let g:go_template_autocreate = 0
+
+"}}}
+
+" vi: set foldmethod=marker foldlevel=99:
