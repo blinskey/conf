@@ -12,5 +12,8 @@ Session.vim
 *.pyc
 __pycache__
 
+# MyPy data
+.mypy_cache
+
 # Mac Finder data
 .DS_Store
