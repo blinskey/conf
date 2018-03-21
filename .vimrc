@@ -130,8 +130,11 @@ set backspace=indent,eol,start
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 
-" Use Python syntax for type hinting stub files.
+" Set filetype for Python type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
+
+" Disable syntax highlighting in prose documents.
+autocmd vimrc FileType rst,markdown setlocal syntax=
 
 "=== Color and Syntax Highlighting ========================================{{{1
 
@@ -291,6 +294,9 @@ let g:ctrlp_show_hidden = 1
 if s:use_ale
     " Always show the gutter so that the text doesn't jump around.
     let g:ale_sign_column_always = 1
+
+    " Specify custom sets of linters for filetypes.
+    let g:ale_linters = {'python': ['flake8']}
 endif
 
 "=== Go ==================================================================={{{1
