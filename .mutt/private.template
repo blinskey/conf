@@ -1,0 +1,12 @@
+set imap_user='user@example.com'
+set imap_pass=''
+
+set smtp_url='smtps://user@example.com@smtp.example.com:465'
+set smtp_pass=''
+
+set folder='imaps://imap.example.com'
+
+alternates .*@(.*\.)?example\.com .*@(.*\.)?example\.org
+
+set from="user@example.com"
+set realname="Real Name"

@@ -1,18 +1,12 @@
 # Mutt configuration
 #
-# ~/.cache/mutt must exist.
+# Known to work with Mutt 1.8.0 from the OpenBSD ports collection and NeoMutt
+# 20180223 from MacPorts.
 #
-# Tested with Mutt 1.8.0 from the OpenBSD ports collection. Note that settings
-# with acceptable defaults are not explicitly specified here.
+# ~/.cache/mutt must exist.
 
-set imap_user='user@example.com'
-set imap_pass=''
+source ~/.mutt/private
 
-set smtp_url='smtps://user@example.com@smtp.example.com:465'
-set smtp_pass=''
-
-set folder='imaps://imap.example.com'
-set spoolfile=+INBOX
 set imap_idle
 set imap_check_subscribed
 set ssl_force_tls
@@ -20,17 +14,14 @@ set ssl_force_tls
 set header_cache=~/.cache/mutt/headers
 set message_cachedir=~/.cache/mutt/messages
 
+set spoolfile=+INBOX
+
 # Note that postponed is not set to +Drafts here, but uses the default local
 # mailbox instead. This allows us to save drafts offline.
 set record=+Sent
 set trash=+Trash
 
 mailboxes `echo $MAIL`
-
-alternates .*@(.*\.)?example\.com .*@(.*\.)?example\.org
-
-set from="user@example.com"
-set realname="Real Name"
 
 set menu_context=2
 set pager_context=2

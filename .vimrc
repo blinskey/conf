@@ -133,8 +133,8 @@ autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 " Set filetype for Python type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
 
-" Disable syntax highlighting in prose documents.
-autocmd vimrc FileType rst,markdown setlocal syntax=
+" Disable syntax highlighting in prose files.
+autocmd vimrc BufRead,BufNewFile *.md,*.markdown,*.rst setlocal syntax=
 
 "=== Color and Syntax Highlighting ========================================{{{1
 

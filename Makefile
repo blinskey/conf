@@ -16,7 +16,7 @@ linux: common ksh bash
 
 mac: common bash
 
-common: vim tmux ctags inputrc git
+common: vim tmux ctags inputrc git go mutt
 
 vim:
 	mkdir -p ~/.vim/ftplugin
@@ -42,11 +42,20 @@ inputrc:
 	ln -fs $(SRC_DIR)/.inputrc ~
 
 git:
-	# .gitconfig needs to be customized in certain environments, so we don't
-	# link it.
-	cp $(SRC_DIR)/.gitconfig ~
+	# .gitconfig needs to be customized in certain environments, so it needs to
+	# be copied or linked into place manually.
 	ln -fs $(SRC_DIR)/.gitignore_global ~
 
 go:
 	mkdir ~/go
 	ln -fs ~/go ~/src
+
+mutt:
+	mkdir -p ~/.mutt ~/.cache/mutt
+	ln -fs $(SRC_DIR)/.mutt/muttrc ~/.mutt
+	cp $(SRC_DIR)/.mutt/private.template ~/.mutt
+
+lynx:
+	mkdir ~/.lynx
+	ln -fs $(SRC_DIR)/.lynxrc ~
+	ln -fs $(SRC_DIR)/lynx.cfg ~/.lynx
