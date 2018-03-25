@@ -54,6 +54,7 @@ mutt:
 	mkdir -p ~/.mutt ~/.cache/mutt
 	ln -fs $(SRC_DIR)/.mutt/muttrc ~/.mutt
 	cp $(SRC_DIR)/.mutt/private.template ~/.mutt
+	ln -fs $(SRC_DIR)/.mailcap ~
 
 lynx:
 	mkdir ~/.lynx
