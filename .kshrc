@@ -5,50 +5,25 @@
 # 	export ENV=$HOME/.kshrc
 #
 # This is primarily targeted at OpenBSD's ksh but should also work with other
-# versions in the pdksh lineage. The AT&T ksh is not supported.
-
-readonly OS=$(uname)
+# versions in the pdksh lineage as well as the AT&T ksh.
 
 # Set the history file location.
 HISTFILE="$HOME/.sh_history"
 
-# Set up some ls aliases.
-alias l='ls -CFA'
-alias ll='ls -ahlF'
-
-# Enable csh-style history editing.
-if [ "$OS" = OpenBSD ]; then
+if [ "$(uname)" = OpenBSD ]; then
+    # Enable csh-style history editing.
     set -o csh-history
-fi
 
-# Enable tab completion in vi mode, which isn't the default everywhere.
-set -o vi-tabcomplete
+    # Enable tab completion in vi mode, which isn't the default everywhere.
+    set -o vi-tabcomplete
 
-# Prints the basename of the working directory, or a tilde if the PWD is $HOME.
-# This performs the same function as the \W escape sequence in OpenBSD's ksh.
-prompt_dir() {
-    # On systems such as FreeBSD where /home is a symbolic link to /usr/home,
-    # we need to resolve the link before we compare it to $PWD. Neither
-    # readlink nor realpath is fully portable, so we just try the latter and
-    # give up if it's not available.
-    if type realpath >/dev/null && [ "$PWD" = "$(realpath $HOME)" ]; then
-		echo '~'
-	else
-		echo $(basename "$PWD")
-	fi
-}
-
-# Set the prompt. Most versions of ksh don't support the escape codes defined
-# in the OpenBSD version.
-if [ "$OS" = OpenBSD ]; then
+    # Set the prompt. Most versions of ksh don't support the escape codes
+    # defined in the OpenBSD version.
 	PS1='[\u@\h:\W]\\$ '
 else
-	PS1='[$USER@$(hostname -s):$(prompt_dir)]$ '
+    PS1='[$USER@$(hostname -s):$(basename $PWD)]$ '
 fi
 
-# Shortcut for a set of grep options that I commonly use: grep for a literal
-# string, ignoring case, recursing through the current working directory,
-# ignoring binary files, and output the line number with each match.
-grepfor() {
-    fgrep -riIn "$1" .
-}
+if [ -f "$HOME/.aliases" ]; then
+    . "$HOME/.aliases"
+fi

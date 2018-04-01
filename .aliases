@@ -1,0 +1,11 @@
+# Shell aliases
+
+alias l='ls -CFA'
+alias ll='ls -ahlF'
+
+alias cp='cp -i'
+alias mv='mv -i'
+
+alias grepfor='fgrep -riIn'
+
+alias vbm=VBoxManage

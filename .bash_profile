@@ -12,22 +12,12 @@ if [ "$(uname)" == "Darwin" ]; then
     PATH="/opt/local/bin:/opt/local/sbin:$PATH"
 fi
 
-# Set pager and options.
-#
-# -R: Output ANSI color escape sequences in raw form
-# -X: Disable termcap initialization and deinitialization strings (so pager
-#     display won't be cleared from screen on exit)
-export PAGER="less"
-export LESS=-RX
-
 # GPG configuration
 export GPG_TTY=$(tty)
 export GPGKEY=838AA558
 
-# Directories in which to search for Lynx config files (excluding .lynxrc,
-# which must always be in the home directory)
+# Lynx
 export LYNX_CFG_PATH=~/.lynx:/etc/lynx:/etc
-
 if [ -f ~/.lynx/lynx.cfg ]; then
     export LYNX_CFG=~/.lynx/lynx.cfg
 fi

@@ -33,10 +33,12 @@ ctags:
 ksh:
 	ln -fs $(SRC_DIR)/.profile ~
 	ln -fs $(SRC_DIR)/.kshrc ~
+	ln -fs $(SRC_DIR)/.aliases ~
 
 bash:
 	ln -fs $(SRC_DIR)/.bash_profile ~
 	ln -fs $(SRC_DIR)/.bashrc ~
+	ln -fs $(SRC_DIR)/.aliases ~
 
 inputrc:
 	ln -fs $(SRC_DIR)/.inputrc ~
@@ -47,7 +49,7 @@ git:
 	ln -fs $(SRC_DIR)/.gitignore_global ~
 
 go:
-	mkdir ~/go
+	mkdir -p ~/go
 	ln -fs ~/go ~/src
 
 mutt:

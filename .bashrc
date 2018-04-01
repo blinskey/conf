@@ -22,31 +22,11 @@ if [ ${BASH_VERSION:0:1} -gt 3 ]; then
     shopt -s globstar
 fi
 
-# Active lesspipe if present. (Commonly installed by default on Linux.)
-[ -x /usr/bin/lesspipe ] && eval "$(SHELL=/bin/sh lesspipe)"
-
-# enable programmable completion features (you don't need to enable
-# this, if it's already enabled in /etc/bash.bashrc and /etc/profile
-# sources /etc/bash.bashrc).
-if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
-    . /etc/bash_completion
-fi
-
 # Use vi keybindings.
 set -o vi
 
-# ls aliases
-alias l='ls -CFA'
-alias ll='ls -ahlF'
-
 PS1="[\u@\h:\W]\\$ "
 
-# Alias VBoxManage to something less painful to type.
-alias vbm='VBoxManage'
-
-# Shortcut for a set of grep options that I commonly use: grep for a literal
-# string, ignoring case, recursing through the current working directory,
-# ignoring binary files, and output the line number with each match.
-grepfor() {
-    fgrep -riIn "$1" .
-}
+if [ -f "$HOME/.aliases" ]; then
+    . "$HOME/.aliases"
+fi
