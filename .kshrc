@@ -19,9 +19,9 @@ if [ "$(uname)" = OpenBSD ]; then
 
     # Set the prompt. Most versions of ksh don't support the escape codes
     # defined in the OpenBSD version.
-	PS1='[\u@\h:\W]\\$ '
+	PS1='\h\\$ '
 else
-    PS1='[$USER@$(hostname -s):$(basename $PWD)]$ '
+    PS1='$(hostname -s)\$ '
 fi
 
 if [ -f "$HOME/.aliases" ]; then
