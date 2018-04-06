@@ -25,7 +25,7 @@ fi
 # Use vi keybindings.
 set -o vi
 
-PS1="\h\\$ "
+PS1="[\u@\h:\W]\\$ "
 
 if [ -f "$HOME/.aliases" ]; then
     . "$HOME/.aliases"
