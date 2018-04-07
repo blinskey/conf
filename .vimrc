@@ -165,9 +165,6 @@ set shortmess+=I
 " Guideline at column 80.
 set colorcolumn=80
 
-" Show line numbers.
-set number
-
 " Define whitespace characters to print when 'list' is enabled.
 set listchars=tab:>-,trail:~,extends:>,precedes:<
 
@@ -292,8 +289,8 @@ let g:ctrlp_show_hidden = 1
 "=== ALE =================================================================={{{1
 
 if s:use_ale
-    " Always show the gutter so that the text doesn't jump around.
-    let g:ale_sign_column_always = 1
+    " Don't print signs on lines with warnings or errors.
+    let g:ale_set_signs = 0
 
     " Specify custom sets of linters for filetypes.
     let g:ale_linters = {'python': ['flake8']}
