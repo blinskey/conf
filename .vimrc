@@ -2,8 +2,6 @@
 " Emulate vi when invoked as such.
 if v:progname == 'vi'
     set compatible
-    syntax off
-    set nohlsearch
     set t_Co=0
     set shortmess+=I
     finish
