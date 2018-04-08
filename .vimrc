@@ -29,7 +29,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     Plug 'Vimjas/vim-python-pep8-indent'
 
     " Colorscheme
-    Plug 'cocopon/iceberg.vim'
+    Plug 'blinskey/btl.vim'
 
     " Fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
@@ -141,16 +141,7 @@ if has("syntax")
     syntax enable
 endif
 
-" Enable this block to use GUI highlight groups.
-if 0
-    set termguicolors
-    let &t_8f = "\<Esc>[38;2;%lu;%lu;%lum"
-    let &t_8b = "\<Esc>[48;2;%lu;%lu;%lum"
-endif
-
-" Use Iceberg colorscheme if installed. Note that we do *not* set termguicolors
-" here; I prefer Iceberg's cterm colors to its GUI colors.
-silent! colorscheme iceberg
+silent! colorscheme btl
 
 " Enable cursorline highlight. Note that this can be slow in some cases.
 set cursorline
