@@ -143,9 +143,6 @@ endif
 
 silent! colorscheme btl
 
-" Enable cursorline highlight. Note that this can be slow in some cases.
-set cursorline
-
 "=== Interface ============================================================{{{1
 
 " Don't display intro message on startup.
