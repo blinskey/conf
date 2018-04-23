@@ -14,5 +14,3 @@
 	tool = vimdiff
 [tag]
 	sort = version:refname
-[color]
-    ui = false
