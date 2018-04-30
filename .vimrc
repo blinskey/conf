@@ -28,8 +28,9 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     " Python auto-indent fixes
     Plug 'Vimjas/vim-python-pep8-indent'
 
-    " Colorscheme
+    " Colorschemes
     Plug 'blinskey/btl.vim'
+    Plug 'cocopon/iceberg.vim'
 
     " Fuzzy finder
     Plug 'ctrlpvim/ctrlp.vim'
@@ -141,7 +142,7 @@ if has("syntax")
     syntax enable
 endif
 
-silent! colorscheme btl
+silent! colorscheme iceberg
 
 "=== Interface ============================================================{{{1
 
