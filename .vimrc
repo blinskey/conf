@@ -57,10 +57,6 @@ endif
 
 "=== General =============================================================={{{1
 
-" Use comma as leader, and map backslash to comma.
-let mapleader=","
-noremap \ ,
-
 " Set the encryption method to use with :X.
 if has("patch-7.4.401")
     set cryptmethod=blowfish2
