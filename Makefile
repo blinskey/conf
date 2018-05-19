@@ -43,6 +43,9 @@ bash:
 inputrc:
 	ln -fs $(SRC_DIR)/.inputrc ~
 
+editrc:
+	ln -fs $(SRC_DIR)/.edirc ~
+
 git:
 	# .gitconfig needs to be customized in certain environments, so it needs to
 	# be copied or linked into place manually.
