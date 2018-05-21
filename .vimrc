@@ -57,11 +57,6 @@ endif
 
 "=== General =============================================================={{{1
 
-" Set the encryption method to use with :X.
-if has("patch-7.4.401")
-    set cryptmethod=blowfish2
-endif
-
 " Strip trailing whitespace on write, preserving window view.  Note that this
 " may not be desirable in some file types.
 function! s:StripTrailingWhitespace()
