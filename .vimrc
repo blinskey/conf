@@ -38,9 +38,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
     " Load settings from .editorconfig
     Plug 'editorconfig/editorconfig-vim'
 
-    " Go tools
-    Plug 'fatih/vim-go'
-
     " Linter support -- requires async.
     let s:use_ale = v:version >= 800
     if s:use_ale
@@ -270,15 +267,5 @@ if s:use_ale
     " Specify custom sets of linters for filetypes.
     let g:ale_linters = {'python': ['flake8']}
 endif
-
-"=== Go ==================================================================={{{1
-
-" Use tabs for Go.
-autocmd vimrc Filetype go setlocal noexpandtab tabstop=4 softtabstop=4 shiftwidth=4
-
-" vim-go: Don't use templates for new files.
-let g:go_template_autocreate = 0
-
-"}}}
 
 " vi: set foldmethod=marker foldlevel=99:
