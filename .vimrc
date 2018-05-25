@@ -67,6 +67,9 @@ autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 set encoding=utf-8
 set termencoding=utf-8
 
+" Make ~ behave as an operator.
+set tildeop
+
 "=== Input ================================================================{{{1
 
 " Հայերէն
