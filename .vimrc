@@ -234,13 +234,6 @@ let g:netrw_banner = 0
 " Ignore list
 let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
 
-"=== Completion ==========================================================={{{1
-
-" Some insert-mode completion shortcuts recommended in :h ins-completion
-:inoremap <C-]> <C-X><C-]>
-:inoremap <C-D> <C-X><C-D>
-:inoremap <C-L> <C-X><C-L>
-
 "=== Ctrlp ================================================================{{{1
 
 " Open menu by pressing <leader> twice.
