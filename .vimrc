@@ -134,6 +134,9 @@ silent! colorscheme iceberg
 
 "=== Interface ============================================================{{{1
 
+" Don't display mode.
+set noshowmode
+
 " Don't display intro message on startup.
 set shortmess+=I
 
