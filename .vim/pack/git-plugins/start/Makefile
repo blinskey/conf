@@ -7,7 +7,9 @@ CHECKOUT=$(GIT) checkout --quiet
 # TODO: Overwrite existing?
 # TODO: Additional settings to reduce space?
 # TODO: Use variable for command and common options?
-install:
+install: clone helptags
+
+clone:
 	@$(CLONE) --branch 1.0 git@github.com:cocopon/iceberg.vim.git
 	@$(CLONE) --branch v0.3.3 git@github.com:editorconfig/editorconfig-vim.git
 	@$(CLONE) --branch v1.8.0 git@github.com:w0rp/ale.git
@@ -17,5 +19,9 @@ install:
 	@$(CLONE) git@github.com:ctrlpvim/ctrlp.vim.git \
 		&& cd ctrlp.vim \
 		&& $(CHECKOUT) 4b9e7cac612902a25498cca49f13475fe1a821a4
+
+helptags:
+	@vim -c 'packloadall | silent! helptags ALL | quit'
+
 clean:
 	@rm -rf */
