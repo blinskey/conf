@@ -7,24 +7,63 @@ if v:progname == 'vi'
     finish
 endif
 
-" Disable vi emulation.
 set nocompatible
 
-" Don't duplicate commands when sourcing this file multiple times.
 augroup vimrc
     autocmd!
 augroup END
 
-" Enable filetype-specific plugin and indentation files.
 filetype plugin indent on
+silent! packadd! matchit
 
-if has('packages')
-    " Enable the built-in matchit plugin.
-    packadd! matchit
-endif
+silent! syntax enable
+silent! colorscheme iceberg
 
-" Strip trailing whitespace on write, preserving window view.  Note that this
-" may not be desirable in some file types.
+set shortmess+=I  " No intro message on startup.
+set encoding=utf-8
+set tildeop
+set backspace=  " Vi-style backspacing
+
+" Enable keymap but start in Latin keyboard mode.
+silent! set keymap=armenian-western_utf-8
+set iminsert=0
+set imsearch=0
+
+set nowrap
+set textwidth=79
+set colorcolumn=80
+set ruler
+
+" See :h fo-table.
+set formatoptions-=t
+set formatoptions+=cqnl1j
+
+set wildmode=longest,list
+set wildignore=*.o,*.obj,*.pyc
+set autoindent
+set smarttab
+set ignorecase
+set smartcase
+
+" Don't ring bell when more options are available in command line completion.
+set belloff+=wildmode
+
+" Filetypes for file extensions
+autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
+autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
+autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
+
+map <leader>e :Explore<cr>
+map <leader>s :Sexplore<cr>
+map <leader>v :Vexplore<cr>
+let g:netrw_banner = 0  " Hide banner.
+
+let g:ctrlp_map='<leader><leader>'
+
+let g:ale_set_signs = 0  " Don't use sign column.
+let g:ale_linters = {'python': ['flake8']}
+
+" Strip trailing whitespace on write, preserving window view.
 function! s:StripTrailingWhitespace()
     let l:view = winsaveview()
     %s/\s\+$//e
@@ -32,106 +71,5 @@ function! s:StripTrailingWhitespace()
 endfun
 autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 
-" Make sure the encoding is set to UTF-8.
-set encoding=utf-8
-
-" Make ~ behave as an operator.
-set tildeop
-
-" Հայերէն
-if v:version >= 800
-    silent! set keymap=armenian-western_utf-8
-    set iminsert=0
-    set imsearch=0
-endif
-
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 map! <C-F> <Esc>gUiw`]a
-
-" Don't soft-wrap lines.
-set nowrap
-
-" Hard-wrap lines at 79 characters.
-set textwidth=79
-
-set formatoptions-=t " Disable text auto-wrapping.
-set formatoptions+=c " Enable comment auto-wrapping.
-set formatoptions+=q " Enable formatting of comments with 'gq'.
-set formatoptions+=n " Recognize and format numbered lists.
-set formatoptions+=l " Don't auto-wrap if line was already longer than tw.
-set formatoptions+=1 " Try not to break after a one-letter word.
-set formatoptions+=j " Remove comment leader when joining lines.
-
-" Auto-wrap plain text.
-autocmd vimrc FileType text setlocal formatoptions+=t
-
-" Enable and configure the command-line completion window.
-set wildmode=longest,list
-set wildignore=*.o,*.obj,*.pyc
-
-" Use Vi-style backspacing.
-set backspace=
-
-" Set filetype based on file extensions.
-autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
-autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
-
-" Set filetype for Python type hinting stub files.
-autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
-
-" Enable syntax highlighting.
-if has("syntax")
-    syntax enable
-endif
-
-silent! colorscheme iceberg
-
-" Don't display intro message on startup.
-set shortmess+=I
-
-" Guideline at column 80.
-set colorcolumn=80
-
-set ruler
-
-" Use spaces, not tabs, with four spaces for indentation.
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
-" Use two-space tabs for certain filetypes.
-autocmd vimrc Filetype html,htmldjango,css,javascript setlocal expandtab tabstop=2 shiftwidth=2 softtabstop=2
-
-set autoindent
-set smarttab
-
-" Ignore case when the search pattern contains only lowercase letters.
-set ignorecase
-set smartcase
-
-" Fold using indents. ('Syntax' can be nice, but is sometimes very slow.)
-set foldmethod=indent
-
-" Don't make an exception for any character when folding.
-set foldignore=
-
-" Start with all folds open.
-set foldlevelstart=99
-
-" Mappings to open netrw
-map <leader>e :Explore<cr>
-map <leader>s :Sexplore<cr>
-map <leader>v :Vexplore<cr>
-
-" Hide netrw banner.
-let g:netrw_banner = 0
-
-" Open menu by pressing <leader> twice.
-let g:ctrlp_map='<leader><leader>'
-
-" Don't print signs on lines with warnings or errors.
-let g:ale_set_signs = 0
-
-" Specify custom sets of linters for filetypes.
-let g:ale_linters = {'python': ['flake8']}
