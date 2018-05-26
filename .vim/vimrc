@@ -139,15 +139,6 @@ nnoremap <leader>b :CtrlPBufTag<CR>
 " Search tags in all buffers with <leader>b.
 nnoremap <leader>a :CtrlPBufTagAll<CR>
 
-" Set base directory to cwd or nearest ancestor with version control file.
-let g:ctrlp_working_path_mode = 'rw'
-
-" Preserve cache across sessions.
-let g:ctrlp_clear_cache_on_exit = 0
-
-" Include dotfiles.
-let g:ctrlp_show_hidden = 1
-
 " Don't print signs on lines with warnings or errors.
 let g:ale_set_signs = 0
 
