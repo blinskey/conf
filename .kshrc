@@ -19,9 +19,16 @@ if [ "$(uname)" = OpenBSD ]; then
 
     # Set the prompt. Most versions of ksh don't support the escape codes
     # defined in the OpenBSD version.
-    PS1="[\u@\h:\W]\\$ "
+    PS1="\h:\W\\$ "
 else
-    PS1="[$(id -un)@$(hostname -s):$(basename $PWD)]\\$ "
+    ps1dir() {
+        if [ "$PWD" == "$HOME" ]; then
+            echo "~"
+        else
+            echo "$(basename "$PWD")"
+        fi
+    }
+    PS1='"$(hostname -s)":"$(ps1dir)"\$ '
 fi
 
 if [ -f "$HOME/.aliases" ]; then
