@@ -1,4 +1,3 @@
-"=== Basic Setup =========================================================={{{1
 " Emulate vi when invoked as such.
 if v:progname == 'vi'
     set compatible
@@ -17,8 +16,6 @@ filetype plugin indent on
 augroup vimrc
     autocmd!
 augroup END
-
-"=== Plugins =============================================================={{{1
 
 " Manually install this file from https://github.com/junegunn/vim-plug
 " (https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim).
@@ -52,8 +49,6 @@ if has('packages')
     packadd! matchit
 endif
 
-"=== General =============================================================={{{1
-
 " Strip trailing whitespace on write, preserving window view.  Note that this
 " may not be desirable in some file types.
 function! s:StripTrailingWhitespace()
@@ -68,8 +63,6 @@ set encoding=utf-8
 
 " Make ~ behave as an operator.
 set tildeop
-
-"=== Input ================================================================{{{1
 
 " Հայերէն
 if v:version >= 800
@@ -105,16 +98,12 @@ set wildignore=*.o,*.obj,*.pyc,.git
 " Use Vi-style backspacing.
 set backspace=
 
-"=== Filetype-Specific Settings ==========================================={{{1
-
 " Set filetype based on file extensions.
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 
 " Set filetype for Python type hinting stub files.
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
-
-"=== Color and Syntax Highlighting ========================================{{{1
 
 " Enable syntax highlighting.
 if has("syntax")
@@ -123,8 +112,6 @@ endif
 
 silent! colorscheme iceberg
 
-"=== Interface ============================================================{{{1
-
 " Don't display intro message on startup.
 set shortmess+=I
 
@@ -132,8 +119,6 @@ set shortmess+=I
 set colorcolumn=80
 
 set ruler
-
-"=== Indentation =========================================================={{{1
 
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
@@ -147,13 +132,9 @@ autocmd vimrc Filetype html,htmldjango,css,javascript setlocal expandtab tabstop
 set autoindent
 set smarttab
 
-"=== Search ==============================================================={{{1
-
 " Ignore case when the search pattern contains only lowercase letters.
 set ignorecase
 set smartcase
-
-"=== Folds ================================================================{{{1
 
 " Fold using indents. ('Syntax' can be nice, but is sometimes very slow.)
 set foldmethod=indent
@@ -163,8 +144,6 @@ set foldignore=
 
 " Start with all folds open.
 set foldlevelstart=99
-
-"=== netrw ================================================================{{{1
 
 " Mappings to open netrw
 map <leader>e :Explore<cr>
@@ -176,8 +155,6 @@ let g:netrw_banner = 0
 
 " Ignore list
 let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
-
-"=== Ctrlp ================================================================{{{1
 
 " Open menu by pressing <leader> twice.
 let g:ctrlp_map='<leader><leader>'
@@ -200,8 +177,6 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-"=== ALE =================================================================={{{1
-
 if s:use_ale
     " Don't print signs on lines with warnings or errors.
     let g:ale_set_signs = 0
@@ -209,5 +184,3 @@ if s:use_ale
     " Specify custom sets of linters for filetypes.
     let g:ale_linters = {'python': ['flake8']}
 endif
-
-" vi: set foldmethod=marker foldlevel=99:
