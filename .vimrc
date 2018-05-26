@@ -65,7 +65,6 @@ autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 
 " Make sure the encoding is set to UTF-8.
 set encoding=utf-8
-set termencoding=utf-8
 
 " Make ~ behave as an operator.
 set tildeop
@@ -78,9 +77,6 @@ if v:version >= 800
     set iminsert=0
     set imsearch=0
 endif
-
-" Default value, xterm, only works for up to 223 columns.
-set ttymouse=xterm2
 
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 map! <C-F> <Esc>gUiw`]a
@@ -103,13 +99,8 @@ set formatoptions+=j " Remove comment leader when joining lines.
 autocmd vimrc FileType text setlocal formatoptions+=t
 
 " Enable and configure the command-line completion window.
-set wildmenu
 set wildmode=longest,list
 set wildignore=*.o,*.obj,*.pyc,.git
-
-" Time out on key codes after 50 ms.
-set ttimeout
-set ttimeoutlen=50
 
 " Use Vi-style backspacing.
 set backspace=
@@ -162,18 +153,6 @@ set smarttab
 set ignorecase
 set smartcase
 
-" Show search matches as the pattern is being typed.
-set incsearch
-
-" By default, don't highlight search matches.
-set nohlsearch
-
-" Mapping to toggle search highlighting
-nnoremap <leader>o :set hlsearch! hlsearch?<CR>
-
-" Mapping to clear search highlighing when hlsearch is set.
-nnoremap <silent> <leader>c :nohlsearch<CR>
-
 "=== Folds ================================================================{{{1
 
 " Fold using indents. ('Syntax' can be nice, but is sometimes very slow.)
@@ -191,9 +170,6 @@ set foldlevelstart=99
 map <leader>e :Explore<cr>
 map <leader>s :Sexplore<cr>
 map <leader>h :Hexplore<cr>
-
-" Tree-style view
-let g:netrw_liststyle = 3
 
 " Hide banner
 let g:netrw_banner = 0
