@@ -130,15 +130,6 @@ let g:netrw_banner = 0
 " Open menu by pressing <leader> twice.
 let g:ctrlp_map='<leader><leader>'
 
-" Search all tags with <leader>t.
-nnoremap <leader>t :CtrlPTag<CR>
-
-" Search tags in current buffer with <leader>b.
-nnoremap <leader>b :CtrlPBufTag<CR>
-
-" Search tags in all buffers with <leader>b.
-nnoremap <leader>a :CtrlPBufTagAll<CR>
-
 " Don't print signs on lines with warnings or errors.
 let g:ale_set_signs = 0
 
