@@ -122,7 +122,7 @@ set foldlevelstart=99
 " Mappings to open netrw
 map <leader>e :Explore<cr>
 map <leader>s :Sexplore<cr>
-map <leader>h :Hexplore<cr>
+map <leader>v :Vexplore<cr>
 
 " Hide netrw banner.
 let g:netrw_banner = 0
