@@ -4,7 +4,7 @@ GIT=git -c advice.detachedHead=false
 CLONE=$(GIT) clone --quiet --depth 1
 CHECKOUT=$(GIT) checkout --quiet
 
-install: clean
+install: uninstall
 	@$(CLONE) --branch 1.0 git@github.com:cocopon/iceberg.vim.git
 	@$(CLONE) --branch v0.3.3 git@github.com:editorconfig/editorconfig-vim.git
 	@$(CLONE) --branch v1.8.0 git@github.com:w0rp/ale.git
@@ -15,5 +15,5 @@ install: clean
 		&& cd ctrlp.vim \
 		&& $(CHECKOUT) 4b9e7cac612902a25498cca49f13475fe1a821a4
 
-clean:
+uninstall:
 	@rm -rf */

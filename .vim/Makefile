@@ -8,6 +8,6 @@ plugins:
 helptags:
 	@vim -c 'packloadall | silent! helptags ALL | quit'
 
-clean:
-	@cd pack/git-plugins/start && make clean
+uninstall:
+	@cd pack/git-plugins/start && make uninstall
 	@rm pack/tags pack/tags-cn
