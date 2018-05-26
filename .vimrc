@@ -134,46 +134,13 @@ silent! colorscheme iceberg
 
 "=== Interface ============================================================{{{1
 
-" Don't display mode.
-set noshowmode
-
 " Don't display intro message on startup.
 set shortmess+=I
 
 " Guideline at column 80.
 set colorcolumn=80
 
-" Define whitespace characters to print when 'list' is enabled.
-set listchars=tab:>-,trail:~,extends:>,precedes:<
-
-" Always show status line on last window.
-set laststatus=2
-
-" Always show tab line.
-set showtabline=2
-
-" Open new windows to the right and bottom of current window.
-set splitbelow
-set splitright
-
-" Leave one line of context at top and bottom of window when scrolling.
-set scrolloff=1
-
-"=== Statusline ==========================================================={{{1
-
-set statusline=%y%q\ %f%r%h%w%m\ \%=\ %k\ \|\ %l:%c\ \|\ %p%%\ \|
-
-if s:use_ale
-    function! LinterStatus() abort
-        let l:counts = ale#statusline#Count(bufnr(''))
-        let l:all_errors = l:counts.error + l:counts.style_error
-        let l:all_non_errors = l:counts.total - l:all_errors
-        return printf(' W: %d E: %d ', all_non_errors, all_errors)
-    endfunction
-
-    set statusline+=%{LinterStatus()}
-endif
-
+set ruler
 
 "=== Indentation =========================================================={{{1
 
