@@ -150,11 +150,8 @@ map <leader>e :Explore<cr>
 map <leader>s :Sexplore<cr>
 map <leader>h :Hexplore<cr>
 
-" Hide banner
+" Hide netrw banner.
 let g:netrw_banner = 0
-
-" Ignore list
-let g:netrw_list_hide='.*\.swp$,.*\.swo$,.*\.pyc,^tags$,\.git'
 
 " Open menu by pressing <leader> twice.
 let g:ctrlp_map='<leader><leader>'
