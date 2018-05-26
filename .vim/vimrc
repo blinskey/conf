@@ -67,7 +67,7 @@ autocmd vimrc FileType text setlocal formatoptions+=t
 
 " Enable and configure the command-line completion window.
 set wildmode=longest,list
-set wildignore=*.o,*.obj,*.pyc,.git
+set wildignore=*.o,*.obj,*.pyc
 
 " Use Vi-style backspacing.
 set backspace=
