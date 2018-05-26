@@ -1,6 +1,7 @@
 " Emulate vi when invoked as such.
 if v:progname == 'vi'
     set compatible
+    set noloadplugins
     set t_Co=0
     set shortmess+=I
     finish
@@ -9,40 +10,13 @@ endif
 " Disable vi emulation.
 set nocompatible
 
-" Enable filetype-specific plugin and indentation files.
-filetype plugin indent on
-
 " Don't duplicate commands when sourcing this file multiple times.
 augroup vimrc
     autocmd!
 augroup END
 
-" Manually install this file from https://github.com/junegunn/vim-plug
-" (https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim).
-if !empty(glob('~/.vim/autoload/plug.vim'))
-    call plug#begin('~/.vim/bundle')
-
-    " Python auto-indent fixes
-    Plug 'Vimjas/vim-python-pep8-indent'
-
-    " Colorschemes
-    Plug 'blinskey/btl.vim'
-    Plug 'cocopon/iceberg.vim'
-
-    " Fuzzy finder
-    Plug 'ctrlpvim/ctrlp.vim'
-
-    " Load settings from .editorconfig
-    Plug 'editorconfig/editorconfig-vim'
-
-    " Linter support -- requires async.
-    let s:use_ale = v:version >= 800
-    if s:use_ale
-        Plug 'w0rp/ale'
-    endif
-
-    call plug#end()
-endif
+" Enable filetype-specific plugin and indentation files.
+filetype plugin indent on
 
 if has('packages')
     " Enable the built-in matchit plugin.
@@ -174,10 +148,8 @@ let g:ctrlp_clear_cache_on_exit = 0
 " Include dotfiles.
 let g:ctrlp_show_hidden = 1
 
-if s:use_ale
-    " Don't print signs on lines with warnings or errors.
-    let g:ale_set_signs = 0
+" Don't print signs on lines with warnings or errors.
+let g:ale_set_signs = 0
 
-    " Specify custom sets of linters for filetypes.
-    let g:ale_linters = {'python': ['flake8']}
-endif
+" Specify custom sets of linters for filetypes.
+let g:ale_linters = {'python': ['flake8']}
