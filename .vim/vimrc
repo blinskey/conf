@@ -48,6 +48,12 @@ set smartcase
 " Don't ring bell when more options are available in command line completion.
 set belloff+=wildmode
 
+" Use spaces, not tabs, with four spaces for indentation.
+set expandtab
+set tabstop=4
+set softtabstop=4
+set shiftwidth=4
+
 " Filetypes for file extensions
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
