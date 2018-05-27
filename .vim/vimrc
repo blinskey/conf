@@ -32,7 +32,6 @@ set imsearch=0
 set nowrap
 set textwidth=79
 set colorcolumn=80
-set ruler
 
 " See :h fo-table.
 set formatoptions-=t
