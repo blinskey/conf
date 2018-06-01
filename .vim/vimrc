@@ -44,6 +44,8 @@ set smarttab
 set ignorecase
 set smartcase
 set autoread
+set ruler
+set incsearch
 
 " Don't ring bell when more options are available in command line completion.
 set belloff+=wildmode
