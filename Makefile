@@ -34,7 +34,7 @@ ksh:
 	ln -fs $(SRC_DIR)/.aliases ~
 
 bash:
-	ln -fs $(SRC_DIR)/.bash_profile ~
+	ln -fs $(SRC_DIR)/.profile ~
 	ln -fs $(SRC_DIR)/.bashrc ~
 	ln -fs $(SRC_DIR)/.aliases ~
 
