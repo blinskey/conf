@@ -1,7 +1,7 @@
 .POSIX:
 
 GIT=git -c advice.detachedHead=false
-CLONE=$(GIT) clone --quiet --depth 1
+CLONE=$(GIT) clone --quiet
 CHECKOUT=$(GIT) checkout --quiet
 
 install: uninstall
