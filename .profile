@@ -1,7 +1,7 @@
 # Initialization for all Bourne-compatible shells.
 
 GOPATH=$HOME/go
-PATH=$HOME/bin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:$HOME/bin:$GOPATH/bin:.
+PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/games:$HOME/bin:$GOPATH/bin:.
 
 # Add MacPorts binary paths on Mac.
 if [ "$(uname)" == "Darwin" ]; then
