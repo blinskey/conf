@@ -5,7 +5,7 @@ PATH=$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/
 
 # Add MacPorts binary paths on Mac.
 if [ "$(uname)" == "Darwin" ]; then
-    PATH="$PATH:/opt/local/bin:/opt/local/sbin:$PATH"
+    PATH="$PATH:$HOME/Library/Python/2.7/bin:/opt/local/bin:/opt/local/sbin"
 fi
 
 export PATH HOME TERM GOPATH
