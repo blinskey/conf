@@ -1,13 +1,21 @@
 # Initialization for all Bourne-compatible shells.
 
 GOPATH=$HOME/go
-PATH=$HOME/bin:$HOME/.local/bin:$GOPATH/bin:$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/games
-
-# Add MacPorts binary paths on Mac.
+PATH=/bin:/sbin:/usr/bin:/usr/sbin:/usr/X11R6/bin:/usr/local/bin:/usr/local/sbin:/usr/games:$HOME/.local/bin:$GOPATH/bin
 if [ "$(uname)" == "Darwin" ]; then
-    PATH="$PATH:$HOME/Library/Python/2.7/bin:/opt/local/bin:/opt/local/sbin"
-fi
+    # pkgsrc binaries. Note that this is at the *end* of the list, so pkgsrc
+    # binaries won't shadow default binaries.
+    if [ -x /opt/pkg/bin/pkgin ]; then
+        PATH="$PATH:/opt/pkg/bin"
+    fi
 
+    # pip-installed Python packages
+    if [ -x /usr/local/bin/pip ]; then
+        PATH="$PATH:$HOME/Library/Python/2.7/bin"
+    fi
+
+fi
+PATH=$HOME/bin:$PATH
 export PATH HOME TERM GOPATH
 
 if [ "$SHELL" == /bin/ksh ]; then
