@@ -47,6 +47,8 @@ set autoread
 set ruler
 set incsearch
 set ttimeoutlen=100
+set splitright
+set splitbelow
 
 " Don't ring bell when more options are available in command line completion.
 set belloff+=wildmode
