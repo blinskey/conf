@@ -21,8 +21,6 @@ silent! colorscheme iceberg
 
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
-set tildeop
-set backspace=  " Vi-style backspacing
 
 " Enable keymap but start in Latin keyboard mode.
 silent! set keymap=armenian-western_utf-8
@@ -49,9 +47,6 @@ set incsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
-
-" Don't ring bell when more options are available in command line completion.
-set belloff+=wildmode
 
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
