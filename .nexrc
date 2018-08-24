@@ -4,5 +4,4 @@ set iclower
 set leftright
 set shiftwidth=4
 set tabstop=4
-set tildeop
 set wraplen=79
