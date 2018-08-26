@@ -20,6 +20,7 @@ common: vim tmux ctags inputrc git go mutt
 
 vim:
 	ln -fs $(SRC_DIR)/.vim ~
+	ln -fs $(SRC_DIR)/.vimrc ~
 	cd ~/.vim && make install
 
 tmux:
