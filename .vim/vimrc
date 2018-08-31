@@ -47,7 +47,6 @@ set incsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
-set mouse=a
 
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
@@ -67,6 +66,9 @@ let g:netrw_banner = 0  " Hide banner.
 
 let g:ctrlp_map='<leader><leader>'
 let g:ctrlp_clear_cache_on_exit = 0
+
+let g:ale_set_signs = 0  " Don't use sign column.
+let g:ale_linters = {'python': ['flake8']}
 
 " Strip trailing whitespace on write, preserving window view.
 function! s:StripTrailingWhitespace()
