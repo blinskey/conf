@@ -36,7 +36,7 @@ set formatoptions-=t
 set formatoptions+=cqnl1j
 
 set wildmode=longest,list
-set wildignore=*.o,*.obj,*.pyc
+set wildignore=*.o,*.obj,*.pyc,*/node_modules/*,*/.git/*
 set autoindent
 set smarttab
 set ignorecase
@@ -47,6 +47,7 @@ set incsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
+set mouse=a
 
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
@@ -65,10 +66,8 @@ map <leader>v :Vexplore<cr>
 let g:netrw_banner = 0  " Hide banner.
 
 let g:ctrlp_map='<leader><leader>'
-let g:ctrlp_clear_cache_on_exit = 0
-
-let g:ale_set_signs = 0  " Don't use sign column.
-let g:ale_linters = {'python': ['flake8']}
+let g:ctrlp_max_files = 10000
+nnoremap <leader>c :CtrlPClearCache<CR>
 
 " Strip trailing whitespace on write, preserving window view.
 function! s:StripTrailingWhitespace()
