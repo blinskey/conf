@@ -48,6 +48,7 @@ set ttimeoutlen=100
 set splitright
 set splitbelow
 set mouse=a
+set laststatus=2
 
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
@@ -68,6 +69,10 @@ let g:netrw_banner = 0  " Hide banner.
 let g:ctrlp_map='<leader><leader>'
 let g:ctrlp_max_files = 10000
 nnoremap <leader>c :CtrlPClearCache<CR>
+
+let g:ale_sign_column_always = 1
+let g:ale_open_list = 1
+let g:ale_set_signs = 0
 
 " Strip trailing whitespace on write, preserving window view.
 function! s:StripTrailingWhitespace()
