@@ -47,7 +47,7 @@ set incsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
-set mouse=a
+set mouse=
 set laststatus=2
 
 " Use spaces, not tabs, with four spaces for indentation.
