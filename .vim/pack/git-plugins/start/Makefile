@@ -14,6 +14,9 @@ install: uninstall
 	$(CLONE) https://github.com/ctrlpvim/ctrlp.vim.git \
 		&& cd ctrlp.vim \
 		&& $(CHECKOUT) 4b9e7cac612902a25498cca49f13475fe1a821a4
+	$(CLONE) https://github.com/blinskey/btl.vim.git \
+		&& cd btl.vim \
+		&& $(CHECKOUT) 825dfaa15146c585d5138276f8535175d01c7194
 
 uninstall:
 	rm -rf */
