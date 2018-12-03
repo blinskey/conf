@@ -5,7 +5,6 @@ CLONE=$(GIT) clone --quiet
 CHECKOUT=$(GIT) checkout --quiet
 
 install: uninstall
-	$(CLONE) --branch 1.0 https://github.com/cocopon/iceberg.vim.git
 	$(CLONE) --branch v0.3.3 https://github.com/editorconfig/editorconfig-vim.git
 	$(CLONE) --branch v1.8.0 https://github.com/w0rp/ale.git
 	$(CLONE) https://github.com/Vimjas/vim-python-pep8-indent.git \
