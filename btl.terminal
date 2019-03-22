@@ -106,8 +106,8 @@
 	<data>
 	YnBsaXN0MDDUAQIDBAUGKyxYJHZlcnNpb25YJG9iamVjdHNZJGFyY2hpdmVyVCR0b3AS
 	AAGGoKcHCBMZHSQoVSRudWxs1QkKCwwNDg8QERJcTlNDb21wb25lbnRzVU5TUkdCXE5T
-	Q29sb3JTcGFjZV8QEk5TQ3VzdG9tQ29sb3JTcGFjZVYkY2xhc3NPEBAwLjExIDAuMTEg
-	MC4xMSAxTxAqMC4wODQyNjQzMDgyMSAwLjA4NDI2MTc4OTkyIDAuMDg0MjYzMjI3ODgA
+	Q29sb3JTcGFjZV8QEk5TQ3VzdG9tQ29sb3JTcGFjZVYkY2xhc3NPEBAwLjEzIDAuMTMg
+	MC4xMyAxTxAqMC4wOTgxNTA4NDkzNCAwLjA5ODE0Nzg5ODkxIDAuMDk4MTQ5NTgyNzQA
 	EAGAAoAG0xQVDRYXGFROU0lEVU5TSUNDEAeAA4AF0hoNGxxXTlMuZGF0YU8RDEgAAAxI
 	TGlubwIQAABtbnRyUkdCIFhZWiAHzgACAAkABgAxAABhY3NwTVNGVAAAAABJRUMgc1JH
 	QgAAAAAAAAAAAAAAAAAA9tYAAQAAAADTLUhQICAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA
@@ -212,7 +212,7 @@
 	<key>FontWidthSpacing</key>
 	<real>1.004032258064516</real>
 	<key>ProfileCurrentVersion</key>
-	<real>2.0499999999999998</real>
+	<real>2.0600000000000001</real>
 	<key>RunCommandAsShell</key>
 	<true/>
 	<key>ScrollAlternateScreen</key>
@@ -283,7 +283,7 @@
 	<key>UseBrightBold</key>
 	<false/>
 	<key>VisualBell</key>
-	<true/>
+	<false/>
 	<key>VisualBellOnlyWhenMuted</key>
 	<false/>
 	<key>WindowTitle</key>
@@ -292,6 +292,21 @@
 	<integer>80</integer>
 	<key>name</key>
 	<string>btl</string>
+	<key>noWarnProcesses</key>
+	<array>
+		<dict>
+			<key>ProcessName</key>
+			<string>screen</string>
+		</dict>
+		<dict>
+			<key>ProcessName</key>
+			<string>tmux</string>
+		</dict>
+		<dict>
+			<key>ProcessName</key>
+			<string>ssh</string>
+		</dict>
+	</array>
 	<key>rowCount</key>
 	<integer>24</integer>
 	<key>shellExitAction</key>
