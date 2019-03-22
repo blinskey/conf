@@ -15,12 +15,12 @@ augroup END
 
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/plugged')
-        Plug 'w0rp/ale', { 'tag': 'v2.3.1' }
+        Plug 'w0rp/ale', {'tag': 'v2.3.1'}
         Plug 'blinskey/btl.vim'
-        Plug 'ctrlpvim/ctrlp.vim', { 'commit': '2e773fd8' }
-        Plug 'editorconfig/editorconfig-vim', { 'commit': '68f8136' }
-        Plug 'Vimjas/vim-python-pep8-indent', { 'commit': '84f35c0' }
-        Plug 'cocopon/iceberg.vim', { 'commit': '8b5ca00' }
+        Plug 'ctrlpvim/ctrlp.vim', {'commit': '2e773fd8'}
+        Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
+        Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
+        Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
     call plug#end()
 endif
 
