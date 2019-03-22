@@ -1,3 +1,5 @@
+# .muttrc expects these settings to be defined in ~/.mutt/private.
+
 set imap_user='user@example.com'
 set imap_pass=''
 
