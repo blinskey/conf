@@ -20,6 +20,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
         Plug 'ctrlpvim/ctrlp.vim', { 'commit': '2e773fd8' }
         Plug 'editorconfig/editorconfig-vim', { 'commit': '68f8136' }
         Plug 'Vimjas/vim-python-pep8-indent', { 'commit': '84f35c0' }
+        Plug 'cocopon/iceberg.vim', { 'commit': '8b5ca00' }
     call plug#end()
 endif
 
@@ -27,7 +28,7 @@ filetype plugin indent on
 silent! packadd! matchit
 
 silent! syntax enable
-silent! colorscheme btl
+silent! colorscheme iceberg
 
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
