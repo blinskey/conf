@@ -66,6 +66,12 @@ set tabstop=4
 set softtabstop=4
 set shiftwidth=4
 
+" Store swapfiles in ~/tmp/vim.
+if !isdirectory($HOME . "/tmp/vim")
+    call mkdir($HOME . "/tmp/vim", "p")
+endif
+set directory=$HOME/tmp/vim
+
 " Filetypes for file extensions
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
