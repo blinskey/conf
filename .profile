@@ -1,7 +1,7 @@
 # Initialization for all Bourne-compatible shells.
 
 GOPATH=$HOME/go
-PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin
+PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin
 if [ "$(uname)" == "Darwin" ]; then
     # pkgsrc binaries. Note that this is at the *end* of the list, so pkgsrc
     # binaries won't shadow default binaries.
