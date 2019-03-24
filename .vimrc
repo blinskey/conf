@@ -28,7 +28,11 @@ filetype plugin indent on
 silent! packadd! matchit
 
 silent! syntax enable
+
+" Enable Iceberg and make a couple of gray colors lighter to increase contrast.
 silent! colorscheme iceberg
+hi! Comment ctermfg=245
+hi! ColorColumn ctermfg=236
 
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
