@@ -3,10 +3,9 @@
 GOPATH=$HOME/go
 PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin
 if [ "$(uname)" == "Darwin" ]; then
-    PKGSRC=$HOME/pkg
-    # pkgsrc -- at end of path, so ensure that PREFER_PKGSRC is set in mk.conf.
-    if [ -x $PKGSRC ]; then
-        PATH="$PATH:$PKGSRC/bin:$PKGSRC/sbin"
+    # MacPorts
+    if [ -d /opt/local ]; then
+        PATH="/opt/local/bin:/opt/local/sbin:$PATH"
     fi
 
     # pip-installed Python packages
