@@ -21,6 +21,15 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
         Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
         Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
         Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
+
+        " To install fzf, assuming $GOPATH is ~/go:
+        "     go get github.com/junegunn/fzf
+        "     cd ~/go/src/github.com/junegunn/fzf
+        "     make && make install
+        if !empty(glob('~/go/src/github.com/junegunn/fzf'))
+            Plug '~/go/src/github.com/junegunn/fzf'
+            Plug 'junegunn/fzf.vim', {'commit': 'b31512e'}
+        endif
     call plug#end()
 endif
 
@@ -87,9 +96,7 @@ map <leader>s :Sexplore<cr>
 map <leader>v :Vexplore<cr>
 let g:netrw_banner = 0  " Hide banner.
 
-let g:ctrlp_map='<leader><leader>'
-let g:ctrlp_max_files = 10000
-nnoremap <leader>c :CtrlPClearCache<CR>
+map <leader><leader> :FZF<cr>
 
 let g:ale_sign_column_always = 1
 let g:ale_linters = {'python': ['flake8']}
