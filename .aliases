@@ -9,3 +9,5 @@ alias mv='mv -i'
 alias grepfor='fgrep -riIn'
 
 alias vbm=VBoxManage
+
+alias rg='rg --color=never'
