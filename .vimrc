@@ -75,6 +75,10 @@ set splitbelow
 set mouse=
 set laststatus=2
 
+set foldmethod=syntax
+setlocal foldlevelstart=99
+setlocal foldlevel=99
+
 " Use spaces, not tabs, with four spaces for indentation.
 set expandtab
 set tabstop=4
