@@ -8,6 +8,8 @@ if v:progname == 'vi'
 endif
 
 set nocompatible
+set secure
+set nomodeline
 
 augroup vimrc
     autocmd!
