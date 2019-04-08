@@ -101,7 +101,7 @@ let g:netrw_banner = 0  " Hide banner.
 
 map <leader><leader> :FZF<cr>
 
-let g:ale_sign_column_always = 1
+let g:ale_set_signs = 0
 let g:ale_linters = {'python': ['flake8']}
 
 " Strip trailing whitespace on write, preserving window view.
