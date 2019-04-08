@@ -42,11 +42,13 @@ silent! syntax enable
 
 " Enable Iceberg color scheme and make some tweaks.
 silent! colorscheme iceberg
-hi! Comment ctermfg=245
-hi! ColorColumn ctermbg=236
-hi! link SpecialKey Special
-hi! link EndOfBuffer Special
-hi! link NonText Special
+if g:colors_name == 'iceberg'
+    hi! Comment ctermfg=245
+    hi! ColorColumn ctermbg=236
+    hi! link SpecialKey Special
+    hi! link EndOfBuffer Special
+    hi! link NonText Special
+endif
 
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
