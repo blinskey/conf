@@ -46,7 +46,7 @@ if g:colors_name == 'iceberg'
     hi! Comment ctermfg=245
     hi! ColorColumn ctermbg=236
     hi! link SpecialKey Special
-    hi! link EndOfBuffer Special
+    hi! link EndOfBuffer Identifier
     hi! link NonText Special
 endif
 
