@@ -78,12 +78,6 @@ set foldmethod=syntax
 setlocal foldlevelstart=99
 setlocal foldlevel=99
 
-" Use spaces, not tabs, with four spaces for indentation.
-set expandtab
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
-
 " Store swapfiles in ~/tmp/vim.
 if !isdirectory($HOME . "/tmp/vim")
     call mkdir($HOME . "/tmp/vim", "p")
