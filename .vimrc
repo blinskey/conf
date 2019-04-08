@@ -21,7 +21,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
         Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
         Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
         Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
-        Plug 'fatih/vim-go', {'commit': 'f040988'}
 
         " To install fzf, assuming $GOPATH is ~/go:
         "     go get github.com/junegunn/fzf
