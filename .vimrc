@@ -41,7 +41,7 @@ silent! syntax enable
 
 " Enable Iceberg color scheme and make some tweaks.
 silent! colorscheme iceberg
-if g:colors_name == 'iceberg'
+if exists("g:colors_name") && g:colors_name == 'iceberg'
     hi! Comment ctermfg=245
     hi! ColorColumn ctermbg=236
     hi! link SpecialKey Special
