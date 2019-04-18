@@ -1,20 +1,7 @@
 # Initialization for all Bourne-compatible shells.
 
 GOPATH=$HOME/go
-PATH=/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin
-if [ "$(uname)" == "Darwin" ]; then
-    # MacPorts
-    if [ -d /opt/local ]; then
-        PATH="/opt/local/bin:/opt/local/sbin:$PATH"
-    fi
-
-    # pip-installed Python packages
-    if [ -x /usr/local/bin/pip ]; then
-        PATH="$PATH:$HOME/Library/Python/2.7/bin"
-    fi
-
-fi
-PATH=$HOME/bin:$PATH
+PATH=$HOME/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin
 export PATH HOME TERM GOPATH
 
 if [ "$SHELL" == /bin/ksh ]; then
