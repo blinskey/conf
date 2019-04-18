@@ -9,19 +9,19 @@
 [gpg]
 	program = gpg
 [core]
-    excludesfile = ~/.gitignore_global
+	excludesfile = ~/.gitignore_global
 [merge]
 	tool = vimdiff
 [tag]
 	sort = version:refname
 [color]
-    ui = false
-    diff = true
+	ui = false
+	diff = true
 [color "decorate"]
 	branch = normal
-    remoteBranch = normal
-    tag = normal
-    stash = normal
-    HEAD = normal
+	remoteBranch = normal
+	tag = normal
+	stash = normal
+	HEAD = normal
 [color "diff"]
-    commit = normal
+	commit = normal
