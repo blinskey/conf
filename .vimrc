@@ -4,6 +4,7 @@ if v:progname == 'vi'
     set noloadplugins
     set t_Co=0
     set shortmess+=I
+    syntax off
     finish
 endif
 
