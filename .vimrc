@@ -118,7 +118,7 @@ autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 map! <C-F> <Esc>gUiw`]a
 
 if executable("rg")
-    set grepprg=rg\ --vimgrep\ $*
+    set grepprg=rg\ -i\ --vimgrep\ $*
 else
     set grepprg=grep\ -riIn\ $*\ /dev/null
 endif
