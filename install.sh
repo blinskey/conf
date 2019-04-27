@@ -1,7 +1,8 @@
 #!/bin/sh
 
-readonly PWD=$(pwd)
+ln -sf $PWD/other/cmusrc $HOME/.config/cmus/rc
 
+cd home
 for f in .*; do
     if [ $f != . ] \
             && [ $f != .. ] \

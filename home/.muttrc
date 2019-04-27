@@ -1,11 +1,8 @@
 # Mutt configuration
 #
-# Known to work with Mutt 1.8.0 from the OpenBSD ports collection and NeoMutt
-# 20180223 from MacPorts.
-#
 # ~/.cache/mutt must exist.
 
-source ~/.mutt/private
+source "gpg -d ~/.mutt/private.mutt.gpg |"
 
 set imap_idle
 set imap_check_subscribed
