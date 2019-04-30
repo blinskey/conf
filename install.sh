@@ -1,5 +1,6 @@
 #!/bin/sh
 
+mkdir -p $HOME/.config/cmus
 ln -sf $PWD/other/cmusrc $HOME/.config/cmus/rc
 
 cd home
