@@ -113,6 +113,7 @@ function! s:StripTrailingWhitespace()
     call winrestview(l:view)
 endfun
 autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
+command WritePreservingWhitespace noautocmd w
 
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 map! <C-F> <Esc>gUiw`]a
