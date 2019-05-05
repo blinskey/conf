@@ -115,6 +115,10 @@ endfun
 autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 command WritePreservingWhitespace noautocmd w
 
+" Commands to switch indentation style in current buffer
+command TwoSpaceTabs setlocal expandtab ts=2 sts=2 shiftwidth=2
+command FourSpaceTabs setlocal expandtab ts=4 sts=4 shiftwidth=4
+
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 map! <C-F> <Esc>gUiw`]a
 
