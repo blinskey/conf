@@ -95,6 +95,7 @@ set directory=$HOME/tmp/vim
 autocmd vimrc BufRead,BufNewFile *.md set filetype=markdown
 autocmd vimrc BufRead,BufNewFile .gitignore set filetype=conf
 autocmd vimrc BufRead,BufNewFile *.pyi set filetype=python
+autocmd vimrc BufRead,BufNewFile Jenkinsfile set filetype=groovy
 
 map <leader>e :Explore<cr>
 map <leader>s :Sexplore<cr>
