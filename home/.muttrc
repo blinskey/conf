@@ -31,7 +31,7 @@ set delete
 set sort=threads
 set sort_aux=reverse-last-date-received
 
-macro index,pager A "<save-message>=Inbox/.Archive<enter>" "Archive"
+macro index,pager A "<save-message>=Archive<enter>" "Archive"
 
 # noop bindings below are a workaround for a NeoMutt bug.
 # See https://www.neomutt.org/guide/configuration.html#bind-warnings.
