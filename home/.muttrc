@@ -4,6 +4,9 @@
 
 source "gpg -d ~/.mutt/private.mutt.gpg |"
 
+# https://github.com/dracula/mutt
+source ~/src/mutt-dracula/dracula.muttrc
+
 set imap_idle
 set imap_check_subscribed
 set ssl_force_tls
