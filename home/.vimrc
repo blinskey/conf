@@ -40,14 +40,25 @@ silent! packadd! matchit
 
 silent! syntax enable
 
-" Enable Iceberg color scheme and make some tweaks.
 silent! colorscheme iceberg
 if exists("g:colors_name") && g:colors_name == 'iceberg'
-    hi! Comment ctermfg=245
-    hi! ColorColumn ctermbg=236
+    " Make a few tweaks to improve readability of certain highlight groups.
     hi! link SpecialKey Special
     hi! link EndOfBuffer Normal
     hi! link NonText Special
+
+    " Use 24-bit color if the terminal emulator indicates support.
+    " Make comments and colorcolumn brighter.
+    if $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
+        set termguicolors
+        let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
+        let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
+        hi! Comment guifg=#888888
+        hi! ColorColumn guibg=#333333
+    else
+        hi! Comment ctermfg=245
+        hi! ColorColumn ctermbg=236
+    endif
 endif
 
 set shortmess+=I  " No intro message on startup.
