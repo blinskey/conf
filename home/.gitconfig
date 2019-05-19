@@ -14,14 +14,3 @@
 	tool = vimdiff
 [tag]
 	sort = version:refname
-[color]
-	ui = false
-	diff = true
-[color "decorate"]
-	branch = normal
-	remoteBranch = normal
-	tag = normal
-	stash = normal
-	HEAD = normal
-[color "diff"]
-	commit = normal
