@@ -59,7 +59,7 @@ endif
 if exists("g:colors_name") && g:colors_name == 'iceberg'
     " Make a few tweaks to improve readability of certain highlight groups.
     hi! link SpecialKey Special
-    hi! link EndOfBuffer Normal
+    hi! link EndOfBuffer Comment
     hi! link NonText Special
 endif
 
