@@ -1,0 +1,45 @@
+# Gnome Terminal settings
+#
+# Generated with Gnome 3.32.
+#
+# To install: dconf load /org/gnome/terminal/legacy/ < <this file>
+#
+# Colors based on the Iceberg .Xresources file provided by cocopon:
+# https://gist.github.com/cocopon/1d481941907d12db7a0df2f8806cfd41
+
+[/]
+default-show-menubar=false
+confirm-close=false
+menu-accelerator-enabled=true
+theme-variant='system'
+
+[keybindings]
+toggle-menubar='<Alt>m'
+
+[profiles:/:b1dcc9dd-5262-4d8d-a863-c897e6d979b9]
+use-theme-transparency=false
+use-custom-command=false
+bold-color-same-as-fg=true
+cursor-foreground-color='rgb(22,24,33)'
+highlight-foreground-color='rgb(255,255,255)'
+login-shell=false
+scrollbar-policy='never'
+text-blink-mode='always'
+background-color='rgb(22,24,33)'
+cursor-colors-set=false
+visible-name='btl'
+use-transparent-background=false
+use-theme-colors=false
+font='DejaVu Sans Mono 12'
+custom-command=''
+palette=['rgb(22,24,33)', 'rgb(226,120,120)', 'rgb(180,190,130)', 'rgb(226,164,120)', 'rgb(132,160,198)', 'rgb(160,147,199)', 'rgb(137,184,194)', 'rgb(198,200,209)', 'rgb(107,112,137)', 'rgb(233,137,137)', 'rgb(192,202,142)', 'rgb(233,177,137)', 'rgb(145,172,209)', 'rgb(173,160,211)', 'rgb(149,196,206)', 'rgb(210,212,222)']
+scroll-on-output=false
+use-system-font=true
+cursor-background-color='rgb(210,212,222)'
+background-transparency-percent=22
+highlight-background-color='rgb(75,119,155)'
+foreground-color='rgb(210,212,222)'
+bold-is-bright=false
+highlight-colors-set=true
+cursor-blink-mode='off'
+audible-bell=false
