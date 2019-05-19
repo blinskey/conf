@@ -63,6 +63,9 @@ if exists("g:colors_name") && g:colors_name == 'iceberg'
     hi! link NonText Special
 endif
 
+set number
+set cursorline
+
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
 
