@@ -3,8 +3,8 @@
 # ~/.cache/mutt must exist.
 
 source "gpg -d ~/.mutt/private.mutt.gpg |"
-color status black blue
-color indicator black green
+color status white blue
+color indicator black yellow
 
 set imap_idle
 set imap_check_subscribed
