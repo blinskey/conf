@@ -1,5 +1,8 @@
 # Shell aliases
 
+# Disable any system-wide ls aliases.
+alias ls=ls
+
 alias l='ls -CFA'
 alias ll='ls -ahlF'
 
