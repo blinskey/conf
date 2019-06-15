@@ -28,4 +28,4 @@ fi
 # Don't kill shell due to inactivity.
 unset TMOUT
 
-export NO_COLOR
+export NO_COLOR=1
