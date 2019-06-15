@@ -117,7 +117,7 @@ map <leader>s :Sexplore<cr>
 map <leader>v :Vexplore<cr>
 let g:netrw_banner = 0  " Hide banner.
 
-map <leader><leader> :FZF<cr>
+map <leader>f :FZF<cr>
 
 let g:ale_set_signs = 0
 let g:ale_linters = {'python': ['flake8']}
