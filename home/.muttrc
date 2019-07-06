@@ -3,8 +3,8 @@
 # ~/.cache/mutt must exist.
 
 source "gpg -d ~/.mutt/private.mutt.gpg |"
-color status white blue
-color indicator black yellow
+color status black blue
+color indicator black green
 
 set imap_idle
 set imap_check_subscribed
@@ -47,8 +47,9 @@ bind pager G bottom
 bind attach,index,pager \Cf next-page
 bind attach,index,pager \Cb previous-page
 
-# Prevent the user from viewing passwords.
-bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
+# Uncomment this line to disable the "enter-command" feature, which can be used
+# to print passwords.
+#bind generic,alias,attach,browser,editor,index,compose,pager,pgp,postpone ':' noop
 
 set date_format = "%I:%M %p %D"
 set index_format = "[%Z] %d  %-40.40F %s"
