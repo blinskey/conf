@@ -1,8 +1,8 @@
-# Iceberg colors
-#
-# From https://gist.githubusercontent.com/cocopon/1d481941907d12db7a0df2f8806cfd41/raw/9a3c6fef1ffb2a994b6cffabe34d60f265aebb91/.Xresources
-#
-# See https://github.com/cocopon/iceberg.vim
+! Iceberg colors
+!
+! From https://gist.githubusercontent.com/cocopon/1d481941907d12db7a0df2f8806cfd41/raw/9a3c6fef1ffb2a994b6cffabe34d60f265aebb91/.Xresources
+!
+! See https://github.com/cocopon/iceberg.vim
 
 ! special
 *.foreground:   #d2d4de
