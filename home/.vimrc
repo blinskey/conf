@@ -18,8 +18,14 @@ augroup END
 
 if !empty(glob('~/.vim/autoload/plug.vim'))
     call plug#begin('~/.vim/plugged')
+        " Use the local development copy of my colorscheme if present.
+        if !empty(glob('~/src/btl.vim'))
+            Plug '~/src/btl.vim'
+        else
+            Plug 'blinskey/btl.vim'
+        endif
+
         Plug 'w0rp/ale', {'tag': 'v2.3.1'}
-        Plug 'blinskey/btl.vim'
         Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
         Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
         Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
@@ -40,30 +46,8 @@ silent! packadd! matchit
 
 silent! syntax enable
 
-if has('termguicolors') && $COLORTERM == 'truecolor' || $COLORTERM == '24bit'
-    set termguicolors
-    let &t_8f = "\<Esc>[38:2:%lu:%lu:%lum"
-    let &t_8b = "\<Esc>[48:2:%lu:%lu:%lum"
-
-    silent! colorscheme iceberg
-    "hi! Comment guifg=#888888
-    "hi! ColorColumn guibg=#333333
-else
-    silent! colorscheme iceberg
-    if exists("g:colors_name") && g:colors_name == 'iceberg'
-        "hi! Comment ctermfg=245
-        "hi! ColorColumn ctermbg=236
-    endif
-endif
-
-if exists("g:colors_name") && g:colors_name == 'iceberg'
-    " Make a few tweaks to improve readability of certain highlight groups.
-    hi! link SpecialKey Special
-    hi! link EndOfBuffer Comment
-    hi! link NonText Special
-endif
-
-set cursorline
+set notermguicolors
+silent! colorscheme btl
 
 set shortmess+=I  " No intro message on startup.
 set encoding=utf-8
