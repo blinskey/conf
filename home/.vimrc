@@ -30,12 +30,8 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
         Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
         Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
 
-        " To install fzf, assuming $GOPATH is ~/go:
-        "     go get github.com/junegunn/fzf
-        "     cd ~/go/src/github.com/junegunn/fzf
-        "     make && make install
-        if !empty(glob('~/go/src/github.com/junegunn/fzf'))
-            Plug '~/go/src/github.com/junegunn/fzf'
+        if executable('fzf')
+            Plug 'junegunn/fzf', {'tag': '0.18.0'}
             Plug 'junegunn/fzf.vim', {'commit': 'b31512e'}
         endif
     call plug#end()
