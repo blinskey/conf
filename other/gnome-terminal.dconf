@@ -1,26 +1,27 @@
 [/]
-default-show-menubar=false
 confirm-close=false
+default-show-menubar=false
 menu-accelerator-enabled=true
 theme-variant='system'
 
 [keybindings]
 toggle-menubar='<Alt>m'
 
-[profiles:/:08d6633f-d524-4e1a-a003-5fbe40cea63d]
-bold-is-bright=false
-foreground-color='rgb(198,200,209)'
-use-system-font=true
-palette=['rgb(34,34,34)', 'rgb(226,120,120)', 'rgb(180,190,130)', 'rgb(226,164,120)', 'rgb(132,160,198)', 'rgb(160,147,199)', 'rgb(137,184,194)', 'rgb(198,200,209)', 'rgb(102,102,102)', 'rgb(233,137,137)', 'rgb(192,202,142)', 'rgb(233,177,137)', 'rgb(145,172,209)', 'rgb(173,160,211)', 'rgb(149,196,206)', 'rgb(210,212,222)']
-bold-color-same-as-fg=true
-cursor-blink-mode='off'
-text-blink-mode='never'
-background-color='rgb(34,34,34)'
-visible-name='Iceberg'
-font='Ubuntu Mono 11'
-audible-bell=false
-use-theme-colors=false
-
 [profiles:]
 default='08d6633f-d524-4e1a-a003-5fbe40cea63d'
 list=['08d6633f-d524-4e1a-a003-5fbe40cea63d']
+
+[profiles:/:08d6633f-d524-4e1a-a003-5fbe40cea63d]
+audible-bell=false
+background-color='rgb(34,34,34)'
+bold-color-same-as-fg=true
+bold-is-bright=false
+cursor-blink-mode='off'
+font='Ubuntu Mono 11'
+foreground-color='rgb(198,200,209)'
+login-shell=true
+palette=['rgb(34,34,34)', 'rgb(226,120,120)', 'rgb(180,190,130)', 'rgb(226,164,120)', 'rgb(132,160,198)', 'rgb(160,147,199)', 'rgb(137,184,194)', 'rgb(198,200,209)', 'rgb(102,102,102)', 'rgb(233,137,137)', 'rgb(192,202,142)', 'rgb(233,177,137)', 'rgb(145,172,209)', 'rgb(173,160,211)', 'rgb(149,196,206)', 'rgb(210,212,222)']
+text-blink-mode='never'
+use-system-font=true
+use-theme-colors=false
+visible-name='Iceberg'
