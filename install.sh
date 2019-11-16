@@ -4,7 +4,7 @@ set -eu
 
 # Delete any pre-installed ~/.bash_profile. We use a universal ~/.profile for
 # bash and ksh instead.
-rm $HOME/.bash_profile
+rm -f $HOME/.bash_profile
 
 if [ $(uname) = Linux ]; then
     echo "Running on Linux. Unwanted files in /etc will be removed."
@@ -25,7 +25,7 @@ if [ $(uname) = Linux ]; then
 
     orig_dir=$PWD
     cd /etc/profile.d
-    sudo rm color* vim* less* which*
+    sudo rm -f color* vim* less* which*
     cd $orig_dir
 fi
 
