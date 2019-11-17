@@ -29,10 +29,3 @@ fi
 unset TMOUT
 
 export NO_COLOR=1
-
-# On Linux, apply Adwaita Dark theming to Qt applications. Set this to
-# "Adwaita" instead to use the non-dark theme. Requires the adwaita-qt Debian
-# package.
-if [ "$(uname)" = Linux ]; then
-    export QT_STYLE_OVERRIDE=Adwaita-Dark
-fi
