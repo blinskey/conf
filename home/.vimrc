@@ -25,13 +25,16 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
             Plug 'blinskey/btl.vim'
         endif
 
-        Plug 'w0rp/ale', {'tag': 'v2.3.1'}
-        Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
-        Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
+        Plug 'dense-analysis/ale', {'tag': 'v2.6.0'}
+        Plug 'editorconfig/editorconfig-vim', {'commit': '53c56fcf358ca36b00b9cbf7dd70642c8922fdd0'}
+        Plug 'cocopon/iceberg.vim', {'commit': 'dc4b4b5838d126c22c44229a3ee170f6ac79ba86'}
 
         if executable('fzf')
-            Plug 'junegunn/fzf', {'tag': '0.18.0'}
-            Plug 'junegunn/fzf.vim', {'commit': 'b31512e'}
+            Plug 'junegunn/fzf', {'tag': '0.19.0'}
+
+	    " This plugin provides additional fuzzy-finder commands for
+	    " searching things like buffers and tags.
+            "Plug 'junegunn/fzf.vim', {'commit': '65edb6ad99b51514aaf29afc25e35ce5f05281ba'}
         endif
     call plug#end()
 endif
