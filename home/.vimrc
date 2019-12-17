@@ -27,7 +27,6 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
 
         Plug 'w0rp/ale', {'tag': 'v2.3.1'}
         Plug 'editorconfig/editorconfig-vim', {'commit': '68f8136'}
-        Plug 'Vimjas/vim-python-pep8-indent', {'commit': '84f35c0'}
         Plug 'cocopon/iceberg.vim', {'commit': '8b5ca00'}
 
         if executable('fzf')
