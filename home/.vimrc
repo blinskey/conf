@@ -109,6 +109,22 @@ let g:netrw_banner = 0  " Hide banner.
 map <leader><leader> :FZF<cr>
 map <leader>f :FZF<cr>
 
+" Set fzf colors to match color scheme. From :h fzf.
+let g:fzf_colors =
+	\ { 'fg':      ['fg', 'Normal'],
+	\ 'bg':      ['bg', 'Normal'],
+	\ 'hl':      ['fg', 'Comment'],
+	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
+	\ 'hl+':     ['fg', 'Statement'],
+	\ 'info':    ['fg', 'PreProc'],
+	\ 'border':  ['fg', 'Ignore'],
+	\ 'prompt':  ['fg', 'Conditional'],
+	\ 'pointer': ['fg', 'Exception'],
+	\ 'marker':  ['fg', 'Keyword'],
+	\ 'spinner': ['fg', 'Label'],
+	\ 'header':  ['fg', 'Comment'] }
+
 let g:ale_set_signs = 0
 let g:ale_linters = {'python': ['flake8']}
 
