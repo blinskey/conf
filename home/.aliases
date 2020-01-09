@@ -4,7 +4,6 @@ alias vim='vim -u ~/.vimrc'
 
 if [ $(uname) == 'Linux' ]; then
 	alias ls='ls --color=never'
-	alias grep='grep --color=never'
 fi
 
 alias l='ls -CFA'
@@ -12,5 +11,3 @@ alias ll='ls -ahlF'
 
 alias cp='cp -i'
 alias mv='mv -i'
-
-alias rg='rg --color=never'
