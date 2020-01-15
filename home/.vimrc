@@ -28,6 +28,7 @@ if !empty(glob('~/.vim/autoload/plug.vim'))
         Plug 'dense-analysis/ale', {'tag': 'v2.6.0'}
         Plug 'editorconfig/editorconfig-vim', {'commit': '53c56fcf358ca36b00b9cbf7dd70642c8922fdd0'}
         Plug 'cocopon/iceberg.vim', {'commit': 'dc4b4b5838d126c22c44229a3ee170f6ac79ba86'}
+	Plug 'habamax/vim-asciidoctor', {'commit': '0390ee1ae80f3d57b7169a43cb6b2b25514255d8'}
 
         if executable('fzf')
             Plug 'junegunn/fzf', {'tag': '0.19.0'}
