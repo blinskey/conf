@@ -1,8 +1,7 @@
 # Initialization for all Bourne-compatible shells.
 
-GOPATH=$HOME/go
-PATH=$HOME/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin:/usr/games
-export PATH HOME TERM GOPATH
+export GOPATH=$HOME/go
+export PATH=$HOME/bin:/usr/local/go/bin:/usr/local/bin:/usr/local/sbin:/bin:/sbin:/usr/bin:/usr/sbin:/snap/bin:$HOME/.local/bin:$GOPATH/bin:/usr/ports/infrastructure/bin:/usr/games
 
 if [ "$SHELL" == /bin/ksh ]; then
     export ENV=$HOME/.kshrc

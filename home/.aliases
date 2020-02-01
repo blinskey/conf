@@ -1,6 +1,6 @@
 # Shell aliases
 
-alias vim='vim -u ~/.vimrc'
+alias vim='vim -u $HOME/.vimrc'
 
 if [ $(uname) == 'Linux' ]; then
 	alias ls='ls --color=never'
