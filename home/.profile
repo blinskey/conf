@@ -20,7 +20,7 @@ fi
 
 # Set editor. Use vim if available, or vi otherwise.
 if type vim >/dev/null; then
-    export VISUAL=vim
+    export VISUAL='vim -u $HOME/.vimrc'
 else
     export VISUAL=vi
 fi
