@@ -1,6 +1,10 @@
 # Shell aliases
 
-alias vim='vim -u $HOME/.vimrc'
+if type nvim >/dev/null; then
+	alias vim=nvim
+else
+	alias vim='vim -u $HOME/.vimrc'
+fi
 
 if [ $(uname) == 'Linux' ]; then
 	alias ls='ls --color=never'
