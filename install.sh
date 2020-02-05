@@ -9,6 +9,9 @@ rm -f $HOME/.bash_profile
 mkdir -p $HOME/.config/cmus
 ln -sf $PWD/other/cmusrc $HOME/.config/cmus/rc
 
+mkdir -p $HOME/.config/nvim
+ln -sf $PWD/other/nvim/init.vim $HOME/.config/nvim/init.vim
+
 # Load Gnome Terminal settings.
 if [ -x "$(command -v dconf)" ]; then
     dconf load /org/gnome/terminal/legacy/ < other/gnome-terminal.dconf
