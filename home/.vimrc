@@ -79,6 +79,7 @@ set splitbelow
 set mouse=
 set laststatus=2
 set noshowmode
+set sidescroll=0
 
 set foldmethod=syntax
 setlocal foldlevelstart=99
