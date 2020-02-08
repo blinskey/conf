@@ -18,9 +18,7 @@ if [ "$(uname)" = "FreeBSD" ]; then
 fi
 
 # Set editor. Use vim if available, or vi otherwise.
-if type nvim >/dev/null 2>&1; then
-    export VISUAL=nvim
-elif type vim >/dev/null 2>&1; then
+if type vim >/dev/null 2>&1; then
     export VISUAL='vim -u $HOME/.vimrc'
 else
     export VISUAL=vi
