@@ -1,11 +1,11 @@
 " Emulate vi when invoked as such.
 if v:progname == 'vi'
-    set compatible
-    set noloadplugins
-    set t_Co=0
-    set shortmess+=I
-    syntax off
-    finish
+	set compatible
+	set noloadplugins
+	set t_Co=0
+	set shortmess+=I
+	syntax off
+	finish
 endif
 
 set nocompatible
@@ -13,30 +13,30 @@ set secure
 set nomodeline
 
 augroup vimrc
-    autocmd!
+	autocmd!
 augroup END
 
 if !empty(glob('~/.vim/autoload/plug.vim'))
-    call plug#begin('~/.vim/plugged')
-        " Use the local development copy of my colorscheme if present.
-        if !empty(glob('~/src/btl.vim'))
-            Plug '~/src/btl.vim'
-        else
-            Plug 'blinskey/btl.vim'
-        endif
+	call plug#begin('~/.vim/plugged')
+	" Use the local development copy of my colorscheme if present.
+	if !empty(glob('~/src/btl.vim'))
+		Plug '~/src/btl.vim'
+	else
+		Plug 'blinskey/btl.vim'
+	endif
 
-        Plug 'dense-analysis/ale'
-        Plug 'editorconfig/editorconfig-vim'
+	Plug 'dense-analysis/ale'
+	Plug 'editorconfig/editorconfig-vim'
 	Plug 'habamax/vim-asciidoctor'
 
-        if executable('fzf')
-            Plug 'junegunn/fzf'
+	if executable('fzf')
+		Plug 'junegunn/fzf'
 
-	    " This plugin provides additional fuzzy-finder commands for
-	    " searching things like buffers and tags.
-            "Plug 'junegunn/fzf.vim'
-        endif
-    call plug#end()
+		" This plugin provides additional fuzzy-finder commands for
+		" searching things like buffers and tags.
+		"Plug 'junegunn/fzf.vim'
+	endif
+	call plug#end()
 endif
 
 filetype plugin indent on
@@ -87,7 +87,7 @@ setlocal foldlevel=99
 
 " Store swapfiles in ~/tmp/vim.
 if !isdirectory($HOME . "/tmp/vim")
-    call mkdir($HOME . "/tmp/vim", "p")
+	call mkdir($HOME . "/tmp/vim", "p")
 endif
 set directory=$HOME/tmp/vim
 
@@ -107,28 +107,30 @@ map <leader>f :FZF<cr>
 
 " Set fzf colors to match color scheme. From :h fzf.
 let g:fzf_colors =
-	\ { 'fg':      ['fg', 'Normal'],
-	\ 'bg':      ['bg', 'Normal'],
-	\ 'hl':      ['fg', 'Comment'],
-	\ 'fg+':     ['fg', 'CursorLine', 'CursorColumn', 'Normal'],
-	\ 'bg+':     ['bg', 'CursorLine', 'CursorColumn'],
-	\ 'hl+':     ['fg', 'Statement'],
-	\ 'info':    ['fg', 'PreProc'],
-	\ 'border':  ['fg', 'Ignore'],
-	\ 'prompt':  ['fg', 'Conditional'],
-	\ 'pointer': ['fg', 'Exception'],
-	\ 'marker':  ['fg', 'Keyword'],
-	\ 'spinner': ['fg', 'Label'],
-	\ 'header':  ['fg', 'Comment'] }
+	\ {
+	\ 'fg':		['fg', 'Normal'],
+	\ 'bg':		['bg', 'Normal'],
+	\ 'hl':		['fg', 'Comment'],
+	\ 'fg+':	['fg', 'CursorLine', 'CursorColumn', 'Normal'],
+	\ 'bg+':	['bg', 'CursorLine', 'CursorColumn'],
+	\ 'hl+':	['fg', 'Statement'],
+	\ 'info':	['fg', 'PreProc'],
+	\ 'border':	['fg', 'Ignore'],
+	\ 'prompt':	['fg', 'Conditional'],
+	\ 'pointer':	['fg', 'Exception'],
+	\ 'marker':	['fg', 'Keyword'],
+	\ 'spinner':	['fg', 'Label'],
+	\ 'header':	['fg', 'Comment']
+	\ }
 
 let g:ale_set_signs = 0
 let g:ale_linters = {'python': ['flake8']}
 
 " Strip trailing whitespace on write, preserving window view.
 function! s:StripTrailingWhitespace()
-    let l:view = winsaveview()
-    %s/\s\+$//e
-    call winrestview(l:view)
+	let l:view = winsaveview()
+	%s/\s\+$//e
+	call winrestview(l:view)
 endfun
 autocmd vimrc BufWritePre * :call s:StripTrailingWhitespace()
 command WritePreservingWhitespace noautocmd w
@@ -141,7 +143,7 @@ command FourSpaceTabs setlocal expandtab ts=4 sts=4 shiftwidth=4
 inoremap <C-F> <Esc>gUiw`]a
 
 if executable("rg")
-    set grepprg=rg\ -i\ --vimgrep\ $*
+	set grepprg=rg\ -i\ --vimgrep\ $*
 else
-    set grepprg=grep\ -riIn\ $*\ /dev/null
+	set grepprg=grep\ -riIn\ $*\ /dev/null
 endif
