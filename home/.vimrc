@@ -1,13 +1,3 @@
-" Emulate vi when invoked as such.
-if v:progname == 'vi'
-	set compatible
-	set noloadplugins
-	set t_Co=0
-	set shortmess+=I
-	syntax off
-	finish
-endif
-
 set nocompatible
 set secure
 set nomodeline
