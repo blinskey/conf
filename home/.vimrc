@@ -70,14 +70,12 @@ set smarttab
 set ignorecase
 set smartcase
 set autoread
-set ruler
 set incsearch
 set nohlsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
 set mouse=
-set laststatus=2
 set noshowmode
 set sidescroll=0
 
