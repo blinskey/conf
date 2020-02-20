@@ -34,7 +34,6 @@ silent! packadd! matchit
 
 silent! syntax enable
 
-set notermguicolors
 silent! colorscheme btl
 
 set shortmess+=I  " No intro message on startup.
@@ -65,9 +64,7 @@ set nohlsearch
 set ttimeoutlen=100
 set splitright
 set splitbelow
-set mouse=
 set noshowmode
-set sidescroll=0
 
 set foldmethod=syntax
 setlocal foldlevelstart=99
