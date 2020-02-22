@@ -1,14 +1,10 @@
 [user]
 	name = Benjamin Linskey
 	email = git@linskey.org
-	signingkey = E4361B58
 [push]
 	default = simple
 [commit]
-	gpgsign = false
 	verbose = true
-[gpg]
-	program = gpg
 [core]
 	excludesfile = ~/.gitignore_global
 [merge]
