@@ -1,0 +1,105 @@
+
+// To view the default settings, hold "alt" while clicking on the "Settings" button.
+// For documentation on these settings, see: https://aka.ms/terminal-documentation
+
+{
+    "$schema": "https://aka.ms/terminal-profiles-schema",
+
+    "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+
+	"showTabsInTitlebar": false,
+	"alwaysShowTabs": false,
+	"initialCols": 80,
+	"initialRows": 24,
+	"fontSize": 11,
+
+    "profiles":
+    {
+        "defaults":
+        {
+		// Put settings here that you want to apply to all profiles
+        },
+        "list":
+        [
+            {
+                "guid": "{2c4de342-38b7-51cf-b940-2309a097f518}",
+                "hidden": false,
+                "name": "Ubuntu",
+                "source": "Windows.Terminal.Wsl",
+		"startingDirectory": "//wsl$/Ubuntu/home/blinskey",
+		"colorScheme": "Iceberg-black",
+		"cursorShape": "filledBox"
+            },
+            {
+                // Make changes here to the powershell.exe profile
+                "guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
+                "name": "Windows PowerShell",
+                "commandline": "powershell.exe",
+                "hidden": false
+            },
+            {
+                // Make changes here to the cmd.exe profile
+                "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
+                "name": "cmd",
+                "commandline": "cmd.exe",
+                "hidden": false
+            },
+            {
+                "guid": "{b453ae62-4e3d-5e58-b989-0a998ec441b8}",
+                "hidden": true,
+                "name": "Azure Cloud Shell",
+                "source": "Windows.Terminal.Azure"
+            }
+        ]
+    },
+
+    // Add custom color schemes to this array
+    "schemes": [
+	    {
+		    "name": "Iceberg",
+		    "background": "#161821",
+		    "foreground": "#c6c8d1",
+		    "black": "#161821",
+		    "brightBlack": "#6b7089",
+		    "red": "#e27878",
+		    "brightRed": "#e98989",
+		    "green": "#b4be82",
+		    "brightGreen": "#c0ca8e",
+		    "yellow": "#e2a478",
+		    "brightYellow": "#e9b189",
+		    "blue": "#84a0c6",
+		    "brightBlue": "#91acd1",
+		    "purple": "#ffffff",
+		    "brightPurple": "#ada0d3",
+		    "cyan": "#89b8c2",
+		    "brightCyan": "#95c4ce",
+		    "white": "#c6c8d1",
+		    "brightWhite": "#d2d4de"
+	    },
+	    {
+		    "name": "Iceberg-black",
+		    "background": "#222222",
+		    "foreground": "#c6c8d1",
+		    "black": "#222222",
+		    "brightBlack": "#444444",
+		    "red": "#e27878",
+		    "brightRed": "#e98989",
+		    "green": "#b4be82",
+		    "brightGreen": "#c0ca8e",
+		    "yellow": "#e2a478",
+		    "brightYellow": "#e9b189",
+		    "blue": "#84a0c6",
+		    "brightBlue": "#91acd1",
+		    "purple": "#ffffff",
+		    "brightPurple": "#ada0d3",
+		    "cyan": "#89b8c2",
+		    "brightCyan": "#95c4ce",
+		    "white": "#c6c8d1",
+		    "brightWhite": "#d2d4de"
+	    }
+    ],
+
+    // Add any keybinding overrides to this array.
+    // To unbind a default keybinding, set the command to "unbound"
+    "keybindings": []
+}
