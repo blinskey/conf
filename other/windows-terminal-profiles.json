@@ -7,8 +7,8 @@
 
     "defaultProfile": "{2c4de342-38b7-51cf-b940-2309a097f518}",
 
-	"showTabsInTitlebar": false,
-	"alwaysShowTabs": false,
+	"showTabsInTitlebar": true,
+	"alwaysShowTabs": true,
 	"initialCols": 80,
 	"initialRows": 24,
 	"fontSize": 11,
