@@ -17,7 +17,7 @@ fi
 # Load WSL settings.
 if [ -f /proc/version ] && grep -qi microsoft /proc/version; then
 	# Create a link to Windows home directory in WSL home directory.
-	rm $HOME/win-home
+	rm -f $HOME/win-home
 	ln -s '/mnt/c/Users/Benjamin Linskey' $HOME/win-home
 
 	# Install terminal in regular Windows filesystem, then link it to WSL home
