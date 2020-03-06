@@ -24,7 +24,8 @@ else
     export VISUAL=vi
 fi
 
-export MANPAGER=less
+export PAGER=less
+export MANPAGER=$PAGER
 
 # Don't kill shell due to inactivity.
 unset TMOUT
