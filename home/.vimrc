@@ -122,6 +122,9 @@ command WritePreservingWhitespace noautocmd w
 command TwoSpaceTabs setlocal expandtab ts=2 sts=2 shiftwidth=2
 command FourSpaceTabs setlocal expandtab ts=4 sts=4 shiftwidth=4
 
+" Toggle paste mode.
+noremap <leader>p :set paste! paste?<CR>
+
 " In Insert mode, press Ctrl-F to make the word before the cursor uppercase.
 inoremap <C-F> <Esc>gUiw`]a
 
