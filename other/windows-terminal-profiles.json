@@ -17,7 +17,9 @@
 	{
 		"defaults":
 		{
-		// Put settings here that you want to apply to all profiles
+			// Put settings here that you want to apply to all profiles
+			"colorScheme": "Iceberg-black",
+			"cursorShape": "filledBox"
 		},
 		"list":
 		[
@@ -26,18 +28,14 @@
 				"hidden": false,
 				"name": "Debian",
 				"source": "Windows.Terminal.Wsl",
-				"startingDirectory": "//wsl$/Debian/home/blinskey",
-				"colorScheme": "Iceberg-black",
-				"cursorShape": "filledBox"
+				"startingDirectory": "//wsl$/Debian/home/blinskey"
 			},
 			{
 				// Make changes here to the powershell.exe profile
 				"guid": "{61c54bbd-c2c6-5271-96e7-009a87ff44bf}",
 				"name": "Windows PowerShell",
 				"commandline": "powershell.exe",
-				"hidden": false,
-				"colorScheme": "Iceberg-black",
-				"cursorShape": "filledBox"
+				"hidden": false
 			},
 			{
 				// Make changes here to the cmd.exe profile
