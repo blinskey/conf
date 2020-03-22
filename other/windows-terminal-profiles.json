@@ -10,15 +10,15 @@
 	"alwaysShowTabs": true,
 	"initialCols": 80,
 	"initialRows": 24,
-	"fontSize": 11,
 
 	"profiles":
 	{
 		"defaults":
 		{
-			// Put settings here that you want to apply to all profiles
 			"colorScheme": "Iceberg-black",
-			"cursorShape": "filledBox"
+			"cursorShape": "filledBox",
+			"fontFace": "Cascadia Code",
+			"fontSize": 12
 		},
 		"list":
 		[
