@@ -2,7 +2,7 @@
 confirm-close=false
 default-show-menubar=false
 menu-accelerator-enabled=true
-theme-variant='system'
+theme-variant='dark'
 
 [keybindings]
 toggle-menubar='<Alt>m'
