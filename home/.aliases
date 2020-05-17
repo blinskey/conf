@@ -14,5 +14,4 @@ alias cp='cp -i'
 alias mv='mv -i'
 
 alias rg='rg --color=never'
-
-alias dnf='dnf --color=never'
+alias dnf='dnf --color never'
