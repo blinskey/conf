@@ -33,7 +33,7 @@ filetype plugin indent on
 silent! packadd! matchit
 
 silent! syntax enable
-
+set background=light
 silent! colorscheme btl
 
 set shortmess+=I  " No intro message on startup.
