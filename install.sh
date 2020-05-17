@@ -22,9 +22,9 @@ if [ -f /proc/version ] && grep -qi microsoft /proc/version; then
 
 	# Install terminal in regular Windows filesystem, then link it to WSL home
 	# directory.
-	win_term_prof=$HOME/win-home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/profiles.json
-	cp other/windows-terminal-profiles.json $win_term_prof
-	ln -sf $win_term_prof $HOME/.windows-terminal-profiles.json
+	win_term_prof=$HOME/win-home/AppData/Local/Packages/Microsoft.WindowsTerminal_8wekyb3d8bbwe/LocalState/settings.json
+	cp other/windows-terminal-settings.json $win_term_prof
+	ln -sf $win_term_prof $HOME/.windows-terminal-settings.json
 fi
 
 cd home
