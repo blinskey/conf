@@ -129,7 +129,7 @@ noremap <leader>p :set paste! paste?<CR>
 inoremap <C-F> <Esc>gUiw`]a
 
 if executable("rg")
-	set grepprg=rg\ -i\ --vimgrep\ $*
+	set grepprg=rg\ --vimgrep\ $*
 else
-	set grepprg=grep\ -riIn\ $*\ /dev/null
+	set grepprg=grep\ -rIn\ $*\ /dev/null
 endif
