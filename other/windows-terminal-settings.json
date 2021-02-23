@@ -15,9 +15,7 @@
 	{
 		"defaults":
 		{
-			// "One Half Light" and "One Half Dark" are nice
-			// color schemes defined in the default settings.
-			"colorScheme": "One Half Light",
+			"colorScheme": "Iceberg-black",
 			"cursorShape": "filledBox",
 			"fontFace": "Consolas",
 			"fontSize": 12
@@ -52,54 +50,49 @@
 		]
 	},
 
-	"schemes":
-	[
-		// These are copied from the default settings. Added a custom
-		// highlight color ("selectionBackground") for light scheme.
+	// Add custom color schemes to this array
+	"schemes": [
 		{
-			"name": "One Half Dark",
-			"foreground": "#DCDFE4",
-			"background": "#282C34",
-			"cursorColor": "#FFFFFF",
-			"black": "#282C34",
-			"red": "#E06C75",
-			"green": "#98C379",
-			"yellow": "#E5C07B",
-			"blue": "#61AFEF",
-			"purple": "#C678DD",
-			"cyan": "#56B6C2",
-			"white": "#DCDFE4",
-			"brightBlack": "#5A6374",
-			"brightRed": "#E06C75",
-			"brightGreen": "#98C379",
-			"brightYellow": "#E5C07B",
-			"brightBlue": "#61AFEF",
-			"brightPurple": "#C678DD",
-			"brightCyan": "#56B6C2",
-			"brightWhite": "#DCDFE4"
+			"name": "Iceberg",
+			"background": "#161821",
+			"foreground": "#c6c8d1",
+			"black": "#161821",
+			"brightBlack": "#6b7089",
+			"red": "#e27878",
+			"brightRed": "#e98989",
+			"green": "#b4be82",
+			"brightGreen": "#c0ca8e",
+			"yellow": "#e2a478",
+			"brightYellow": "#e9b189",
+			"blue": "#84a0c6",
+			"brightBlue": "#91acd1",
+			"purple": "#ffffff",
+			"brightPurple": "#ada0d3",
+			"cyan": "#89b8c2",
+			"brightCyan": "#95c4ce",
+			"white": "#c6c8d1",
+			"brightWhite": "#d2d4de"
 		},
 		{
-			"name": "One Half Light",
-			"foreground": "#383A42",
-			"background": "#FAFAFA",
-			"cursorColor": "#4F525D",
-			"black": "#383A42",
-			"red": "#E45649",
-			"green": "#50A14F",
-			"yellow": "#C18301",
-			"blue": "#0184BC",
-			"purple": "#A626A4",
-			"cyan": "#0997B3",
-			"white": "#FAFAFA",
-			"brightBlack": "#4F525D",
-			"brightRed": "#DF6C75",
-			"brightGreen": "#98C379",
-			"brightYellow": "#E4C07A",
-			"brightBlue": "#61AFEF",
-			"brightPurple": "#C577DD",
-			"brightCyan": "#56B5C1",
-			"brightWhite": "#FFFFFF",
-			"selectionBackground": "#383A42"
+			"name": "Iceberg-black",
+			"background": "#222222",
+			"foreground": "#c6c8d1",
+			"black": "#222222",
+			"brightBlack": "#444444",
+			"red": "#e27878",
+			"brightRed": "#e98989",
+			"green": "#b4be82",
+			"brightGreen": "#c0ca8e",
+			"yellow": "#e2a478",
+			"brightYellow": "#e9b189",
+			"blue": "#84a0c6",
+			"brightBlue": "#91acd1",
+			"purple": "#ffffff",
+			"brightPurple": "#ada0d3",
+			"cyan": "#89b8c2",
+			"brightCyan": "#95c4ce",
+			"white": "#c6c8d1",
+			"brightWhite": "#d2d4de"
 		}
 	],
 
