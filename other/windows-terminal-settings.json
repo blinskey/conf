@@ -10,6 +10,7 @@
 	"alwaysShowTabs": true,
 	"initialCols": 80,
 	"initialRows": 24,
+	"theme": "dark",
 
 	"profiles":
 	{
@@ -18,7 +19,8 @@
 			"colorScheme": "Iceberg-black",
 			"cursorShape": "filledBox",
 			"fontFace": "Consolas",
-			"fontSize": 12
+			"fontSize": 12,
+			"bellStyle": "none"
 		},
 		"list":
 		[
