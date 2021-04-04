@@ -31,3 +31,9 @@ export MANPAGER=$PAGER
 unset TMOUT
 
 export NO_COLOR=1
+
+# On Windows, run keychain to enable ssh-agent sharing across shells.
+if [ -f /proc/version ] && grep -qi microsoft /proc/version; then
+	/usr/bin/keychain -q --nogui $HOME/.ssh/id_rsa
+	. $HOME/.keychain/$(hostname -s)-sh
+fi
